@@ -1,0 +1,2 @@
+import {rules} from '../../lib/rules';
+export default function RuleBook(){return <main className="rulebook"><a href="/">← Back to the game</a><p className="eyebrow">FIRST EDITION · PLAYTEST RULES</p><h1>Tour of Utah Rule Book</h1><p>A road trip board game for one to eight human and computer drivers.</p><p>Use your browser’s Print command to print this book or save it as a PDF.</p>{rules.map(([title,body],i)=><section key={title}><h2>{i+1}. {title}</h2><p>{body}</p></section>)}<footer>Edition 1 · November 2026</footer></main>}

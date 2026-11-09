@@ -1,0 +1,1201 @@
+[
+  {
+    "id": 1,
+    "name": "Evanston, WY",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Evanston, WY - This small, western town boasts restaurants, motels, bars, recreational activities and the last intact roadhouse on the original Union Pacific Railroad line. Around the 4th of July, it is a popular destination for firewire purchases.",
+    "questions": [
+      "What river goes through Evanston Wyoming?",
+      "Why was Evanston founded?",
+      "How did Evanston Wyoming get its name?",
+      "What mountain range is south of Evanston?",
+      "What is the name of the canyon between Evanston and  Coalville? ",
+      "There are 4 interstates in Utah. What are they?"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Pony Express Trail",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Pony Express Trail- Simpson Springs. This Pony Express station bears the name of explorer Captain James H. Simpson, who stopped here in 1858 while laying out an overland mail route between Salt Lake City and California. The availability of excellent water made Simpson Springs one of the most prominent stations in the West Desert.",
+    "questions": [
+      "How many states did the pony express trail go through?",
+      "On average, how fast did mail travel by pony express?",
+      "In months, how long were there riders for the pony express?",
+      "How many counties are there in the State of Utah?",
+      "What natural resource is in Uintah County?",
+      "Why did the Pony Espress stop?"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Bonneville Salt Flats",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Bonneville Salt Flats - The Bonneville Salt Flats is a remnant of ancient Lake Bonneville. Wind and water combine to create the flat surface of salt. Each winter, a shallow layer of standing water floods the surface of the salt flats. During spring and summer, the water slowly evaporates while winds smooth the surface into a vast, nearly perfect flat plain that looks like a frozen lake bed covered with snow.",
+    "questions": [
+      "What activity is the Bonneville Salt Flats most known for?",
+      "How deep was Lake Bonneville where the salt flats are today?",
+      "Name a movie where filming was done on the Bonneville salt flats.",
+      "What is the population of Utah? (In millions)",
+      "Fry sauce originated in Utah by what fast food chain?",
+      "Name five ski resorts in Utah."
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Air Force Museum - Hill AFB",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Air Museum at Hill Air Force Base - With over 70 aircraft on display, Hill Aerospace Museum offers an incredible opportunity for discovery. Founded in 1981, the museum is supported by the Aerospace Heritage Foundation of Utah. Some aircraft on display include the B-17, SR-71 and F-117 Stealth Fighter.",
+    "questions": [
+      "What is the fastest jet on display at the museum?",
+      "How much does it cost to get into the museum?",
+      "Hill AFB is home to what fighter jet?",
+      "What is a Jackalope?",
+      "What Utah family had a variety show in the 1970's?",
+      "Name a current Utah state senator."
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Lagoon",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Lagoon - Lagoon opened in Farmington, Utah, on July 12, 1896.  In 1900, guests began swimming and rowing boats in Lagoon Lake. Lagoon's famous wooden roller coaster was constructed in 1921.",
+    "questions": [
+      "What was lagoon's first roller coaster and is it still in operation?",
+      "Which of Lagoon's coasters was named by \"People Magazine\" in 1984 as one of the top 10 coaster rides in the country?",
+      "What is the name of October's festival at Lagoon?",
+      "Who runs the bus system in Utah?",
+      "What is the communter train called?",
+      "What mountain range does a majority of Utah live by?"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Hogle Zoo",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Hogle Zoo - The zoo has been at its present location at the mouth of Emigration Canyon since 1931. This is the largest zoo in the state.",
+    "questions": [
+      "What is a \"liger\" and did Hogle Zoo have one?",
+      "What year did Elephants last live at hogle zoo?",
+      "What is the oldest animal in the zoo?",
+      "What is one industry on the Great Salt Lake?",
+      "What is the largest School District in Utah?",
+      "In 1969, what actor purchased the land known as Sundance?"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Heber Valley Railroad",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Heber Valley Railroad - The Heber Valley Railroad (HVRX) is a heritage railroad based in Heber City, Utah. It operates passenger excursion trains along a line between Heber City and Provo Canyon.  The railroad operates year-round and features evening and special event train rides.",
+    "questions": [
+      "What canyon does Heber Valley Railroad go into?",
+      "What type of engine pulls the cars of the railroad?",
+      "What is another name for the Heber Valley Railroad?",
+      "What does 'deseret' mean?",
+      "What sporting event corresponds with the \"Days of 47\"?",
+      "In what city is the biggest 4th of July parade in?"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Timpanogos Cave",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Timpanogos Cave is 1,090 feet above the floor of American Fork Canyon near Mount Timpanogos in the Wasatch Mountains, reached by a steep 1.5 mile trail up the rocky slopes. The hike is quite strenuous and culminates as part of a ranger-led guided tour.",
+    "questions": [
+      "How far is the hike from the road to the caves?",
+      "About how big is the great heart of timpanogos?",
+      "How was the first cave discovered?",
+      "About how long does it take to drive from Evanston to Wendover?",
+      "What is the average depth of Utah Lake?",
+      "What fish species is native to Utah Lake?"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Utah Olympic Park",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "The Utah Olympic Park was built for the 2002 Winter Olympics. During the 2002 games the park hosted the bobsled, skeleton, luge, ski jumping, and Nordic combined events. It still serves as a training center for Olympic and development level athletes.",
+    "questions": [
+      "Name three events held at the Utah Olympic Park",
+      "What year did Utah first hold the winter olympics?",
+      "Name a summer activity to do at the Utah Olympic Park",
+      "About how long does it take to drive from St. George to Garden City?",
+      "What is the most grown fruit in Utah?",
+      "What major fruit is grown in Green River?"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Bear Lake",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Bear Lake - The third largest lake in Utah. The most unusual feature is the turquoise-blue color of the water, caused by limestone particles eroded from the surrounding mountains.",
+    "questions": [
+      "What is the average depth of Bear Lake (answer within 10 feet)?",
+      "How much shoreline does bear lake have (answer within 5 miles)?",
+      "Bear Lake has become famous for the surrounding valley's crops of what?",
+      "How is most of the electricity used by Utah made?",
+      "Name two places where the Utah State Prison is.",
+      "What is the second busiest airport in Utah?"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Lofty Lake Trail",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Lofty Lake Trail - This popular trail in the High Uintas takes you to one of the highest lakes in the state. This loop covers approximately 3.9 miles and is a moderate hike. Make sure you look at the beautiful scenery.",
+    "questions": [
+      "How long is the loop hike to Lofty Lake?",
+      "What is the elevation of Lofty Lake?",
+      "What fish can you find in Lofty Lake?",
+      "What is the tallest peak in Utah?",
+      "What mountain range runs East/West in Utah?",
+      "Where does the Provo River begin?"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Bingham Canyon Mine",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "The Bingham Canyon Mine, more commonly known as Kennecott Copper Mine among locals, is an open-pit mining operation extracting a large porphyry copper deposit. The mine is the largest man-made excavation, and deepest open-pit mine in the world.",
+    "questions": [
+      "How many tons of ore does a dumptruck carry (answer within 20 tons).",
+      "How tall are the tires on the largest dumptruck at the mine?",
+      "How long does it take a dumptruck to go from the bottom to the top of the mine?",
+      "How many Congressmen does Utah have in the U.S. house of representatives?",
+      "What is Utah's nickname?",
+      "Utah is the __________ largest state in the United States."
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Temple Square",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Temple Square is a 10-acre complex, owned by the Church of Jesus Christ of Latter-day Saints (LDS Church). The usage of the name has gradually changed to include several other church facilities that are adjacent to Temple Square.",
+    "questions": [
+      "How long did it take to build the Salt Lake Temple?",
+      "How many floors does the church office building have?",
+      "When was the Tabernacle on Temple Square first completed?",
+      "What is the state bird?",
+      "What is the predominate religion in the state and what percentage of the population belong to this group?",
+      "The Salt Lake Temple is made from what rock and where did they get it?"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "This is the Place State Park",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "This is the Place Monument is a historical monument,, located at the mouth of Emigration Canyon.",
+    "questions": [
+      "Who led the pioneers to the Salt Lake Valley and declared \"This is the place\"?",
+      "What day and year did the pioneers enter the Salt Lake Valley",
+      "Approximately how many people came to Utah in 1847?",
+      "What is the state flower?",
+      "What year did Utah become a state?",
+      "What is the state animal of Utah?"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Antelope Island State Park",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Antelope Island with an area of 42 square miles, is the largest of ten islands located within the Great Salt Lake. Antelope Island holds populations of many animals.",
+    "questions": [
+      "What is the largest animal that lives on Antelope Island?",
+      "Name at least four animals that live on Antelope Island?",
+      "What year were bison first introduced to Antelope Island?",
+      "What man-made feature in Utah can you see from space?",
+      "On average, how many days are sunny in Utah per year? (within 10 days)",
+      "What is the largest Ski resort?"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Camp Floyd",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Camp Floyd Established in July 1858 by a U.S. Army detachment to stop a perceived Mormon rebellion, which came to be known as the Utah War. The garrison duty included protecting the stagecoach and Pony Express routes, preventing Indian marauding, and mapping and surveying responsibilities.",
+    "questions": [
+      "Why did the army abandon Camp Floyd?",
+      "Why was camp Floyd established?",
+      "How many soldiers lived at Camp Floyd?",
+      "The county seat and name of this county make up the last and first name of the 13th president of the United States. What is it?",
+      "The first capitol of Utah was in what city?",
+      "How much of Utah is owned by the federal government? (answer within 10 percent)"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Snowbird",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Snowbird is home to Utah’s only Aerial Tram. Snowbird is the closest ski resort as the crow flies to the Salt Lake City International Airport. Snowbird has the longest ski season in Utah.",
+    "questions": [
+      "What canyon is Snowbird in?",
+      "On average, how much snow does Snowbird get in a year?",
+      "In the summer, name an activity done at Snowbird.",
+      "What was Utah's first national park?",
+      "Which ski resort hosted the 2002 Winter Olympics Men and Women's Downhill competition?",
+      "Utah has the greatest _________ on earth."
+    ]
+  },
+  {
+    "id": 18,
+    "name": "The Loveland Living Planet Aquarium",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "The Loveland Living Planet Aquarium currently houses 4,500 animals representing 550 species. The public aquarium currently consists of five main exhibits.",
+    "questions": [
+      "The aquarium opened in it's current location in what year?",
+      "About how many visitors are there at the Aquarium each year?",
+      "How many gallons of water does the largest aquarium tank hold?",
+      "What Utah city was Butch Cassidy born in?",
+      "This was first inplanted in a human in the 1980s.  What was it?",
+      "This fast food chain that serves chicken had it's first restaurant in Utah."
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Salt Lake City International Airport",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Salt Lake City International Airport (SLC) serves more than 26 million passengers a year. The airport is the closest commercial airport for more than 2.5 million people and is within a 30-minute drive of nearly 1.3 million jobs.",
+    "questions": [
+      "Salt Lake City International airport is a hub for what airline?",
+      "How many runways are at the SLC International airport?",
+      "How many concourses does the airport have?",
+      "Utah was part of what country in the early 1800's?",
+      "What was the proposed name of the state in 1850?",
+      "This US Senator from Utah was the first Senator to fly in space."
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Scofield Reservoir",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Scofield is Utah's highest-elevation state park at 7,616 feet. That makes for a cool summer retreat and a winter sports haven. The popularity of Scofield Reservoir brings many visitors to the park each year.",
+    "questions": [
+      "What river feeds the Scofield Reservoir?",
+      "What year was the current Scofield Reservoir dam completed?",
+      "What sport is done at Scofield Reservoir?",
+      "What is the Capitol of Utah?",
+      "What is the average age of the population in Utah?  (answer within 5 years)",
+      "This city is the geographical center, or navel, of Utah."
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Goshen Movie Set",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Goshen Movie Set or the Jerusalem Movie Set. The area was selected for its similarity to Jerusalem’s geography, which includes rolling hills, groves of cedar trees, sand dunes, and plains.",
+    "questions": [
+      "Who built the Goshen Movie Set?",
+      "What is the set made of?",
+      "What was filmed at the Goshen Movie Set?",
+      "What is the Utah state rock?",
+      "What is a reason people look to move to Utah?",
+      "What is one of Utah's tops Agricultural products?"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Spiral Jetty",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Spiral Jetty is an earthwork sculpture constructed in April 1970 that is considered to be the most important work of American sculptor Robert Smithson.",
+    "questions": [
+      "Where did the name come from?",
+      "What is located 10 miles east of Halls Crossing?",
+      "What lake is Halls Crossing on?",
+      "Park City has hosted what independent film festival since 1978?",
+      "What is the \"Central Utah Relocation Center\"?",
+      "What river flows through Desolation Canyon?"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Mt. Timpanogos Hike",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Mt. Timpanogos Hike Quick Facts · Length (roundtrip): about 14.5 miles from the Timpooneke trailhead or about 13.5 miles from Aspen Grove trailhead",
+    "questions": [
+      "What body of water is the Spiral Jetty in?",
+      "When was the Spiral Jetty built?",
+      "What is the Spiral Jetty made of?",
+      "The oldest and largest organism in the world is a colony of trees in Utah's Fishlake Forest nicknamed \"Pando.\" What kind of trees are they?",
+      "What activity used to be done at Muddy Puddy?",
+      "What is \"House on Fire\"?"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Soldier Hollow",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Soldier Hollow Nordic Center was home to some Olympic events and currently is used for Cross Country Skiing and Winter Tubing during the cold season. ATV, Biking, and Hiking during the summer months.",
+    "questions": [
+      "What are the two starting points to hike to the summit of Mt. Timpanogos?",
+      "What do some people do that get them injured while hiking the trail?",
+      "What is the record to summit the mountain in a 48 hour period?",
+      "What is the name of the nation’s first department store (orginated in Utah)?",
+      "In what National Park is Cassidy Arch?",
+      "Which arch partially collapsed in 2000"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Cherry Hill",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Cherry Hill is a small campground/amusement park in Kaysville, Utah. It is mainly popular during the summer because of its main focus on water rides. The park also contains many other attractions.",
+    "questions": [
+      "What animal competition is held at Soldier Hollow, usually in the spring?",
+      "What winter attraction is in the Soldier Hollow area?",
+      "How many holes does the Soldier Hollow golf course have?",
+      "Name two hot springs in Utah.",
+      "How tall is the highest peak in Utah?",
+      "What religious groups first settled the Salt Lake Valley?"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Dugway Geode Beds",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "The Dugway Geode Beds are a Rockhounding hotspot. The most common mineral found within the geodes is quartz. Geodes are usually found below the ground surface.",
+    "questions": [
+      "What year did Cherry Hill open?",
+      "Aside from camping, what was the first activity at Cherry Hill?",
+      "How big (in acres) is Cherry Hill?",
+      "In land area, what is the largest military base in Utah?",
+      "What military base in Utah employes the most people?",
+      "What is the largest County in Utah?"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Starvation Resevoir",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Fred Hayes State Park at Starvation (formerly Starvation State Park) is in Duchesne County. The Starvation Dam is a 210-foot-high (, 3,070-foot-long earthfill dam.",
+    "questions": [
+      "How old are the Geodes?",
+      "What do you find inside a Geode?",
+      "How much does it cost to dig in the Geode Beds on BLM land?",
+      "Where do you go do see the Ice Castles?",
+      "Around Christmas time, this place attracts thousands of visitors because of their Christmas lights.",
+      "What two railroad lines met at Promotory Point?"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Golden Spike Museum",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Golden Spike - One of the greatest technological achievements of the 19th century is the completion of the first transcontinental railroad across the United States.",
+    "questions": [
+      "According to legend, how did starvation get it's name?",
+      "When was the starvation dam built?",
+      "What river feeds Starvation Reservoir?",
+      "What great lake use to cover a lot of northern Utah?",
+      "Name the two counties in Utah that are also on the periodic table of the elements.",
+      "Who is the wealthiest person in Utah?"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Lava Hot Springs",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Lava Hot Springs is a city along the Portneuf River in the mountainous valley of the Portneuf River on the old route of the Oregon Trail and California Trail, the city has become a popular resort location.",
+    "questions": [
+      "What does the Golden Spike National Monument commemorate?",
+      "What nationality were most of the railroad workers?",
+      "What year did the US mint produce the Utah quarter which features the meeting of the rails?",
+      "Before tourism, what was the main source of jobs in Moab?",
+      "Name the two dates on the Utah state seal",
+      "Philo T Farnsworth, the inventor of the Television, was born in what city?"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Yuba State Park",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Yuba State Park has many Recreational opportunities including camping, boating, swimming, fishing, and nearby off highway vehicle riding.",
+    "questions": [
+      "What heats the water at Lava Hot Springs?",
+      "How many gallons per second come out of the springs? (within 5 gallons)",
+      "How hot are the hot springs? (within 5 degrees)",
+      "What year was the \"Last Indian Uprising\" in the state of Utah?",
+      "What range of mountains go from about Price, down to Green River and on to Grand Junction Colorado?",
+      "In what city does the Hare Christna temple host on e of the largest color festivals outside India?"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Nine Mile Canyon",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "Nine Mile Canyon is a canyon approximately 40 miles long. Promoted as \"the world's longest art gallery\", the canyon is known for its extensive rock art, most of it created by the Fremont culture and the Ute people.",
+    "questions": [
+      "How were the lava tubes created?",
+      "How long ago were the lava tubes created?",
+      "Is special equipment needed to explore the lava tubes?",
+      "Where are the Genealogical Archives located?",
+      "Where can you find \"Checkerboard Mesa\"?",
+      "Utah was named after what native american tribe?"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Little Sahara",
+    "group": "Destination A",
+    "color": "Blue",
+    "description": "The Little Sahara Recreation Area is a large area of sand dunes, hills and sagebrush flats. The Little Sahara sand dunes are remnants of a large river delta formed by the Sevier River. The dunes are still moving 5 to 9 feet per year.",
+    "questions": [
+      "What river goes into Yuba reservoir?",
+      "What is one feature that draws people to Yuba lake?",
+      "Name three species of fish in Yuba reservoir.",
+      "What city can you find the \"John Wesley Powell River History Museum\"?",
+      "What city can you find workers doing tests for rocket engines?",
+      "What is \"Ensign Peak\"?"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Meadow Lava Tubes",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "The Meadow Lava Tubes at Tabernacle Hill lead you through a cave that was once a lava tube. Make sure to bring a flash-flight and be careful to avoid some of the rocks' jagged edges.",
+    "questions": [
+      "What people created the rock art in Nine Mile Canyon?",
+      "How many miles long is Nine Mile Canyon?",
+      "What are the drawings on the rock called?",
+      "What is the state insect?",
+      "What is significant about the Wendover Airfield?",
+      "What happened in Thistle in the early 1980s?"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Halls Crossing",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Halls Crossing Marina in Utah offers boaters fueling facilities, launch ramps, a free boat pump-out station, convenience store, snack bar, full boat repair services and campgrounds. The State of Utah maintains a ferry between Bullfrog and Halls Crossing, capable of carrying cars, trucks, RVs and trailers.",
+    "questions": [
+      "What is the highest sand dune known as in Little Sahara?",
+      "Name two activites done at Little Sahara State Park.",
+      "How much area does Little Sahara cover?",
+      "What famous choral group is from Utah?",
+      "What it Utah's hockey team?",
+      "What famous wild west lawman is from Utah, also known as \"Modern-day Samson\"."
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Arches National Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Arches National Park is a national park adjacent to the Colorado River. More than 2,000 natural sandstone arches are located in the park, including the well-known Delicate Arch.",
+    "questions": [
+      "How are arches formed?",
+      "Spanning 291 feet, the world's longest natural arch can be found in Arches National Park. What is it called?",
+      "What arch is featured on the Utah centennial automobile license plates?",
+      "How many national parks are there in Utah?",
+      "What festival is held yearly in Moab the week of Easter?",
+      "From this restaurant you can overlook temple square."
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Bryce Canyon National Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Bryce Canyon National Park, which despite its name, is not a canyon, but a collection of giant natural amphitheaters. The red, orange, and white colors of the rocks provide spectacular views for park visitors.",
+    "questions": [
+      "Visitors to this National Park are in awe by what color of many of the formations?",
+      "How was Bryce Canyon formed?",
+      "An early settler said it's easy to loose this animal in Bryce Canyon.",
+      "What is the largest minority in the state of Utah?",
+      "What High School was used for the filming of \"High School Musical\"?",
+      "Why is the Great Salt Lake salty?"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Canyonlands National Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Canyonlands National Park preserves a colorful landscape eroded into numerous canyons, mesas, and buttes by the Colorado River, the Green River, and their respective tributaries.",
+    "questions": [
+      "Name one of the three basic sections of this National Park",
+      "Which two main rivers run through Canyonlands?",
+      "What year was Canyonlands made a national park?",
+      "What should you be careful of when hiking a slot canyon?",
+      "What is the name of the resort the was on the Great Salt Lake?",
+      "Where can you find \"Roots of Knowledge\" stained glass art?"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Capitol Reef",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Capitol Reef encompasses the Waterpocket Fold, a warp in the Earth's crust that is 65 million years old. It is the largest exposed monocline in North America. In this fold, newer and older layers of earth folded over each other in an S-shape.",
+    "questions": [
+      "When it rains, what should you be careful of in Capitol Reef?",
+      "If camping in Capitol Reef, what should you take advantage of at night?",
+      "What is a popular activity to do at Capitol Reef?",
+      "What is the average number of Tornadoes per year in Utah?",
+      "What is the most common of Utah's \"Large Animals\"?",
+      "About how many pipes are in the Tabernacle on Temple Square?"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Mesa Verde National Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Mesa Verde National Park protects some of the best-preserved Ancestral Puebloan archaeological sites in the United States. With more than 5,000 sites, including 600 cliff dwellings, it is the largest archaeological preserve in the United States. It is best known for structures such as Cliff Palace, thought to be the largest cliff dwelling in North America.",
+    "questions": [
+      "What ancient people lived at Mesa Verde?",
+      "About when did the people stop inhabiting Mesa Verde?",
+      "Why was Mesa Verde abandoned?",
+      "Utah was the _____ state admitted to the Union.",
+      "Where are the narrows?",
+      "What is the nation’s second largest on-site language school (located in Provo, UT)?"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Great Basin National Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Great Basin National Park is the dry and mountainous region between the Sierra Nevada and the Wasatch Mountains. The park is notable for its groves of ancient bristlecone pines,; Lehman Caves, Wheeler Peak Glacier, and some of the darkest night skies in the contiguous United States.",
+    "questions": [
+      "What is the highest peak in Great Basin National Park? (Answer within 1,000 ft)",
+      "Name three activites people come to the Great Basin National Park to do.",
+      "What is the name of the cave located in Great Basin National Park?",
+      "Who is the firearm maker that was born in Utah?",
+      "This outlaw was born in Beaver, Utah.",
+      "This disc toy was invented by Utahn Fred Morrison."
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Grand Canyon National Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": ". The Grand Canyon is a steep-sided canyon carved by the Colorado River. The Grand Canyon is 277 miles long, up to 18 miles wide and attains a depth of over a mile.",
+    "questions": [
+      "About how deep is the Grand Canyon?",
+      "How was the Grand Canyon formed?",
+      "What has a higher elevation, the North Rim or South Rim of the Grand Canyon?",
+      "The people of Utah consume for of this per capita than any other state.",
+      "What is Utah's most popular fishery, receiving over 1.5 million angling hours annually?",
+      "What state is directly north of Utah?"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Natural Bridges National Monument",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Natural Bridges National Monument features the thirteenth largest natural bridge in the world. The three bridges in the park are named Kachina, Owachomo, and Sipapu (the largest).",
+    "questions": [
+      "How are the bridges formed?",
+      "How many main bridges are there?",
+      "The loop to see the bridges, do you drive it clockwise, counter-clockwise, or either way?",
+      "What state can you see south of Monument Valley?",
+      "What did the Seagulls eat that saved the early settlers in the Salt Lake Valley?",
+      "What river is between Utah lake and the Great Salt Lake?"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Bears Ears National Monument",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "The monument is named Bears Ears for a pair of buttes that rise to elevations over 8,900 feet and 9,000 feet.",
+    "questions": [
+      "How many \"Bear Ears\" are there?",
+      "What ancient people lived in the Bears Ears area?",
+      "What US President first declared the Bears Ears as a National Monument?",
+      "How many national monuments are there in Utah?",
+      "What rock is used in Navajo jewelry?",
+      "What state is directly west of Utah?"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Grand Staircase National Monument",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "The Grand Staircase–Escalante National Monument land is among the most remote in the country; it was the last to be mapped in the contiguous United States.Grand Staircase–Escalante is the first and largest national monument managed by the BLM.",
+    "questions": [
+      "Name one resource that is now locked away and can't be mined in the Grand Staircase National Monument.",
+      "Name one hike in the Grand Staircase National Monument",
+      "Is \"The Wave\" inside the Grand Staircase National Monument?",
+      "What professional Soccer team is in Utah?",
+      "Name a Pop Music group from Utah.",
+      "What is between Lehi and Draper called?"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Cedar Breaks National Monument",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Cedar Breaks National Monument is a U.S. National Monument is a natural amphitheater, stretching across 3 miles, with a depth of over 2,000 feet. The elevation of the rim of the amphitheater is over 10,000 feet above sea level.",
+    "questions": [
+      "What is the closest ski resort to Cedar Breaks?",
+      "How deep is Cedar Breaks canyon?",
+      "What kind of rock is the \"Pink Cliffs\" in Cedar Breaks?",
+      "Where is Wilson Arch?",
+      "This 5,000 square foot home and gift shop is carved into a big sandstone outcropping.",
+      "Name one current Utah Senator"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Hole in the Rock",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Hole in the Rock is a narrow and steep crevice in the western rim of Glen Canyon. It provided a route through what would otherwise be a large area of impassable terrain.",
+    "questions": [
+      "What year did the San Juan settlers pass through Hole in the Rock?",
+      "Name one of 2 ways to get to the Hole in the Rock.",
+      "How long did the settlers use Hole in the Rock?",
+      "Before Microsoft Office became dominant, the most commonly used office typing software was what?",
+      "This farm in Juab country grows a lot of lavender.",
+      "This Utah singer was a runner-up on the TV show \"American Idol\"."
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Flaming Gorge",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Flaming Gorge Reservoir is the largest reservoir in Wyoming, on the Green River, impounded behind the Flaming Gorge Dam located in Utah. Construction on the dam began in 1958 and was completed in 1964.",
+    "questions": [
+      "Name three fish that are caught in Flaming Gorge.",
+      "When was the Flaming Gorge Dam completed?",
+      "About how long (in miles) is Flaming Gorge reservoir?",
+      "What native american tribe lived on the shores of Utah Lake?",
+      "This person from Utah was regarded as one of the most accomplished forgers in our nation’s history.",
+      "What is the largest natural freshwater lake in Utah?"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Monument Valley",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Monument Valley provides perhaps the most enduring and definitive images of the American West. The isolated red mesas and buttes surrounded by empty, sandy desert have been filmed and photographed countless times over the years for movies, adverts and holiday brochures.",
+    "questions": [
+      "Name two movies that were filmed in Monument Valley.",
+      "What are the two monuments that are most famous called?",
+      "What indian nation owns Monument Valley?",
+      "What is the largest indian tribe in Utah?",
+      "This company founded in 1984 is a multilevel marketing company that develops and sells personal care products and dietary and nutritional supplements.",
+      "What is the largest manmade lake in Utah?"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Newspaper Rock",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Newspaper Rock State Historic Monument is a Utah state monument featuring a rock panel carved with one of the largest known collections of petroglyphs.",
+    "questions": [
+      "Name one of the three tribes that contributed to Newspaper Rock.",
+      "Is there a fee to view Newspaper rock?",
+      "What popular water feature is nearby for hunting and fishing?",
+      "What professional Basketball team makes it's home in Utah?",
+      "What is the football \"Holy War\"?",
+      "Name one ski resort in Big Cottonwood Canyon."
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Topaz Mountain",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Topaz Mountain - The summit and surrounding area is known for its relative abundance of semi precious minerals including topaz, red beryl and opal. This area is visited by rock hounds and those hoping to find unique stones.",
+    "questions": [
+      "What is Utah's official state gem?",
+      "What happens to Topaz when left in the sun?",
+      "How many colors can Topaz be?",
+      "Who currently holds the College Football \"Wagon Wheel\"?",
+      "Where did Forest Gump stop his long run?",
+      "Where was cotton first grown in Utah?"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "The Wave",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "The Wave is a sandstone rock formation located in Arizona, US, near its northern border with Utah. he formation is well-known among hikers and photographers for its colorful, undulating forms and the difficult hike required to reach it.",
+    "questions": [
+      "What are the rocks of the Wave made of?",
+      "How do you get reservations to hike the Wave?",
+      "When hiking the Wave, what should you take with you?",
+      "Name three game birds that are hunted in Utah.",
+      "Before using Granite, what type of stone did they first use for the foundation for the Salt Lake temple",
+      "Who was held at the internment camp near Delta, UT during World War II?"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Zion National Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Zion National Park includes mountains, canyons, buttes, mesas, monoliths, rivers, slot canyons, and natural arches.",
+    "questions": [
+      "What is the name of the river that flows through Zion National Park?",
+      "Name two famous hikes in Zion National Park.",
+      "When should you not hike the narrows?",
+      "Where are the Utah underground salt mines?",
+      "The longest stretch of Interstate without services (gas) is between what two cities?",
+      "What is the name of the Planetarium in Salt Lake City?"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Snow Canyon State Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Snow Canyon State Park offers 16 miles of hiking trails, technical rock climbing, biking and horseback riding. It features a very nice campground open year-round.",
+    "questions": [
+      "What is there to do at Snow Canyon State park?",
+      "What is the average rainfall for Snow Canyon State park?",
+      "What sand features are there in Snow Canyon State park? ",
+      "How many state parks are there in Utah?",
+      "Where does the Salt Lake Real soccer team play?",
+      "What are three ways electricity is produced in Utah?"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Mountain Meadows Masacre",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Mountain Meadows Massacre - A stoic rock cairn is all that remains to remember one of the more brutal instances of frontier treachery in American history.",
+    "questions": [
+      "Where were the immigrants headed before they were ambushed?",
+      "Who ambushed the immigrants?",
+      "What was the cause of tension between the immigrants and the locals?",
+      "What was mined in the Tintic mining district?",
+      "Name one \"Dark Sky Park\" in the state of Utah.",
+      "Name one location of a fish hatchery."
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Coyote Gulch",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Coyote Gulch - Located in the vast Grand Staircase-Escalante desert, Coyote Gulch is a winding, semi-narrow canyon that snakes its way down through incredible red rock country, and joins with the Escalante River just above Lake Powell.",
+    "questions": [
+      "Are dogs allowed to hike with you in Coyote Gulch?",
+      "What arch to you hike through in the Coyote Gulch Loop?",
+      "What are two ways to get out/get into the Coyote Gulch Loop?",
+      "Name one geyser in Utah (or where one is located).",
+      "What is the #1 attraction in Utah?",
+      "Who was abducted by Brian Mitchell in 2002?"
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Dark Canyon Wilderness Area",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "The only designated Wilderness in southeastern Utah, the 47,116-acre Dark Canyon Wilderness is located in a beautiful and remote section of the Colorado Plateau. Visitors are dwarfed by steep, sculpted and terraced sandstone walls that shade the canyon in morning and late afternoon",
+    "questions": [
+      "Why is there a cabin in the East portion of Dark Canyon?",
+      "What does Dark Canyon lead to?",
+      "About how far is the entrance to dark canyon to Lake Powell?",
+      "Where is the Utah State Correctional facility?",
+      "Name three of the LDS temples in Salt Lake County.",
+      "What is the land speed record on the Bonneville Salt Flats?"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Valley of the Gods",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Valley of the Gods is a Scenic backcountry area near Monument Valley with isolated buttes, towering pinnacles and wide open spaces.",
+    "questions": [
+      "Before hiking here, you need a permit from whom?",
+      "What annual festival is held here?",
+      "About how many miles is the Valley of the Gods road?",
+      "During World War II, what language was used for secret mesages?",
+      "What festival is held yearly in Provo?",
+      "What city holds \"Strawberry Days\"?"
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Navajo Mountain",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Navajo Mountain is a prominent free-standing laccolith, a dome-shaped body of igneous rock that intruded into sedimentary layers and lifted up the overlying layer. The summit is the highest point on the Navajo Nation.",
+    "questions": [
+      "How was Navajo Mountain formed?",
+      "What is the population of Navajo Mountain?",
+      "Where is the closest airport to Navajo Mountain? (That a small plane can land at)",
+      "What Utah city is home to Onion Days?",
+      "Where or what is the \"Waterpocket Fold\"?",
+      "What national park has overlooks at Sunrise Point, Sunset Point and Inspiration Point?"
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Fort Kanab",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Fort Kanab was built on the east bank of Kanab Creek in 1864 for offensive operations against the original inhabitants of the area and as a base for the exploration of the area.",
+    "questions": [
+      "Kanab, where several movies have been made, is also known as what?",
+      "What is a staple of Kanab's economy?",
+      "How many people live in Kanab?",
+      "Fremont Indian State Park & Museum is in what county?",
+      "Regarding land, what does BLM stand for?",
+      "Where is Mount Peale, the 2nd highest peak in Utah?"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Coral Pink Sand Dunes",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Coral Pink Sand Dunes - Venture onto a shifting sea of red sand. Changed by winds, these mountains and hills of sand can move as much as 50 feet per year.",
+    "questions": [
+      "How far do some of the dunes move each year?",
+      "How long have the dunes been there?",
+      "When did Coral Pink Sand Dunes become a state park?",
+      "Where can you find Glamping in Utah?",
+      "Where is the longest Zipline in Utah?",
+      "In what city can you find the \"Utah Olympic Oval\"?"
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Dinosaur National Monument",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Dinosaur National Monument originally preserved in 1915 to protect its famous Dinosaur Quarry, the monument was greatly expanded in 1938 to include its wealth of natural history. The park contains over 800 paleontological sites.",
+    "questions": [
+      "How long ago did these Dinosaurs roam this area?",
+      "When were fossils first discovered in this area?",
+      "What are so many located so close together?",
+      "What is the county seat of Summit County?",
+      "How did Eureka city get it's name?",
+      "What is the hottest month in Utah?"
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Rainbow Bridge",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Rainbow Bridge is a natural arch with a span of 275 feet and height of 290 feet. It is one of the largest natural arches in the world.",
+    "questions": [
+      "What river is near rainbow bridge?",
+      "How is the best way to access Rainbow Bridge?",
+      "How was rainbow bridge formed?",
+      "What is the most common speed limit on I-15 from Nephi to Cedar City?",
+      "What is the coldest month in Utah?",
+      "Name one Utah Olympian."
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Hovenweep National Monument",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Hovenweep National Monument is located on Cajon Mesa of the Great Sage Plain. Shallow tributaries run through the wide and deep canyons into the San Juan River. There is evidence of occupation by hunter-gatherers from 8,000 to 6,000 B.C. until about AD 200.",
+    "questions": [
+      "What ancient people lived hat Hovenweep?",
+      "What does the word \"Hovenweep' mean?",
+      "How long ago did humans first inhabit this area?",
+      "What was the first year the women were allowed to vote in Utah?",
+      "What paved road in Utah has the highest elevation?",
+      "Where was the coldest temperature recorded in the state of Utah?"
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Goosenecks State Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Goosenecks State Park overlooks a deep meander of the San Juan River. Millions of years ago, the Monument Upwarp forced the river to carve incised meanders over 1,000 feet deep as the surrounding landscape slowly rose in elevation. Eroded by water, wind, frost, and gravity.",
+    "questions": [
+      "How deep are the goosenecks?",
+      "How were the goosenecks formed?",
+      "How long has it taken for the Goosenecks to form?",
+      "What is Utah's tallest year-round waterfall?",
+      "This infamous group of settlers crossed the Salt Flats on their way to California in 1846.",
+      "What is the mountain range to the West of the Salt Lake Valley?"
+    ]
+  },
+  {
+    "id": 65,
+    "name": "San Rafael Swell",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "The San Rafael Swell is approximately 75 by 40 miles, consists of a giant dome-shaped anticline of sandstone, shale, and limestone. Infrequent but powerful flash floods have eroded the sedimentary rocks into numerous valleys, canyons, gorges, mesas, buttes, and badlands.",
+    "questions": [
+      "What famous northern route trail goes through San Rafael swell?",
+      "Name three activities done in San Rafael Swell.",
+      "Name one hike in the San Rafael Swell.",
+      "What is the wettest month in Utah?",
+      "In 1824, who became the first white man to see the Great Salt Lake? ",
+      "What \"All-you-can-eat\" eating establishment was first opened in Utah?"
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Wilberg Mine",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Wilberg Mine - Coal mining in Utah.  In Utah, the primary source of electricity is generated from coal. Utah’s most economic coal reserves are located in three coalfields primarily across Sevier, Emery, and Carbon Counties.",
+    "questions": [
+      "What is most of the coal mined in Utah used for?",
+      "What happened in Dec. 1984 at the Wilberg mine?",
+      "What Utah county has the most coal mines?",
+      "What is the largest open pit mine in Utah?",
+      "What is the name of the largest shopping area in Downtown Salt Lake City?",
+      "What is the average depth of Utah Lake?"
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Four Corners Monument",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "The Four Corners Monument marks the quadripoint in the Southwestern United States where the states of Arizona, Colorado, New Mexico, and Utah meet. It is the only point in the United States shared by four states",
+    "questions": [
+      "What states make up the \"Four Corners\"?",
+      "Who owns the Four Corners Monument?",
+      "What can be purchased at the Four Corners Monument?",
+      "Where did Utah get it's name from?",
+      "What is the traditional bread called?",
+      "In the summer, what is found on somelakes that make it dangerous to swim in?"
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Glen Canyon Dam",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Glen Canyon Dam is a concrete arch-gravity dam located on the Colorado River in northern Arizona, near the city of Page. The 710-foot-high dam is one of the largest man-made reservoirs in the United States.",
+    "questions": [
+      "When was the Glen Canyon Dam completed?",
+      "How many electrical generators does the Glen Canyon Dam have?",
+      "Name three rivers that flow into Lake Powell.",
+      "What is Utah's thriving tech sector called?",
+      "Winter inversions give Salt Lake City some of the worst what in the nation?",
+      "What is the most poluted lake in Utah?"
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Goblin Valley State Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Goblin Valley State Park features thousands of hoodoos, referred to locally as goblins,which are formations of mushroom-shaped rock pinnacles. The distinct shapes of these rocks result from an erosion-resistant layer of rock atop relatively softer sandstone.",
+    "questions": [
+      "What are the rock formations in Goblin Valley State Park called?",
+      "What are the \"Goblins\" made out of?",
+      "What year was a \"Goblin\" knocked over by a scout leader? (within 5 years)",
+      "Besides bills and coins issued by the U.S. Treasury and Mint, what else is legal tender in the state of Utah?",
+      "Where is the largest Solar Farm in Utah?",
+      "It is illegal to do this in only two states, Utah being one of them."
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Dead Horse Point State Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Dead Horse Point State Park features a dramatic overlook of the Colorado River and Canyonlands National Park.",
+    "questions": [
+      "How did Dead Horse Point get it's name?",
+      "What does Dead Horse Point overlook?",
+      "What County is Dead Horse point in?",
+      "Where is the largest wind farm in Utah?",
+      "What city in Utah County is a \"Dry\" city?",
+      "This famous Comedian was born in Salt Lake City, not in Lanford, IL."
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Edge of the Cedars State park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Edge of the Cedars State Park Museum is a state park and museum. It is an  Ancestral Puebloan archaeological site, a museum, and an archaeological repository.",
+    "questions": [
+      "What do you see in the museum at Edge of the Cedars?",
+      "Why is it called Edge of the Cedars?",
+      "What is a large room that is circular and underground, and used for spiritual ceremonies called?",
+      "What is a Navajo house called?",
+      "Why did people first settle in Park City?",
+      "Who is the Governor of Utah?"
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Fremont Indian State Park",
+    "group": "Destination B",
+    "color": "Red",
+    "description": "Fremont Indian State Park - Discover artifacts, petroglyphs, and pictographs left behind by the Fremont Indians. During the construction of Interstate 70, the largest known Fremont Indian village was uncovered.",
+    "questions": [
+      "When did the Fremont Indians inhabit this area?",
+      "What was the occupation of the Fremont Indians? (Farmers or Hunters)",
+      "When was Fremont Indian State Park made a state park?",
+      "About how long does it take to drive East/West across the state (Evanston - Wendover)? Answer within 30 minutes",
+      "About how long does it take to drive North/South across the state (Tremonton-Saint George)? Answer within 30 minutes"
+    ]
+  },
+  {
+    "id": 73,
+    "name": "USU",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Founded in 1888, Utah State University is Utah's only land grant institution, serving over 28,000 students in Logan and around the state at Statewide Campuses, as well as at USU Eastern.",
+    "questions": [
+      "What is the school mascot of USU?",
+      "In how many counties can you find a USU extension?",
+      "USU claims they are the best in Utah for what program.",
+      "What was Utah State University originally called?",
+      "What is the motto of Utah State University?",
+      "Name one graduate from USU."
+    ]
+  },
+  {
+    "id": 74,
+    "name": "U of U",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Founded in 1850, the University of Utah is the state's flagship institution. With an enrollment of over 34,000, the U offers 100 undergraduate and more than 90 graduate level fields of study.",
+    "questions": [
+      "What is the school mascot of the University of Utah?",
+      "What degree is offered at the U of U that is not offered anywhere else in Utah?",
+      "When was the U of U founded?",
+      "What is the motto of the University of Utah?",
+      "What was the first name of the University of Utah.",
+      "What percentage of freshmen graduate within 6 years, the highest graduation rate of any public university in the state."
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Weber State",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Weber State University was founded in 1889 as Weber Stake Academy and earned its current name in 1991. As of fall 2023, the student population reached 30,536 students. Weber State University has over 225 degree programs and seven colleges.",
+    "questions": [
+      "What is the school mascot of Weber State University?",
+      "What are the school colors of Weber State?",
+      "When did Weber State become a University?",
+      "This Weber State graduate went on to create a Major Hotel Chain.",
+      "What athletic conference is Weber State in?",
+      "How many students attend Weber State?"
+    ]
+  },
+  {
+    "id": 76,
+    "name": "UVU",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Utah Valley University is the largest public university in the state of Utah, and one of a few in the nation that combines a first-rate teaching university with the openness and vocational programs of a community college. In the fall of 2023 it had 44,653 students.",
+    "questions": [
+      "What is the school mascot of Utah Valley University?",
+      "What are the school colors of Weber State?",
+      "How many acres is the main campus of UVU? ",
+      "Name a previous name of UVU?",
+      "What classes are offered at UVU and USU that are not offered at other Universities in the state?",
+      "What is the average class size at UVU?"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "BYU",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Brigham Young University was founded in 1875 by religious leader Brigham Young and is sponsored by the Church of Jesus Christ of Latter-day Saints (LDS Church). Almost all BYU students are members of the LDS Church and agree to follow an honor code.",
+    "questions": [
+      "What is the school mascot?",
+      "This Acapella group from BYU competed on \"The Sing Off\".",
+      "What is the oldest building of Brigham Young Academy still in use today?",
+      "What year did BYU Football win the national chapionships?",
+      "What is the school Motto for BYU?",
+      "What is the approximate capacity at Lavell Edwards Stadium?"
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Snow College",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Snow College is a public community college founded in 1888  that offers certificates and associate degrees along with bachelor's degrees in music, software engineering, and nursing. It is one of the oldest junior colleges west of the Mississippi.",
+    "questions": [
+      "What is the school mascot?",
+      "Who was the school named after?",
+      "About how many students attend Snow College?",
+      "True or False - Snow college is known for it's vast amount of snowfall each year",
+      "Name one Bachelor degree you can get at Snow College.",
+      "After general studies, what is the most common female major at Snow College?"
+    ]
+  },
+  {
+    "id": 79,
+    "name": "SUU",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Southern Utah University is a public university founded in 1897. Southern Utah University now has over 1,800 graduates each year with baccalaureate and other graduate degrees from its six colleges.  More than 10,000 students attend SUU.",
+    "questions": [
+      "What is the school mascot of SUU?",
+      "When was SUU Founded?",
+      "What are the school colors of SUU?",
+      "What festival is held in Cedar City every year?",
+      "Why is SUU considered the \"Great Outdoors\" University?",
+      "What percentage of students live within walking distance of campus?"
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Utah Tech",
+    "group": "Higher Education",
+    "color": "Green",
+    "description": "Utah Tech University, formerly known as Dixie State University. The university offers doctoral degrees, master's degrees, bachelor's degrees, associate degrees, and certifications. As of fall 2022, there are 12,556 students enrolled at UT. St. George Richfield Blanding Provo Fillmore Salt Lake City Ogden Logan",
+    "questions": [
+      "What is the school mascot?",
+      "What was the previous name of Utah Tech?",
+      "This former BYU President graduated from here.",
+      "What year was the school founded?",
+      "This firearm designer graduated from this school.",
+      "This international festival is held yearly here."
+    ]
+  }
+]
