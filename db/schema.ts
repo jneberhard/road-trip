@@ -1,5 +1,9 @@
-// Intentionally empty by default.
-// Add Drizzle tables here when the site actually needs a database.
-// See examples/d1/db/schema.ts for an opt-in example.
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
-export const rooms = sqliteTable('rooms', {code:text('code').primaryKey(),state:text('state').notNull(),rev:integer('rev').notNull().default(0),updated:integer('updated').notNull()});
+import { integer, jsonb, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import type { Game } from "../lib/game";
+
+export const rooms = pgTable("rooms", {
+  code: text("code").primaryKey(),
+  state: jsonb("state").$type<Game>().notNull(),
+  rev: integer("rev").notNull().default(0),
+  updated: timestamp("updated", { withTimezone: true }).notNull().defaultNow(),
+});

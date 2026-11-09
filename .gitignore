@@ -11,6 +11,9 @@
 
 # Generated builds and framework state
 /dist/
+/.output/
+/.vercel/
+/.nitro/
 /.next/
 /.vinext/
 /out/
