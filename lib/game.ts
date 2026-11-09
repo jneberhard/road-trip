@@ -1,54 +1,98 @@
 import cards from './cards.json';
 import {scenarioCards,type ScenarioEffect} from './scenarios';
-export type Road = 'Freeway' | 'Highway' | 'State road';
+export type Road = 'Freeway' | 'Highway' | 'State road' | 'County road';
 export type StopType='easy'|'hard'|'education';
 export type StopMix=Record<StopType,number>;
 export const defaultStopMix:StopMix={easy:2,hard:1,education:0};
 export const colors = ['#d85535','#277a96','#d49a23','#7b5da5','#329568','#d25c8e','#4a64c1','#745343'];
+// Coordinates are aligned to the supplied 1915×2310 Utah road map, scaled to this SVG's 920×1110 viewBox.
 export const hubs = [
- ['slc','Salt Lake City',300,238],['ogden','Ogden',292,156],['logan','Logan',345,82],['bear','Bear Lake',421,57],
- ['wendover','Salt Flats',85,240],['park','Park City',389,258],['heber','Heber City',407,319],['vernal','Vernal',625,285],
- ['provo','Provo',331,355],['nephi','Nephi',298,438],['delta','Delta',194,484],['price','Price',469,431],
- ['green','Green River',565,522],['moab','Moab',639,592],['arches','Arches',665,552],['canyon','Canyonlands',582,615],
- ['richfield','Richfield',318,552],['reef','Capitol Reef',432,632],['bryce','Bryce Canyon',335,720],['cedar','Cedar City',224,698],
- ['zion','Zion',242,788],['george','St. George',156,823],['kanab','Kanab',329,831],['monument','Monument Valley',600,841],
- ['blanding','Blanding',638,738],['goblin','Goblin Valley',508,584],['flaming','Flaming Gorge',601,182],['evanston','Evanston, WY',470,191],
- ['fillmore','Fillmore',267,595],['bluff','Bluff Balloon Festival',673,787],
+ ['salt-lake-city','Salt Lake City',347,263],['ogden','Ogden',376,171],['logan','Logan',416,89],['bear-lake','Bear Lake',475,40],
+ ['west-wendover','West Wendover, NV',37,285],['park-city','Park City',458,322],['heber-city','Heber City',519,346],['vernal','Vernal',796,254],
+ ['provo','Provo',443,414],['nephi','Nephi',405,550],['delta','Delta',274,614],['price','Price',573,549],
+ ['green-river','Green River',703,665],['moab','Moab',795,769],['arches','Arches National Park',819,747],['canyonlands','Canyonlands',712,790],
+ ['richfield','Richfield',401,714],['torrey','Torrey',472,800],['bryce-canyon','Bryce Canyon',361,947],['cedar-city','Cedar City',231,973],
+ ['zion','Springdale / Zion',143,1039],['st-george','St. George',168,1077],['kanab','Kanab',342,1046],['monument-valley','Monument Valley',781,1030],
+ ['blanding','Blanding',751,970],['goblin-valley','Goblin Valley',599,698],['flaming-gorge','Flaming Gorge',683,168],['evanston','Evanston, WY',558,166],
+ ['fillmore','Fillmore',340,819],['bluff','Bluff',748,1022],
+ ['brigham-city','Brigham City',374,142],['tremonton','Tremonton',358,91],['preston','Preston, ID',355,55],['garden-city','Garden City',425,96],
+ ['coalville','Coalville',517,257],['echo','Echo',503,232],['rock-springs','Rock Springs, WY',827,167],['tooele','Tooele',261,329],
+ ['grantsville','Grantsville',236,349],['farmington','Farmington',364,220],['kaysville','Kaysville',373,205],['layton','Layton',377,190],
+ ['antelope-island','Antelope Island',305,205],['slc-airport','Salt Lake City Airport',340,239],['sandy','Sandy',352,295],['draper','Draper',359,315],
+ ['lehi','Lehi',385,350],['orem','Orem',433,390],['spanish-fork','Spanish Fork',438,438],['payson','Payson',418,470],
+ ['scipio','Scipio',342,620],['salina','Salina',415,678],['ephraim','Ephraim',393,640],['manti','Manti',404,658],
+ ['cove-fort','Cove Fort',289,754],['beaver','Beaver',269,840],['milford','Milford',204,811],['parowan','Parowan',230,927],
+ ['panguitch','Panguitch',305,919],['escalante','Escalante',434,917],['boulder','Boulder',462,888],['hanksville','Hanksville',525,789],
+ ['loa','Loa',434,778],['cisco','Cisco',847,684],['monticello','Monticello',782,988],['cortez','Cortez, CO',858,1024],
+ ['page','Page, AZ',691,1069],['grand-canyon','Grand Canyon Village, AZ',495,1080],['baker','Baker, NV',89,1030],['ely','Ely, NV',102,712],
+ ['mesquite','Mesquite, NV',127,1081],['hurricane','Hurricane',154,1056],['enterprise','Enterprise',105,1025],
+ ['fairfield','Fairfield',303,376],['goshen','Goshen',350,453],['dugway','Dugway',191,423],['jericho','Jericho',322,557],
+ ['scofield','Scofield',472,565],['duchesne','Duchesne',621,444],['roosevelt','Roosevelt',684,385],['myton','Myton',646,418],
+ ['dinosaur','Dinosaur, CO',839,291],['mountain-view','Mountain View, WY',643,199],['manila','Manila',643,219],['dutch-john','Dutch John',798,250],
+ ['halls-crossing','Halls Crossing',561,987],['natural-bridges','Natural Bridges',722,991],
+ ['four-corners','Four Corners',794,1071],['kayenta','Kayenta, AZ',819,1082],
+ ['cannonville','Cannonville',337,933],['circleville','Circleville',287,875],
+ ['simpson-springs','Simpson Springs',229,430],['topaz-mountain','Topaz Mountain',263,681],
+ ['soldier-hollow','Soldier Hollow',508,372],['mirror-lake','Mirror Lake Highway',553,307],['snowbird','Snowbird',373,299],['living-planet-aquarium','Living Planet Aquarium',359,310],
+ ['cherry-hill','Cherry Hill',371,190],['golden-spike','Golden Spike',303,123],['dinosaur-nm','Dinosaur National Monument',807,269],['little-sahara','Little Sahara',291,579],
+ ['nine-mile-canyon','Nine Mile Canyon',622,513],['fremont-indian','Fremont Indian State Park',375,725],['meadow','Meadow',298,863],['cedar-breaks','Cedar Breaks',228,946],
+ ['mountain-meadows','Mountain Meadows',136,1015],['snow-canyon','Snow Canyon',138,1060],['coral-pink-sand-dunes','Coral Pink Sand Dunes',313,1040],
+ ['the-wave','The Wave',343,1058],['coyote-gulch','Coyote Gulch',424,953],['hole-in-rock','Hole in the Rock',578,956],['dark-canyon','Dark Canyon',700,951],
+ ['edge-of-cedars','Edge of the Cedars',766,989],['newspaper-rock','Newspaper Rock',735,975],['valley-of-the-gods','Valley of the Gods',777,1011],['goosenecks','Goosenecks',728,1041],
+ ['navajo-mountain','Navajo Mountain',638,1036],['glen-canyon-dam','Glen Canyon Dam',681,1054],['usu','Utah State University',433,74],['uofu','University of Utah',364,231],
+ ['weber-state','Weber State University',391,155],['uvu','Utah Valley University',447,385],['byu','Brigham Young University',459,416],['snow-college','Snow College',406,660],
+ ['suu','Southern Utah University',248,982],['utah-tech','Utah Tech University',184,1086],
+ ['hill-aerospace-museum','Hill Aerospace Museum',405,148],['lagoon','Lagoon',355,204],['hogle-zoo','Hogle Zoo',350,299],['timpanogos-cave','Timpanogos Cave',407,365],
+ ['bingham-canyon-mine','Bingham Canyon Mine',296,316],['temple-square','Temple Square',331,251],['this-is-the-place','This Is the Place Heritage Park',371,280],['camp-floyd','Camp Floyd',315,388],
+ ['scofield-reservoir','Scofield Reservoir',466,557],['goshen-movie-set','Goshen Movie Set',346,463],['spiral-jetty','Spiral Jetty',239,181],['mount-timpanogos','Mount Timpanogos',421,350],
+ ['starvation-reservoir','Starvation Reservoir',650,435],['lava-hot-springs','Lava Hot Springs, ID',390,37],['yuba-state-park','Yuba State Park',320,526],['meadow-lava-tubes','Meadow Lava Tubes',289,866],
+ ['capitol-reef','Capitol Reef National Park',453,806],['mesa-verde','Mesa Verde National Park, CO',875,1037],['great-basin','Great Basin National Park, NV',114,1005],
+ ['bears-ears','Bears Ears National Monument',719,954],['grand-staircase','Grand Staircase–Escalante',392,938],['fort-kanab','Fort Kanab',357,1056],
+ ['rainbow-bridge','Rainbow Bridge National Monument',612,1058],['hovenweep','Hovenweep National Monument',812,1010],['san-rafael-swell','San Rafael Swell',499,658],
+ ['wilberg-mine','Wilberg Mine',470,652],['dead-horse-point','Dead Horse Point',777,757],['utah-fairgrounds','Utah State Fairgrounds',343,266],
+ ['bonneville-salt-flats','Bonneville Salt Flats',96,278],['utah-olympic-park','Utah Olympic Park',458,310],['heber-valley-railroad','Heber Valley Railroad',528,354],
+ ['antelope-island-state-park','Antelope Island State Park',303,199],['canyonlands-national-park','Canyonlands National Park',706,802],['monument-hill','Monument Valley View',779,1020],
 ] as const;
 export type Space={id:string;name:string;x:number;y:number;hub:boolean};
 export type Edge={a:string;b:string;road:Road;barrel:boolean};
 export const spaces: Record<string,Space> = Object.fromEntries(hubs.map(([id,name,x,y])=>[id,{id,name,x,y,hub:true}]));
 export const edges:Edge[]=[];
-const routes:[string,string,Road,number,boolean?][]=[
- ['slc','ogden','Freeway',4],['ogden','logan','Highway',4],['logan','bear','Highway',4],['slc','wendover','Freeway',8],
- ['slc','park','Freeway',4],['park','evanston','Freeway',4],['park','heber','Highway',3],['heber','vernal','Highway',8],
- ['vernal','flaming','Highway',4],['slc','provo','Freeway',5],['provo','heber','Highway',4],['provo','nephi','Freeway',4],
- ['nephi','delta','Highway',4],['delta','richfield','Highway',5],['nephi','richfield','Freeway',5],['provo','price','Highway',6],
- ['price','green','Highway',5],['richfield','green','Freeway',9],['green','moab','Highway',4],['moab','arches','State road',2],
- ['moab','canyon','State road',3],['moab','blanding','Highway',6],['blanding','monument','Highway',4],['richfield','reef','State road',5],
- ['reef','goblin','State road',4],['goblin','green','State road',3],['reef','bryce','State road',6],['richfield','cedar','Freeway',7],
- ['cedar','george','Freeway',5],['cedar','bryce','State road',5],['bryce','kanab','Highway',5],['kanab','zion','State road',4],
- ['zion','george','State road',4],['kanab','monument','Highway',10],
- ['ogden','park','Highway',5],['logan','park','Highway',7],['heber','price','Highway',7],['vernal','price','Highway',6],
- ['green','price','Highway',5],['cedar','kanab','Highway',6],['george','kanab','Freeway',7],['moab','reef','Highway',6],
- ['logan','evanston','Highway',7],['delta','cedar','Highway',7],['nephi','price','Highway',8],
- ['richfield','fillmore','Highway',4],['fillmore','nephi','Highway',5],['blanding','bluff','State road',3],['bluff','monument','State road',2]
+const routes:[string,string,Road,number][]=[
+ // Interstates and interstate connectors
+ ['st-george','mesquite','Freeway',4],['st-george','cedar-city','Freeway',5],['cedar-city','beaver','Freeway',5],['beaver','fillmore','Freeway',4],['fillmore','nephi','Freeway',6],['nephi','payson','Freeway',4],['payson','spanish-fork','Freeway',3],['spanish-fork','provo','Freeway',2],['provo','orem','Freeway',2],['orem','lehi','Freeway',3],['lehi','draper','Freeway',3],['draper','sandy','Freeway',2],['sandy','salt-lake-city','Freeway',3],['salt-lake-city','farmington','Freeway',4],['farmington','kaysville','Freeway',2],['kaysville','layton','Freeway',2],['layton','ogden','Freeway',3],['ogden','brigham-city','Freeway',4],['brigham-city','tremonton','Freeway',3],['tremonton','preston','Highway',4],
+ ['salt-lake-city','tooele','Freeway',5],['tooele','grantsville','Highway',3],['grantsville','west-wendover','Freeway',9],['salt-lake-city','echo','Freeway',5],['echo','coalville','Freeway',3],['coalville','evanston','Freeway',7],['evanston','rock-springs','Freeway',8],
+ ['cove-fort','salina','Freeway',5],['salina','green-river','Freeway',9],['green-river','cisco','Freeway',5],
+ // US highways
+ ['salt-lake-city','spanish-fork','Highway',7],['spanish-fork','nephi','Highway',6],['nephi','salina','Highway',8],['salina','richfield','Highway',4],
+ ['spanish-fork','price','Highway',9],['price','green-river','Highway',7],['cisco','moab','Highway',5],['moab','monticello','Highway',7],['monticello','blanding','Highway',4],['blanding','bluff','Highway',5],['bluff','kayenta','Highway',7],['page','kayenta','Highway',7],
+ ['park-city','heber-city','Highway',5],['heber-city','duchesne','Highway',8],['duchesne','roosevelt','Highway',4],['roosevelt','vernal','Highway',5],['vernal','dinosaur','Highway',6],
+ ['logan','garden-city','Highway',5],['garden-city','preston','Highway',5],['ogden','logan','Highway',7],
+ ['ely','delta','Highway',8],['delta','scipio','Highway',5],['scipio','salina','Highway',6],
+ ['kanab','page','Highway',7],['page','grand-canyon','Highway',8],['monticello','cortez','Highway',6],['cortez','four-corners','Highway',4],['four-corners','kayenta','Highway',4],
+ // Scenic state highways and county roads
+ ['ogden','park-city','State road',5],['park-city','salt-lake-city','State road',5],['nephi','delta','State road',6],['delta','milford','State road',6],['milford','baker','State road',10],['richfield','cove-fort','State road',6],
+ ['richfield','loa','State road',6],['loa','torrey','State road',3],['torrey','hanksville','State road',7],['hanksville','green-river','State road',9],['torrey','boulder','State road',5],['boulder','escalante','State road',5],['escalante','cannonville','State road',7],['cannonville','bryce-canyon','State road',4],['bryce-canyon','panguitch','State road',4],['panguitch','circleville','State road',5],['panguitch','parowan','State road',6],['parowan','cedar-city','State road',3],
+ ['hanksville','natural-bridges','State road',9],['natural-bridges','blanding','State road',8],['blanding','monticello','State road',5],['blanding','bluff','State road',6],['bluff','monument-valley','State road',3],['monument-valley','kayenta','State road',4],['moab','cisco','State road',4],['moab','arches','State road',3],['moab','canyonlands','State road',4],['green-river','goblin-valley','State road',5],['price','scofield','State road',5],['price','duchesne','State road',7],['vernal','flaming-gorge','State road',7],['flaming-gorge','manila','State road',4],['manila','dutch-john','State road',4],['dutch-john','mountain-view','County road',5],
+ ['west-wendover','bonneville-salt-flats','County road',5],['logan','bear-lake','County road',5],['park-city','utah-olympic-park','County road',2],['heber-city','heber-valley-railroad','County road',2],['salt-lake-city','utah-fairgrounds','County road',2],['spanish-fork','camp-floyd','County road',5],['natural-bridges','halls-crossing','State road',8],
+ ['salt-lake-city','antelope-island','County road',5],['salt-lake-city','slc-airport','County road',2],['tooele','dugway','County road',8],['dugway','simpson-springs','County road',6],['delta','topaz-mountain','County road',6],['nephi','jericho','County road',4],['nephi','goshen','County road',4],['spanish-fork','fairfield','County road',5],['park-city','soldier-hollow','County road',4],['heber-city','soldier-hollow','County road',3],['heber-city','mirror-lake','County road',7],['price','scofield','County road',8],
+ ['salt-lake-city','snowbird','County road',5],['sandy','living-planet-aquarium','County road',2],['farmington','lagoon','County road',2],['ogden','hill-aerospace-museum','County road',2],['salt-lake-city','hogle-zoo','County road',2],['salt-lake-city','temple-square','County road',3],['salt-lake-city','this-is-the-place','County road',3],['ogden','weber-state','County road',1],['salt-lake-city','uofu','County road',3],['provo','byu','County road',1],['orem','uvu','County road',1],['logan','usu','County road',1],['ephraim','snow-college','County road',1],['cedar-city','suu','County road',1],['st-george','utah-tech','County road',1],['spanish-fork','timpanogos-cave','County road',4],['spanish-fork','mount-timpanogos','County road',4],['salt-lake-city','bingham-canyon-mine','County road',5],['tooele','spiral-jetty','County road',9],['roosevelt','starvation-reservoir','County road',3],['preston','lava-hot-springs','County road',5],['nephi','yuba-state-park','County road',4],['fillmore','meadow','County road',4],['salina','meadow-lava-tubes','County road',5],['richfield','fremont-indian','County road',3],['torrey','capitol-reef','County road',2],['cortez','mesa-verde','County road',3],['baker','great-basin','County road',4],['monticello','bears-ears','County road',3],['escalante','grand-staircase','County road',3],['kanab','fort-kanab','County road',1],['natural-bridges','rainbow-bridge','County road',7],['blanding','hovenweep','County road',5],['green-river','san-rafael-swell','County road',5],['ephraim','wilberg-mine','County road',5],['moab','dead-horse-point','County road',4],['blanding','edge-of-cedars','County road',2],['blanding','newspaper-rock','County road',3],['page','glen-canyon-dam','County road',2],['beaver','mountain-meadows','County road',5],['st-george','hurricane','State road',2],['salina','ephraim','State road',3],['price','scofield-reservoir','County road',2],['goshen','goshen-movie-set','County road',2],['farmington','cherry-hill','County road',2],['tremonton','golden-spike','County road',5],['price','nine-mile-canyon','County road',5],['nephi','little-sahara','County road',4],['parowan','cedar-breaks','County road',2],['halls-crossing','hole-in-rock','County road',6],['kanab','the-wave','County road',4],['hurricane','zion','State road',3],['st-george','snow-canyon','County road',2],['escalante','coyote-gulch','County road',4],['blanding','dark-canyon','County road',5],['bluff','valley-of-the-gods','County road',2],['bluff','navajo-mountain','County road',6],['bluff','goosenecks','County road',2],['kanab','coral-pink-sand-dunes','County road',3],['vernal','dinosaur-nm','County road',2],['myton','duchesne','County road',2],['ephraim','manti','State road',2],['hurricane','enterprise','State road',4],['page','monument-valley','Highway',7]
 ];
 function addRoute(a:string,b:string,road:Road,count:number){
  let prev=a;for(let i=1;i<=count*2;i++){const total=count*2,id=i===total?b:`${a}-${b}-${i}`;if(i<total)spaces[id]={id,name:`${spaces[a].name}–${spaces[b].name} · ${i}/${total}`,x:spaces[a].x+(spaces[b].x-spaces[a].x)*i/total,y:spaces[a].y+(spaces[b].y-spaces[a].y)*i/total,hub:false};edges.push({a:prev,b:id,road,barrel:false});prev=id;}
 }
 for(const [a,b,road,count] of routes)addRoute(a,b,road,count);
-const destinationAnchors=['evanston','wendover','wendover','ogden','ogden','slc','heber','provo','park','bear','heber','slc','slc','slc','slc','provo','slc','slc','slc','price','provo','wendover','provo','heber','ogden','wendover','vernal','logan','logan','nephi','price','nephi','cedar','monument','arches','bryce','canyon','reef','monument','wendover','kanab','monument','monument','kanab','cedar','monument','flaming','monument','monument','delta','kanab','zion','george','cedar','kanab','monument','monument','monument','kanab','kanab','vernal','monument','monument','monument','green','price','monument','monument','goblin','arches','monument','richfield','logan','slc','ogden','provo','provo','richfield','cedar','george'] as const;
-const clusterCounts:Record<string,number>={};
-export const destinations=cards.map(card=>({id:card.id,hub:`destination-${card.id}`,type:card.id<=32?'easy' as StopType:card.id<=72?'hard' as StopType:'education' as StopType}));
-export const homeBases=['george','richfield','blanding','provo','fillmore','slc','ogden','logan'] as const;
-for(const destination of destinations){
- const anchor=destinationAnchors[destination.id-1],base=spaces[anchor],n=clusterCounts[anchor]??0;clusterCounts[anchor]=n+1;
- const angle=(n*2.399963+destination.id*.173),radius=18+Math.floor(n/6)*7;
- const x=Math.max(20,Math.min(730,base.x+Math.cos(angle)*radius)),y=Math.max(25,Math.min(890,base.y+Math.sin(angle)*radius));
- const card=cards.find(c=>c.id===destination.id)!;spaces[destination.hub]={id:destination.hub,name:card.name,x,y,hub:true};
- addRoute(anchor,destination.hub,destination.type==='hard'?'State road':destination.type==='education'?'Freeway':'Highway',Math.max(1,Math.round(radius/12)));
-}
+export const destinationLocations=[
+ 'evanston','simpson-springs','bonneville-salt-flats','hill-aerospace-museum','lagoon','hogle-zoo','heber-valley-railroad','timpanogos-cave','utah-olympic-park','bear-lake',
+ 'mirror-lake','bingham-canyon-mine','temple-square','this-is-the-place','antelope-island','camp-floyd','snowbird','living-planet-aquarium','slc-airport','scofield-reservoir',
+ 'goshen-movie-set','spiral-jetty','mount-timpanogos','soldier-hollow','cherry-hill','dugway','starvation-reservoir','golden-spike','lava-hot-springs','yuba-state-park',
+ 'nine-mile-canyon','little-sahara','meadow-lava-tubes','halls-crossing','arches','bryce-canyon','canyonlands','capitol-reef','mesa-verde','great-basin',
+ 'grand-canyon','natural-bridges','bears-ears','grand-staircase','cedar-breaks','hole-in-rock','flaming-gorge','monument-valley','newspaper-rock','topaz-mountain',
+ 'the-wave','zion','snow-canyon','mountain-meadows','coyote-gulch','dark-canyon','valley-of-the-gods','navajo-mountain','fort-kanab','coral-pink-sand-dunes',
+ 'dinosaur-nm','rainbow-bridge','hovenweep','goosenecks','san-rafael-swell','wilberg-mine','four-corners','glen-canyon-dam','goblin-valley','dead-horse-point',
+ 'edge-of-cedars','fremont-indian','usu','uofu','weber-state','uvu','byu','snow-college','suu','utah-tech',
+] as const;
+export const destinations=cards.map(card=>({id:card.id,hub:destinationLocations[card.id-1],type:card.id<=32?'easy' as StopType:card.id<=72?'hard' as StopType:'education' as StopType}));
+export const homeBases=['st-george','richfield','blanding','provo','fillmore','salt-lake-city','ogden','logan'] as const;
 export type Player={name:string;bot:boolean;pos:string;homeBase:string;road:Road|null;cards:number[];visited:number[];cones:string[];hand:string[];skipTurns:number;extraTurns:number;passCount:number;electricRoad:Road|null;doubleTurn:boolean;slowRoad:Road|null;token?:string};
 export type Game={players:Player[];turn:number;round:number;roll:number;left:number;phase:'lobby'|'cones'|'roll'|'move'|'relocate'|'question'|'event'|'hand'|'won';pending:number|null;pendingQuestion:string|null;questionDeadline:number|null;pendingScenario:string|null;pendingRoad:Road|null;coneToMove:string|null;coneMovedThisTurn:boolean;scenarioDeck:string[];scenarioDiscard:string[];stock:number[];stopMix:StopMix;log:string[];winner:number|null;humans:number;online:boolean;host?:string;rev:number};
 export function edgeKey(a:string,b:string){return [a,b].sort().join('|')}
@@ -134,7 +178,7 @@ export function resolveScenario(g:Game,choice?:string){
   case 'all-to':{const target=card.target==='current'?p.pos:card.target!;g.players.forEach(player=>player.pos=target);checkArrival=true;break;}
   case 'home':p.pos=p.homeBase;ends=true;checkArrival=true;break;
   case 'schools':{const schools=destinations.filter(d=>d.type==='education').map(d=>d.hub);let assigned:string[]=[];try{const parsed=JSON.parse(choice||'') as unknown;if(Array.isArray(parsed)&&parsed.length===g.players.length&&parsed.every((hub):hub is string=>typeof hub==='string'&&schools.includes(hub))&&new Set(parsed).size===parsed.length)assigned=parsed;}catch{}if(!assigned.length)assigned=shuffle([...schools]).slice(0,g.players.length);g.players.forEach((player,i)=>player.pos=assigned[i]);checkArrival=true;break;}
-  case 'ski':{const resorts=['park','destination-17','logan','cedar'];p.pos=resorts.includes(choice||'')?choice!:resorts[Math.floor(Math.random()*resorts.length)];checkArrival=true;break;}
+  case 'ski':{const resorts=['park-city','snowbird','logan','cedar-city'];p.pos=resorts.includes(choice||'')?choice!:resorts[Math.floor(Math.random()*resorts.length)];checkArrival=true;break;}
   case 'end-turn':ends=true;break;
   case 'skip-two':p.skipTurns+=2;ends=true;break;
   case 'add-two':g.left+=2;break;
