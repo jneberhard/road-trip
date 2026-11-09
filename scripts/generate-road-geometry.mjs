@@ -48,9 +48,9 @@ for (const id of currentHubIds) {
   }
 }
 
-const routesBlock = gameSource.match(/const routeDefinitions:\[string,string,Road,number\]\[\]\s*=\s*\[([\s\S]*?)\n\];/);
+const routesBlock = gameSource.match(/const routeDefinitions:\[string,string,Road\]\[\]\s*=\s*\[([\s\S]*?)\n\];/);
 if (!routesBlock) throw new Error("Could not find route list in lib/game.ts");
-const routePairs = [...routesBlock[1].matchAll(/\['([^']+)','([^']+)','[^']+',\d+\]/g)]
+const routePairs = [...routesBlock[1].matchAll(/\['([^']+)','([^']+)','[^']+'\]/g)]
   .map(([, a, b]) => [a, b]);
 const seen = new Set();
 const pairs = routePairs.filter(([a, b]) => {
