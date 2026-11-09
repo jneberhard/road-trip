@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { rooms } from "../../../db/schema";
-import { answer, botTurn, createGame, endTurn, move, roll, type Game } from "../../../lib/game";
+import { answer, beginConeMove, botTurn, cancelScenario, changeRoad, createGame, discardHeldCard, endTurn, hydrateGame, move, placeCone, playChangeRoadCard, playConstructionPass, relocateCone, resolveScenario, roll, startGame, type Game, type Road, type StopMix } from "../../../lib/game";
 
 export const dynamic = "force-dynamic";
 
@@ -9,11 +9,17 @@ type Action = {
   action: string;
   humans?: number;
   bots?: number;
+  stopMix?: StopMix;
   name?: string;
   code?: string;
   token?: string;
   rev?: number;
   to?: string;
+  edge?: string;
+  targetEdge?: string;
+  road?: Road;
+  scenarioId?: string;
+  choice?: string;
   correct?: boolean;
 };
 
@@ -36,7 +42,7 @@ export async function POST(req: Request) {
     const db = getDb();
 
     if (body.action === "create") {
-      const game = createGame(body.humans ?? 1, body.bots ?? 0, (body.name || "Host").slice(0, 24), true);
+      const game = createGame(body.humans ?? 1, body.bots ?? 0, (body.name || "Host").slice(0, 24), true, body.stopMix);
       const token = crypto.randomUUID();
       game.players[0].token = token;
       game.host = token;
@@ -52,7 +58,7 @@ export async function POST(req: Request) {
     if (!/^[A-Z2-9]{6}$/.test(code)) throw new Error("Enter a six-character game code.");
     const [row] = await db.select().from(rooms).where(eq(rooms.code, code)).limit(1);
     if (!row) return response({ error: "Game code not found." }, 404);
-    const game = row.state;
+    const game = hydrateGame(row.state as Game);
     let seat = game.players.findIndex((player) => player.token && player.token === body.token);
     let token = body.token;
 
@@ -68,19 +74,51 @@ export async function POST(req: Request) {
       }
     } else {
       if (seat < 0) return response({ error: "Join this room before playing." }, 403);
-      if (body.action === "get") return response({ game: publicGame(game), seat });
-      if (body.rev !== row.rev) return response({ error: "The game changed. Please try again.", game: publicGame(game) }, 409);
-      if (body.action === "start") {
+      const timedOut = game.phase === "question" && game.questionDeadline !== null && Date.now() >= game.questionDeadline;
+      if (body.action === "get") {
+        if (timedOut) answer(game, false);
+        else return response({ game: publicGame(game), seat });
+      } else if (body.action === "expire-question") {
+        if (!timedOut) throw new Error("The trivia timer has not expired.");
+        answer(game, false);
+      } else if (body.rev !== row.rev) return response({ error: "The game changed. Please try again.", game: publicGame(game) }, 409);
+      else if (body.action === "start") {
         if (body.token !== game.host) throw new Error("Only the host can start.");
         if (game.phase !== "lobby") throw new Error("Game already started.");
         if (game.players.some((player) => !player.bot && !player.token)) throw new Error("Wait for all human drivers to join.");
-        game.phase = "roll";
+        startGame(game);
       } else if (body.action === "bot") {
         if (!game.players[game.turn].bot) throw new Error("It is a human turn.");
         botTurn(game);
       } else {
         if (seat !== game.turn) throw new Error("It is another driver’s turn.");
-        if (body.action === "roll") roll(game);
+        if (body.action === "cone") {
+          if (!body.edge) throw new Error("Choose a road segment for your cone.");
+          placeCone(game, body.edge);
+        } else if (body.action === "begin-cone-move") {
+          if (!body.edge) throw new Error("Choose a nearby cone to move.");
+          beginConeMove(game, body.edge);
+        } else if (body.action === "relocate-cone") {
+          if (!body.targetEdge) throw new Error("Choose a new road segment for the cone.");
+          relocateCone(game, body.targetEdge);
+        } else if (body.action === "switch-road") {
+          if (!body.road) throw new Error("Choose a road type.");
+          changeRoad(game, body.road);
+        } else if (body.action === "play-change-road") {
+          if (!body.road || !body.scenarioId) throw new Error("Choose a held Change Road Card and road type.");
+          playChangeRoadCard(game, body.scenarioId, body.road);
+        } else if (body.action === "play-construction-pass") {
+          if (!body.scenarioId) throw new Error("Choose a held Construction Pass card.");
+          playConstructionPass(game, body.scenarioId);
+        } else if (body.action === "discard-held") {
+          if (!body.scenarioId) throw new Error("Choose a card to discard.");
+          discardHeldCard(game, body.scenarioId);
+        } else if (body.action === "resolve-scenario") {
+          resolveScenario(game, body.choice);
+        } else if (body.action === "cancel-scenario") {
+          if (!body.scenarioId) throw new Error("Choose a birthday or Christmas card.");
+          cancelScenario(game, body.scenarioId);
+        } else if (body.action === "roll") roll(game);
         else if (body.action === "move") {
           if (!body.to) throw new Error("Choose a road space.");
           move(game, body.to);
