@@ -1,12 +1,13 @@
 import cards from './cards.json';
 import {scenarioCards,type ScenarioEffect} from './scenarios';
+import roadMap from './road-map-data.json';
 export type Road = 'Freeway' | 'Highway' | 'State road' | 'County road';
 export type StopType='easy'|'hard'|'education';
 export type StopMix=Record<StopType,number>;
 export const defaultStopMix:StopMix={easy:2,hard:1,education:0};
 export const colors = ['#d85535','#277a96','#d49a23','#7b5da5','#329568','#d25c8e','#4a64c1','#745343'];
-// Coordinates are aligned to the supplied 1915×2310 Utah road map, scaled to this SVG's 920×1110 viewBox.
-export const hubs = [
+// Hubs are plotted from real-world coordinates and the road network is bundled locally.
+const sourceHubs = [
  ['salt-lake-city','Salt Lake City',347,263],['ogden','Ogden',376,171],['logan','Logan',416,89],['bear-lake','Bear Lake',475,40],
  ['west-wendover','West Wendover, NV',37,285],['park-city','Park City',458,322],['heber-city','Heber City',519,346],['vernal','Vernal',796,254],
  ['provo','Provo',443,414],['nephi','Nephi',405,550],['delta','Delta',274,614],['price','Price',573,549],
@@ -52,11 +53,21 @@ export const hubs = [
  ['wilberg-mine','Wilberg Mine',470,652],['dead-horse-point','Dead Horse Point',777,757],['utah-fairgrounds','Utah State Fairgrounds',343,266],
  ['bonneville-salt-flats','Bonneville Salt Flats',96,278],['utah-olympic-park','Utah Olympic Park',458,310],['heber-valley-railroad','Heber Valley Railroad',528,354],
 ] as const;
+const mapPoints = Object.values(roadMap.locations) as [number,number][];
+const mapLongitudes = mapPoints.map(([longitude])=>longitude);
+const projectLatitudes = mapPoints.map(([,latitude])=>Math.log(Math.tan(Math.PI/4+latitude*Math.PI/360)));
+const longitudeMin = Math.min(...mapLongitudes), longitudeMax = Math.max(...mapLongitudes);
+const mercatorMin = Math.min(...projectLatitudes), mercatorMax = Math.max(...projectLatitudes);
+export function projectRoadPoint([longitude,latitude]:[number,number]){
+ const mercatorY=Math.log(Math.tan(Math.PI/4+latitude*Math.PI/360));
+ return {x:18+(longitude-longitudeMin)/(longitudeMax-longitudeMin)*884,y:18+(mercatorMax-mercatorY)/(mercatorMax-mercatorMin)*1074};
+}
+export const hubs=sourceHubs.map(([id,name,oldX,oldY])=>{const point=(roadMap.locations as Record<string,[number,number]>)[id];const projected=point?projectRoadPoint(point):{x:oldX,y:oldY};return [id,name,projected.x,projected.y] as const;});
 export type Space={id:string;name:string;x:number;y:number;hub:boolean};
 export type Edge={a:string;b:string;road:Road;barrel:boolean};
 export const spaces: Record<string,Space> = Object.fromEntries(hubs.map(([id,name,x,y])=>[id,{id,name,x,y,hub:true}]));
 export const edges:Edge[]=[];
-const routes:[string,string,Road,number][]=[
+const routeDefinitions:[string,string,Road,number][]=[
  // Interstates and interstate connectors
  ['st-george','mesquite','Freeway',4],['st-george','cedar-city','Freeway',5],['cedar-city','beaver','Freeway',5],['beaver','fillmore','Freeway',4],['fillmore','nephi','Freeway',6],['nephi','payson','Freeway',4],['payson','spanish-fork','Freeway',3],['spanish-fork','provo','Freeway',2],['provo','orem','Freeway',2],['orem','lehi','Freeway',3],['lehi','draper','Freeway',3],['draper','sandy','Freeway',2],['sandy','salt-lake-city','Freeway',3],['salt-lake-city','farmington','Freeway',4],['farmington','kaysville','Freeway',2],['kaysville','layton','Freeway',2],['layton','ogden','Freeway',3],['ogden','brigham-city','Freeway',4],['brigham-city','tremonton','Freeway',3],['tremonton','preston','Highway',4],
  ['salt-lake-city','tooele','Freeway',5],['tooele','grantsville','Highway',3],['grantsville','west-wendover','Freeway',9],['salt-lake-city','echo','Freeway',5],['echo','coalville','Freeway',3],['coalville','evanston','Freeway',7],['evanston','rock-springs','Freeway',8],
@@ -76,10 +87,17 @@ const routes:[string,string,Road,number][]=[
  ['salt-lake-city','antelope-island','County road',5],['salt-lake-city','slc-airport','County road',2],['tooele','dugway','County road',8],['dugway','simpson-springs','County road',6],['delta','topaz-mountain','County road',6],['nephi','jericho','County road',4],['nephi','goshen','County road',4],['spanish-fork','fairfield','County road',5],['park-city','soldier-hollow','County road',4],['heber-city','soldier-hollow','County road',3],['heber-city','mirror-lake','County road',7],
  ['salt-lake-city','snowbird','County road',5],['sandy','living-planet-aquarium','County road',2],['farmington','lagoon','County road',2],['ogden','hill-aerospace-museum','County road',2],['salt-lake-city','hogle-zoo','County road',2],['salt-lake-city','temple-square','County road',3],['salt-lake-city','this-is-the-place','County road',3],['ogden','weber-state','County road',1],['salt-lake-city','uofu','County road',3],['provo','byu','County road',1],['orem','uvu','County road',1],['logan','usu','County road',1],['ephraim','snow-college','County road',1],['cedar-city','suu','County road',1],['st-george','utah-tech','County road',1],['spanish-fork','timpanogos-cave','County road',4],['spanish-fork','mount-timpanogos','County road',4],['salt-lake-city','bingham-canyon-mine','County road',5],['tooele','spiral-jetty','County road',9],['roosevelt','starvation-reservoir','County road',3],['preston','lava-hot-springs','County road',5],['nephi','yuba-state-park','County road',4],['fillmore','meadow','County road',4],['salina','meadow-lava-tubes','County road',5],['richfield','fremont-indian','County road',3],['torrey','capitol-reef','County road',2],['cortez','mesa-verde','County road',3],['baker','great-basin','County road',4],['monticello','bears-ears','County road',3],['escalante','grand-staircase','County road',3],['kanab','fort-kanab','County road',1],['natural-bridges','rainbow-bridge','County road',7],['blanding','hovenweep','County road',5],['green-river','san-rafael-swell','County road',5],['ephraim','wilberg-mine','County road',5],['moab','dead-horse-point','County road',4],['blanding','edge-of-cedars','County road',2],['blanding','newspaper-rock','County road',3],['page','glen-canyon-dam','County road',2],['beaver','mountain-meadows','County road',5],['st-george','hurricane','State road',2],['salina','ephraim','State road',3],['price','scofield-reservoir','County road',2],['goshen','goshen-movie-set','County road',2],['farmington','cherry-hill','County road',2],['tremonton','golden-spike','County road',5],['price','nine-mile-canyon','County road',5],['nephi','little-sahara','County road',4],['parowan','cedar-breaks','County road',2],['halls-crossing','hole-in-rock','County road',6],['kanab','the-wave','County road',4],['hurricane','zion','State road',3],['st-george','snow-canyon','County road',2],['escalante','coyote-gulch','County road',4],['blanding','dark-canyon','County road',5],['bluff','valley-of-the-gods','County road',2],['bluff','navajo-mountain','County road',6],['bluff','goosenecks','County road',2],['kanab','coral-pink-sand-dunes','County road',3],['vernal','dinosaur-nm','County road',2],['myton','duchesne','County road',2],['ephraim','manti','State road',2],['hurricane','enterprise','State road',4],['page','monument-valley','Highway',7]
 ];
-function addRoute(a:string,b:string,road:Road,count:number){
- let prev=a;for(let i=1;i<=count*2;i++){const total=count*2,id=i===total?b:`${a}-${b}-${i}`;if(i<total)spaces[id]={id,name:`${spaces[a].name}–${spaces[b].name} · ${i}/${total}`,x:spaces[a].x+(spaces[b].x-spaces[a].x)*i/total,y:spaces[a].y+(spaces[b].y-spaces[a].y)*i/total,hub:false};edges.push({a:prev,b:id,road,barrel:false});prev=id;}
+const routeData=roadMap.routes as Record<string,[number,number][]>;
+const routeCoords=(a:string,b:string)=>{const path=routeData[`${a}|${b}`]??routeData[`${b}|${a}`]?.slice().reverse();if(!path||path.length<2)throw new Error(`Missing road geometry for ${a} → ${b}`);return path;};
+const projectPath=(path:[number,number][])=>path.map(point=>projectRoadPoint(point));
+export const routeShapes=routeDefinitions.map(([a,b,road])=>({a,b,road,points:projectPath(routeCoords(a,b))}));
+function addRoute(a:string,b:string,road:Road,count:number,path:{x:number;y:number}[]){
+ const points=path;
+ const lengths:number[]=[];let totalLength=0;for(let i=1;i<points.length;i++){const length=Math.hypot(points[i].x-points[i-1].x,points[i].y-points[i-1].y);lengths.push(length);totalLength+=length;}
+ const pointAt=(distance:number)=>{let remaining=distance;for(let i=0;i<lengths.length;i++){const length=lengths[i];if(remaining<=length||i===lengths.length-1){const t=length?Math.max(0,Math.min(1,remaining/length)):0;return{x:points[i].x+(points[i+1].x-points[i].x)*t,y:points[i].y+(points[i+1].y-points[i].y)*t};}remaining-=length;}return points.at(-1)!;};
+ let prev=a;for(let i=1;i<=count*2;i++){const final=i===count*2,id=final?b:`${a}-${b}-${i}`,point=pointAt(totalLength*i/(count*2));if(!final)spaces[id]={id,name:`${spaces[a].name}–${spaces[b].name} · ${i}/${count*2}`,...point,hub:false};edges.push({a:prev,b:id,road,barrel:false});prev=id;}
 }
-for(const [a,b,road,count] of routes)addRoute(a,b,road,count);
+for(const [a,b,road,count] of routeDefinitions){const projected=projectPath(routeCoords(a,b));addRoute(a,b,road,count,projected);}
 export const destinationLocations=[
  'evanston','simpson-springs','bonneville-salt-flats','hill-aerospace-museum','lagoon','hogle-zoo','heber-valley-railroad','timpanogos-cave','utah-olympic-park','bear-lake',
  'mirror-lake','bingham-canyon-mine','temple-square','this-is-the-place','antelope-island','camp-floyd','snowbird','living-planet-aquarium','slc-airport','scofield-reservoir',

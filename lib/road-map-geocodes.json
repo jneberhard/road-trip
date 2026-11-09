@@ -1,0 +1,1101 @@
+{
+  "salt-lake-city": {
+    "lat": 40.7596198,
+    "lon": -111.886797,
+    "query": "Salt Lake City, Utah, USA",
+    "result": "Salt Lake City, Salt Lake County, Utah, United States",
+    "status": "matched-state"
+  },
+  "ogden": {
+    "lat": 41.2230048,
+    "lon": -111.9738429,
+    "query": "Ogden, Utah, USA",
+    "result": "Ogden, Weber County, Utah, United States",
+    "status": "matched-state"
+  },
+  "logan": {
+    "lat": 41.7313063,
+    "lon": -111.834914,
+    "query": "Logan, Utah, USA",
+    "result": "Logan, Cache County, Utah, United States",
+    "status": "matched-state"
+  },
+  "bear-lake": {
+    "lat": 41.9842548,
+    "lon": -111.3407382,
+    "query": "Bear Lake, Utah, USA",
+    "result": "Bear Lake, Garden City, Rich County, Utah, 84038, United States",
+    "status": "matched-state"
+  },
+  "west-wendover": {
+    "lat": 40.7409656,
+    "lon": -114.0751726,
+    "query": "West Wendover, NV, Nevada, USA",
+    "result": "West Wendover, Elko County, Nevada, United States",
+    "status": "matched-state"
+  },
+  "park-city": {
+    "lat": 40.6460921,
+    "lon": -111.4979963,
+    "query": "Park City, Utah, USA",
+    "result": "Park City, Summit County, Utah, United States",
+    "status": "matched-state"
+  },
+  "heber-city": {
+    "lat": 40.506463,
+    "lon": -111.4132963,
+    "query": "Heber City, Utah, USA",
+    "result": "Heber, Wasatch County, Utah, 84032, United States",
+    "status": "matched-state"
+  },
+  "vernal": {
+    "lat": 40.4556825,
+    "lon": -109.528474,
+    "query": "Vernal, Utah, USA",
+    "result": "Vernal, Uintah County, Utah, 84079, United States",
+    "status": "matched-state"
+  },
+  "provo": {
+    "lat": 40.2337289,
+    "lon": -111.6587085,
+    "query": "Provo, Utah, USA",
+    "result": "Provo, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "nephi": {
+    "lat": 39.7102336,
+    "lon": -111.836321,
+    "query": "Nephi, Utah, USA",
+    "result": "Nephi, Juab County, Utah, 84648, United States",
+    "status": "matched-state"
+  },
+  "delta": {
+    "lat": 39.3521777,
+    "lon": -112.57717,
+    "query": "Delta, Utah, USA",
+    "result": "Delta, Millard County, Utah, United States",
+    "status": "matched-state"
+  },
+  "price": {
+    "lat": 39.5994095,
+    "lon": -110.810714,
+    "query": "Price, Utah, USA",
+    "result": "Price, Carbon County, Utah, United States",
+    "status": "matched-state"
+  },
+  "green-river": {
+    "lat": 40.9391158,
+    "lon": -109.5918655,
+    "query": "Green River, Utah, USA",
+    "result": "Green River, Daggett County, Utah, United States",
+    "status": "matched-state"
+  },
+  "moab": {
+    "lat": 38.5738096,
+    "lon": -109.546214,
+    "query": "Moab, Utah, USA",
+    "result": "Moab, Grand County, Utah, 84532, United States",
+    "status": "matched-state"
+  },
+  "arches": {
+    "lat": 38.7265253,
+    "lon": -109.5630457,
+    "query": "Arches National Park, Utah, USA",
+    "result": "Arches National Park, Grand County, Utah, United States",
+    "status": "matched-state"
+  },
+  "canyonlands": {
+    "lat": 38.2332586,
+    "lon": -109.9206627,
+    "query": "Canyonlands National Park, Utah, USA",
+    "result": "Canyonlands National Park, Wayne County, Utah, United States",
+    "status": "matched-state"
+  },
+  "richfield": {
+    "lat": 38.7694278,
+    "lon": -112.084706,
+    "query": "Richfield, Utah, USA",
+    "result": "Richfield, Sevier County, Utah, United States",
+    "status": "matched-state"
+  },
+  "torrey": {
+    "lat": 38.2997368,
+    "lon": -111.42047,
+    "query": "Torrey, Utah, USA",
+    "result": "Torrey, Wayne County, Utah, United States",
+    "status": "matched-state"
+  },
+  "bryce-canyon": {
+    "lat": 37.5707948,
+    "lon": -112.1855939,
+    "query": "Bryce Canyon National Park, Utah, USA",
+    "result": "Bryce Canyon National Park, Tropic, Garfield County, Utah, United States",
+    "status": "matched-state"
+  },
+  "cedar-city": {
+    "lat": 37.6774238,
+    "lon": -113.061827,
+    "query": "Cedar City, Utah, USA",
+    "result": "Cedar City, Iron County, Utah, United States",
+    "status": "matched-state"
+  },
+  "zion": {
+    "lat": 37.3221673,
+    "lon": -113.0047934,
+    "query": "Zion National Park, Utah, USA",
+    "result": "Zion National Park, Washington County, Utah, United States",
+    "status": "matched-state"
+  },
+  "st-george": {
+    "lat": 37.1098772,
+    "lon": -113.5832063,
+    "query": "St. George, Utah, USA",
+    "result": "St. George, Washington County, Utah, United States",
+    "status": "matched-state"
+  },
+  "kanab": {
+    "lat": 37.0481715,
+    "lon": -112.5285237,
+    "query": "Kanab, Utah, USA",
+    "result": "Kanab, Kane County, Utah, 84741, United States",
+    "status": "matched-state"
+  },
+  "monument-valley": {
+    "lat": 37.0408047,
+    "lon": -110.2747339,
+    "query": "Monument Valley, Utah, USA",
+    "result": "Oljato–Monument Valley, Goulding's, San Juan County, Utah, 84536, United States",
+    "status": "matched-state"
+  },
+  "blanding": {
+    "lat": 37.6239617,
+    "lon": -109.4780205,
+    "query": "Blanding, Utah, USA",
+    "result": "Blanding, San Juan County, Utah, 84511, United States",
+    "status": "matched-state"
+  },
+  "goblin-valley": {
+    "lat": 38.5981639,
+    "lon": -110.6999678,
+    "query": "Goblin Valley State Park, Utah, USA",
+    "result": "Goblin Valley State Park, Emery County, Utah, United States",
+    "status": "matched-state"
+  },
+  "flaming-gorge": {
+    "lat": 40.9145482,
+    "lon": -109.4222002,
+    "query": "Flaming Gorge, Utah, USA",
+    "result": "Flaming Gorge Dam, Daggett County, Utah, United States",
+    "status": "matched-state"
+  },
+  "evanston": {
+    "lat": 41.2682462,
+    "lon": -110.963758,
+    "query": "Evanston, WY, Wyoming, USA",
+    "result": "Evanston, Uinta County, Wyoming, United States",
+    "status": "matched-state"
+  },
+  "fillmore": {
+    "lat": 38.9688118,
+    "lon": -112.323587,
+    "query": "Fillmore, Utah, USA",
+    "result": "Fillmore, Millard County, Utah, 84631, United States",
+    "status": "matched-state"
+  },
+  "bluff": {
+    "lat": 37.2942295,
+    "lon": -109.5511803,
+    "query": "Bluff, Utah, USA",
+    "result": "Bluff, San Juan County, Utah, 84512, United States",
+    "status": "matched-state"
+  },
+  "brigham-city": {
+    "lat": 41.5110434,
+    "lon": -112.0154991,
+    "query": "Brigham City, Utah, USA",
+    "result": "Brigham City, Box Elder County, Utah, United States",
+    "status": "matched-state"
+  },
+  "tremonton": {
+    "lat": 41.7120775,
+    "lon": -112.165779,
+    "query": "Tremonton, Utah, USA",
+    "result": "Tremonton, Box Elder County, Utah, United States",
+    "status": "matched-state"
+  },
+  "preston": {
+    "lat": 42.0963133,
+    "lon": -111.876617,
+    "query": "Preston, ID, Idaho, USA",
+    "result": "Preston, Franklin County, Idaho, United States",
+    "status": "matched-state"
+  },
+  "garden-city": {
+    "lat": 41.946878,
+    "lon": -111.393539,
+    "query": "Garden City, Utah, USA",
+    "result": "Garden City, Rich County, Utah, 84028, United States",
+    "status": "matched-state"
+  },
+  "coalville": {
+    "lat": 40.9177251,
+    "lon": -111.3993634,
+    "query": "Coalville, Utah, USA",
+    "result": "Coalville, Summit County, Utah, United States",
+    "status": "matched-state"
+  },
+  "echo": {
+    "lat": 40.9777325,
+    "lon": -111.4424342,
+    "query": "Echo, Utah, USA",
+    "result": "Echo, Summit County, Utah, 84024, United States",
+    "status": "matched-state"
+  },
+  "rock-springs": {
+    "lat": 41.5860557,
+    "lon": -109.2194544,
+    "query": "Rock Springs, WY, Wyoming, USA",
+    "result": "Rock Springs, Sweetwater County, Wyoming, 82901, United States",
+    "status": "matched-state"
+  },
+  "tooele": {
+    "lat": 40.4062872,
+    "lon": -113.1966394,
+    "query": "Tooele, Utah, USA",
+    "result": "Tooele County, Utah, United States",
+    "status": "matched-state"
+  },
+  "grantsville": {
+    "lat": 40.6000817,
+    "lon": -112.463531,
+    "query": "Grantsville, Utah, USA",
+    "result": "Grantsville, Tooele County, Utah, 84029, United States",
+    "status": "matched-state"
+  },
+  "farmington": {
+    "lat": 40.9804423,
+    "lon": -111.8874688,
+    "query": "Farmington, Utah, USA",
+    "result": "Farmington, Davis County, Utah, United States",
+    "status": "matched-state"
+  },
+  "kaysville": {
+    "lat": 41.0349847,
+    "lon": -111.9383931,
+    "query": "Kaysville, Utah, USA",
+    "result": "Kaysville, Davis County, Utah, 84037, United States",
+    "status": "matched-state"
+  },
+  "layton": {
+    "lat": 41.0751048,
+    "lon": -111.9741925,
+    "query": "Layton, Utah, USA",
+    "result": "Layton, Davis County, Utah, United States",
+    "status": "matched-state"
+  },
+  "antelope-island": {
+    "lat": 40.9724082,
+    "lon": -112.2112426,
+    "query": "Antelope Island State Park, Utah, USA",
+    "result": "Antelope Island State Park, Davis County, Utah, United States",
+    "status": "matched-state"
+  },
+  "slc-airport": {
+    "lat": 40.7900661,
+    "lon": -111.9798985,
+    "query": "Salt Lake City International Airport, Utah, USA",
+    "result": "Salt Lake City International Airport, 3920, Terminal Drive, Jordan Meadows, Salt Lake City, Salt Lake County, Utah, 84122, United States",
+    "status": "matched-state"
+  },
+  "sandy": {
+    "lat": 40.5710454,
+    "lon": -111.8953815,
+    "query": "Sandy, Utah, USA",
+    "result": "Sandy, Salt Lake County, Utah, United States",
+    "status": "matched-state"
+  },
+  "draper": {
+    "lat": 40.5247777,
+    "lon": -111.8627989,
+    "query": "Draper, Utah, USA",
+    "result": "Draper, Salt Lake County, Utah, 84020, United States",
+    "status": "matched-state"
+  },
+  "lehi": {
+    "lat": 40.3881114,
+    "lon": -111.8486019,
+    "query": "Lehi, Utah, USA",
+    "result": "Lehi, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "orem": {
+    "lat": 40.2981599,
+    "lon": -111.6944313,
+    "query": "Orem, Utah, USA",
+    "result": "Orem, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "spanish-fork": {
+    "lat": 40.1150133,
+    "lon": -111.6547774,
+    "query": "Spanish Fork, Utah, USA",
+    "result": "Spanish Fork, Utah County, Utah, 84660, United States",
+    "status": "matched-state"
+  },
+  "payson": {
+    "lat": 40.0443989,
+    "lon": -111.7321518,
+    "query": "Payson, Utah, USA",
+    "result": "Payson, Utah County, Utah, 84651, United States",
+    "status": "matched-state"
+  },
+  "scipio": {
+    "lat": 39.2455219,
+    "lon": -112.1042955,
+    "query": "Scipio, Utah, USA",
+    "result": "Scipio, Millard County, Utah, 84656, United States",
+    "status": "matched-state"
+  },
+  "salina": {
+    "lat": 38.957742,
+    "lon": -111.859984,
+    "query": "Salina, Utah, USA",
+    "result": "Salina, Sevier County, Utah, United States",
+    "status": "matched-state"
+  },
+  "ephraim": {
+    "lat": 39.3596842,
+    "lon": -111.586305,
+    "query": "Ephraim, Utah, USA",
+    "result": "Ephraim, Sanpete County, Utah, 84627, United States",
+    "status": "matched-state"
+  },
+  "manti": {
+    "lat": 39.2682951,
+    "lon": -111.636862,
+    "query": "Manti, Utah, USA",
+    "result": "Manti, Sanpete County, Utah, 84642, United States",
+    "status": "matched-state"
+  },
+  "cove-fort": {
+    "lat": 38.6006261,
+    "lon": -112.5821548,
+    "query": "Cove Fort, Utah, USA",
+    "result": "Cove Fort, SR 161, Cove Fort, Millard County, Utah, United States",
+    "status": "matched-state"
+  },
+  "beaver": {
+    "lat": 38.3335694,
+    "lon": -113.2754828,
+    "query": "Beaver, Utah, USA",
+    "result": "Beaver County, Utah, United States",
+    "status": "matched-state"
+  },
+  "milford": {
+    "lat": 38.3969108,
+    "lon": -113.010789,
+    "query": "Milford, Utah, USA",
+    "result": "Milford, Beaver County, Utah, 84751, United States",
+    "status": "matched-state"
+  },
+  "parowan": {
+    "lat": 37.8421975,
+    "lon": -112.8279996,
+    "query": "Parowan, Utah, USA",
+    "result": "Parowan, Iron County, Utah, 84761, United States",
+    "status": "matched-state"
+  },
+  "panguitch": {
+    "lat": 37.8228204,
+    "lon": -112.4357561,
+    "query": "Panguitch, Utah, USA",
+    "result": "Panguitch, Garfield County, Utah, 84759, United States",
+    "status": "matched-state"
+  },
+  "escalante": {
+    "lat": 37.7703057,
+    "lon": -111.602166,
+    "query": "Escalante, Utah, USA",
+    "result": "Escalante, Garfield County, Utah, 84726, United States",
+    "status": "matched-state"
+  },
+  "boulder": {
+    "lat": 37.9082439,
+    "lon": -111.4230613,
+    "query": "Boulder, Utah, USA",
+    "result": "Boulder, Garfield County, Utah, 84716, United States",
+    "status": "matched-state"
+  },
+  "hanksville": {
+    "lat": 38.3737755,
+    "lon": -110.706401,
+    "query": "Hanksville, Utah, USA",
+    "result": "Hanksville, Wayne County, Utah, 84734, United States",
+    "status": "matched-state"
+  },
+  "loa": {
+    "lat": 38.4027571,
+    "lon": -111.642962,
+    "query": "Loa, Utah, USA",
+    "result": "Loa, Wayne County, Utah, 84747, United States",
+    "status": "matched-state"
+  },
+  "cisco": {
+    "lat": 38.9699852,
+    "lon": -109.3206722,
+    "query": "Cisco, Utah, USA",
+    "result": "Cisco, Grand County, Utah, 84515, United States",
+    "status": "matched-state"
+  },
+  "monticello": {
+    "lat": 37.8750565,
+    "lon": -109.3403148,
+    "query": "Monticello, Utah, USA",
+    "result": "Monticello, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "cortez": {
+    "lat": 37.3494528,
+    "lon": -108.584073,
+    "query": "Cortez, Colorado, USA",
+    "result": "Cortez, Montezuma County, Colorado, 81321, United States",
+    "status": "matched-state"
+  },
+  "page": {
+    "lat": 36.9148305,
+    "lon": -111.457294,
+    "query": "Page, AZ, Arizona, USA",
+    "result": "Page, Coconino County, Arizona, United States",
+    "status": "matched-state"
+  },
+  "grand-canyon": {
+    "lat": 36.057807,
+    "lon": -112.128156,
+    "query": "Grand Canyon Village, Arizona, USA",
+    "result": "Grand Canyon Village, Coconino County, Arizona, United States",
+    "status": "matched-state"
+  },
+  "baker": {
+    "lat": 39.0121773,
+    "lon": -114.123326,
+    "query": "Baker, NV, Nevada, USA",
+    "result": "Baker, White Pine County, Nevada, 89311, United States",
+    "status": "matched-state"
+  },
+  "ely": {
+    "lat": 39.2480588,
+    "lon": -114.891718,
+    "query": "Ely, NV, Nevada, USA",
+    "result": "Ely, White Pine County, Nevada, 89301, United States",
+    "status": "matched-state"
+  },
+  "mesquite": {
+    "lat": 36.8035642,
+    "lon": -114.067141,
+    "query": "Mesquite, NV, Nevada, USA",
+    "result": "Mesquite, Clark County, Nevada, United States",
+    "status": "matched-state"
+  },
+  "hurricane": {
+    "lat": 37.1750272,
+    "lon": -113.289888,
+    "query": "Hurricane, Utah, USA",
+    "result": "Hurricane, Washington County, Utah, United States",
+    "status": "matched-state"
+  },
+  "enterprise": {
+    "lat": 37.5735867,
+    "lon": -113.719132,
+    "query": "Enterprise, Utah, USA",
+    "result": "Enterprise, Washington County, Utah, 84725, United States",
+    "status": "matched-state"
+  },
+  "fairfield": {
+    "lat": 40.2621714,
+    "lon": -112.092996,
+    "query": "Fairfield, Utah, USA",
+    "result": "Fairfield, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "goshen": {
+    "lat": 39.9530088,
+    "lon": -111.900771,
+    "query": "Goshen, Utah, USA",
+    "result": "Goshen, Utah County, Utah, 84633, United States",
+    "status": "matched-state"
+  },
+  "dugway": {
+    "lat": 39.8937102,
+    "lon": -113.137049,
+    "query": "Dugway Geode Beds, Utah, USA",
+    "result": "Dugway Geode Beds, Geode Bed Road, Juab County, Utah, United States",
+    "status": "matched-state"
+  },
+  "jericho": {
+    "lat": 39.7502266,
+    "lon": -112.205501,
+    "query": "Jericho, Utah, USA",
+    "result": "Jericho, Juab County, Utah, United States",
+    "status": "matched-state"
+  },
+  "scofield": {
+    "lat": 39.7241289,
+    "lon": -111.1607272,
+    "query": "Scofield, Utah, USA",
+    "result": "Scofield, Carbon County, Utah, United States",
+    "status": "matched-state"
+  },
+  "duchesne": {
+    "lat": 40.2960433,
+    "lon": -110.4715153,
+    "query": "Duchesne, Utah, USA",
+    "result": "Duchesne County, Utah, United States",
+    "status": "matched-state"
+  },
+  "roosevelt": {
+    "lat": 40.299403,
+    "lon": -109.9887605,
+    "query": "Roosevelt, Utah, USA",
+    "result": "Roosevelt, Duchesne County, Utah, 84066, United States",
+    "status": "matched-state"
+  },
+  "myton": {
+    "lat": 40.1944043,
+    "lon": -110.061816,
+    "query": "Myton, Utah, USA",
+    "result": "Myton, Duchesne County, Utah, United States",
+    "status": "matched-state"
+  },
+  "dinosaur": {
+    "lat": 40.242908,
+    "lon": -109.009252,
+    "query": "Dinosaur, CO, Colorado, USA",
+    "result": "Dinosaur, Moffat County, Colorado, 81610, United States",
+    "status": "matched-state"
+  },
+  "mountain-view": {
+    "lat": 41.2729213,
+    "lon": -110.336203,
+    "query": "Mountain View, WY, Wyoming, USA",
+    "result": "Mountain View, Uinta County, Wyoming, United States",
+    "status": "matched-state"
+  },
+  "manila": {
+    "lat": 40.9880142,
+    "lon": -109.722649,
+    "query": "Manila, Utah, USA",
+    "result": "Manila, Daggett County, Utah, 84046, United States",
+    "status": "matched-state"
+  },
+  "dutch-john": {
+    "lat": 40.9295478,
+    "lon": -109.391282,
+    "query": "Dutch John, Utah, USA",
+    "result": "Dutch John, Daggett County, Utah, United States",
+    "status": "matched-state"
+  },
+  "halls-crossing": {
+    "lat": 37.451041,
+    "lon": -110.6919999,
+    "query": "Halls Crossing, Utah, USA",
+    "result": "Halls Crossing, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "natural-bridges": {
+    "lat": 37.6025953,
+    "lon": -110.0111751,
+    "query": "Natural Bridges National Monument, Utah, USA",
+    "result": "Natural Bridges National Monument, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "four-corners": {
+    "lat": null,
+    "lon": null,
+    "query": "Four Corners Monument, Arizona, USA",
+    "result": null,
+    "status": "unmatched"
+  },
+  "kayenta": {
+    "lat": 36.7218463,
+    "lon": -110.253872,
+    "query": "Kayenta, AZ, Arizona, USA",
+    "result": "Kayenta, Navajo County, Arizona, United States",
+    "status": "matched-state"
+  },
+  "cannonville": {
+    "lat": 37.5669585,
+    "lon": -112.0538547,
+    "query": "Cannonville, Utah, USA",
+    "result": "Cannonville, Garfield County, Utah, United States",
+    "status": "matched-state"
+  },
+  "circleville": {
+    "lat": 38.1716248,
+    "lon": -112.2706003,
+    "query": "Circleville, Utah, USA",
+    "result": "Circleville, Piute County, Utah, 84723, United States",
+    "status": "matched-state"
+  },
+  "simpson-springs": {
+    "lat": 40.3659578,
+    "lon": -111.981669,
+    "query": "Simpson Springs, Utah, USA",
+    "result": "Simpson Springs Road, Eagle Mountain, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "topaz-mountain": {
+    "lat": 39.7093898,
+    "lon": -113.1033043,
+    "query": "Topaz Mountain, Utah, USA",
+    "result": "Topaz Mountain, Juab County, Utah, United States",
+    "status": "matched-state"
+  },
+  "soldier-hollow": {
+    "lat": 40.4772308,
+    "lon": -111.4981231,
+    "query": "Soldier Hollow, Utah, USA",
+    "result": "Soldier Hollow, Wasatch County, Utah, United States",
+    "status": "matched-state"
+  },
+  "mirror-lake": {
+    "lat": 40.7142759,
+    "lon": -110.8927468,
+    "query": "Lofty Lake Trail, Utah, USA",
+    "result": "Lofty Lake Loop Trailhead, Lofty Lake Loop Trail, Duchesne County, Utah, United States",
+    "status": "matched-state"
+  },
+  "snowbird": {
+    "lat": 40.5807546,
+    "lon": -111.6572955,
+    "query": "Snowbird, Utah, USA",
+    "result": "Snowbird, Salt Lake County, Utah, 85092, United States",
+    "status": "matched-state"
+  },
+  "living-planet-aquarium": {
+    "lat": 40.5317743,
+    "lon": -111.8945758,
+    "query": "Loveland Living Planet Aquarium, Utah, USA",
+    "result": "Loveland Living Planet Aquarium, 12033, Lone Peak Parkway, Riverton Siding, Draper, Salt Lake County, Utah, 84020, United States",
+    "status": "matched-state"
+  },
+  "cherry-hill": {
+    "lat": 41.1096709,
+    "lon": -112.0146773,
+    "query": "Cherry Hill, Utah, USA",
+    "result": "Cherry Hill, Clearfield, Davis County, Utah, 84056, United States",
+    "status": "matched-state"
+  },
+  "golden-spike": {
+    "lat": 41.6173861,
+    "lon": -112.5510404,
+    "query": "Golden Spike Museum, Utah, USA",
+    "result": "Golden Spike National Historic Park Visitor Center, Golden Spike Drive, Box Elder County, Utah, United States",
+    "status": "matched-state"
+  },
+  "dinosaur-nm": {
+    "lat": 40.4936928,
+    "lon": -109.000787,
+    "query": "Dinosaur National Monument, Utah, USA",
+    "result": "Dinosaur National Monument, Moffat County, Colorado, 81640, United States",
+    "status": "check-state"
+  },
+  "little-sahara": {
+    "lat": 39.6746538,
+    "lon": -112.3733573,
+    "query": "Little Sahara, Utah, USA",
+    "result": "Little Sahara Recreation Area, Juab County, Utah, United States",
+    "status": "matched-state"
+  },
+  "nine-mile-canyon": {
+    "lat": 39.5431777,
+    "lon": -110.6858971,
+    "query": "Nine Mile Canyon, Utah, USA",
+    "result": "Nine Mile Canyon, Wellington, Carbon County, Utah, 84542, United States",
+    "status": "matched-state"
+  },
+  "fremont-indian": {
+    "lat": 38.5792115,
+    "lon": -112.3214476,
+    "query": "3820 Clear Creek Canyon Road, Sevier, Utah, USA",
+    "result": "3820, Clear Creek Canyon Road, Sevier County, Utah, 84766, United States",
+    "status": "matched-state"
+  },
+  "meadow": {
+    "lat": 38.8860548,
+    "lon": -112.408169,
+    "query": "Meadow, Utah, USA",
+    "result": "Meadow, Millard County, Utah, 84644, United States",
+    "status": "matched-state"
+  },
+  "cedar-breaks": {
+    "lat": 37.6387738,
+    "lon": -112.8447452,
+    "query": "Cedar Breaks National Monument, Utah, USA",
+    "result": "Cedar Breaks National Monument, Iron County, Utah, United States",
+    "status": "matched-state"
+  },
+  "mountain-meadows": {
+    "lat": null,
+    "lon": null,
+    "query": "Mountain Meadows Massacre Site, Utah, USA",
+    "result": null,
+    "status": "unmatched"
+  },
+  "snow-canyon": {
+    "lat": 37.1956975,
+    "lon": -113.6495235,
+    "query": "Snow Canyon State Park, Utah, USA",
+    "result": "Snow Canyon State Park, Ivins, Washington County, Utah, United States",
+    "status": "matched-state"
+  },
+  "coral-pink-sand-dunes": {
+    "lat": 37.0547577,
+    "lon": -112.7038819,
+    "query": "Coral Pink Sand Dunes, Utah, USA",
+    "result": "Coral Pink Sand Dunes, Kane County, Utah, United States",
+    "status": "matched-state"
+  },
+  "the-wave": {
+    "lat": null,
+    "lon": null,
+    "query": "Wire Pass Trailhead, Arizona, USA",
+    "result": null,
+    "status": "unmatched"
+  },
+  "coyote-gulch": {
+    "lat": 37.4202318,
+    "lon": -111.0456773,
+    "query": "Coyote Gulch, Utah, USA",
+    "result": "Coyote Gulch, Kane County, Utah, United States",
+    "status": "matched-state"
+  },
+  "hole-in-rock": {
+    "lat": 37.7869207,
+    "lon": -112.857722,
+    "query": "Hole in the Rock, Utah, USA",
+    "result": "Hole in the Rock, Iron County, Utah, United States",
+    "status": "matched-state"
+  },
+  "dark-canyon": {
+    "lat": 37.7464137,
+    "lon": -109.7623198,
+    "query": "Dark Canyon trailhead, Utah, USA",
+    "result": "Dark Canyon East Trailhead, Elk Ridge Road, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "edge-of-cedars": {
+    "lat": 37.6316146,
+    "lon": -109.4910827,
+    "query": "Edge of the Cedars State park, Utah, USA",
+    "result": "Edge Of The Cedars State Park, Blanding, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "newspaper-rock": {
+    "lat": 37.1847372,
+    "lon": -113.6267206,
+    "query": "Newspaper Rock, Utah, USA",
+    "result": "Newspaper Rock, 4400 North, The Ledges, St. George, Washington County, Utah, United States",
+    "status": "matched-state"
+  },
+  "valley-of-the-gods": {
+    "lat": 37.2427166,
+    "lon": -109.8603284,
+    "query": "Valley of the Gods, Utah, USA",
+    "result": "Valley of the Gods, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "goosenecks": {
+    "lat": 37.1740169,
+    "lon": -109.9267884,
+    "query": "Goosenecks State Park, Utah, USA",
+    "result": "Goosenecks State Park, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "navajo-mountain": {
+    "lat": 37.0496352,
+    "lon": -110.7969981,
+    "query": "Navajo Mountain, Utah, USA",
+    "result": "Navajo Mountain, Navajo Mountain / Naatsisʼáán, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "glen-canyon-dam": {
+    "lat": 36.9355585,
+    "lon": -111.483276,
+    "query": "Glen Canyon Dam, Page, Arizona, USA",
+    "result": "Glen Canyon Dam Bridge, Dam Access Tunnel, Page, Coconino County, Arizona, United States",
+    "status": "matched-state"
+  },
+  "usu": {
+    "lat": 41.7526959,
+    "lon": -111.808733,
+    "query": "USU, Utah, USA",
+    "result": "Utah State University, 700 North, Logan, Cache County, Utah, 84322, United States",
+    "status": "matched-state"
+  },
+  "uofu": {
+    "lat": 40.7628137,
+    "lon": -111.8368719,
+    "query": "U of U, Utah, USA",
+    "result": "University of Utah, 201, Presidents Circle, Salt Lake City, Salt Lake County, Utah, 84112, United States",
+    "status": "matched-state"
+  },
+  "weber-state": {
+    "lat": 41.1920906,
+    "lon": -111.9391269,
+    "query": "Weber State, Utah, USA",
+    "result": "Weber State University, 3848, Harrison Boulevard, Ogden, Weber County, Utah, 84408, United States",
+    "status": "matched-state"
+  },
+  "uvu": {
+    "lat": 40.2794106,
+    "lon": -111.7178868,
+    "query": "UVU, Utah, USA",
+    "result": "Utah Valley University, 800, University Parkway, Orem, Utah County, Utah, 84058, United States",
+    "status": "matched-state"
+  },
+  "byu": {
+    "lat": 40.2498073,
+    "lon": -111.6499458,
+    "query": "BYU, Utah, USA",
+    "result": "Brigham Young University, 900 East, BYU, Provo, Utah County, Utah, 84602, United States",
+    "status": "matched-state"
+  },
+  "snow-college": {
+    "lat": 39.3605453,
+    "lon": -111.5806727,
+    "query": "Snow College, Utah, USA",
+    "result": "Snow College, 100 East, Ephraim, Sanpete County, Utah, 84627, United States",
+    "status": "matched-state"
+  },
+  "suu": {
+    "lat": 37.6748541,
+    "lon": -113.0731048,
+    "query": "SUU, Utah, USA",
+    "result": "Southern Utah University, 351, 800 West, Cedar City, Iron County, Utah, 84720, United States",
+    "status": "matched-state"
+  },
+  "utah-tech": {
+    "lat": 37.1030099,
+    "lon": -113.5653354,
+    "query": "Utah Tech, Utah, USA",
+    "result": "Utah Tech University, 225, University Avenue, St. George, Washington County, Utah, 84771, United States",
+    "status": "matched-state"
+  },
+  "hill-aerospace-museum": {
+    "lat": 41.1623788,
+    "lon": -112.018666,
+    "query": "Hill Aerospace Museum, Utah, USA",
+    "result": "Hill Aerospace Museum, 7961 Bldg 1955, Wardleigh Road, Sunset, Davis County, Utah, 84056, United States",
+    "status": "matched-state"
+  },
+  "lagoon": {
+    "lat": 40.9859653,
+    "lon": -111.8927528,
+    "query": "Lagoon, Utah, USA",
+    "result": "Lagoon, 375, Lagoon Drive, Quail Run, Farmington, Davis County, Utah, 84025, United States",
+    "status": "matched-state"
+  },
+  "hogle-zoo": {
+    "lat": 40.7494389,
+    "lon": -111.8160857,
+    "query": "Hogle Zoo, Utah, USA",
+    "result": "Hogle Zoo, 2600, Sunnyside Avenue, Salt Lake City, Salt Lake County, Utah, 84108, United States",
+    "status": "matched-state"
+  },
+  "timpanogos-cave": {
+    "lat": 40.4382447,
+    "lon": -111.709427,
+    "query": "Timpanogos Cave, Utah, USA",
+    "result": "Timpanogos Cave, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "bingham-canyon-mine": {
+    "lat": 40.5311559,
+    "lon": -112.1297499,
+    "query": "Bingham Canyon Mine, Utah, USA",
+    "result": "Bingham Canyon Mine, Salt Lake County, Utah, United States",
+    "status": "matched-state"
+  },
+  "temple-square": {
+    "lat": 40.7703639,
+    "lon": -111.892534,
+    "query": "Temple Square, Utah, USA",
+    "result": "Temple Square, North Temple, Salt Lake City, Salt Lake County, Utah, 84101, United States",
+    "status": "matched-state"
+  },
+  "this-is-the-place": {
+    "lat": 40.7540285,
+    "lon": -111.8167209,
+    "query": "This Is the Place Heritage Park, Utah, USA",
+    "result": "This is the Place Heritage Park, Salt Lake City, Salt Lake County, Utah, United States",
+    "status": "matched-state"
+  },
+  "camp-floyd": {
+    "lat": 40.2524739,
+    "lon": -112.098952,
+    "query": "Camp Floyd, Utah, USA",
+    "result": "Camp Floyd State Park, Fairfield, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "scofield-reservoir": {
+    "lat": 39.7811927,
+    "lon": -111.1516034,
+    "query": "Scofield Reservoir, Utah, USA",
+    "result": "Scofield Reservoir, Carbon County, Utah, United States",
+    "status": "matched-state"
+  },
+  "goshen-movie-set": {
+    "lat": null,
+    "lon": null,
+    "query": "12800 Sand Hill Road, Goshen, Utah, USA",
+    "result": null,
+    "status": "unmatched"
+  },
+  "spiral-jetty": {
+    "lat": 41.437792,
+    "lon": -112.6690494,
+    "query": "Spiral Jetty, Utah, USA",
+    "result": "Spiral Jetty, Box Elder County, Utah, United States",
+    "status": "matched-state"
+  },
+  "mount-timpanogos": {
+    "lat": 40.4046545,
+    "lon": -111.605097,
+    "query": "Mount Timpanogos Trailhead, Utah, USA",
+    "result": "Mount Timpanogos Trailhead, Alpine Scenic Highway, Aspen Grove, Utah County, Utah, United States",
+    "status": "matched-state"
+  },
+  "starvation-reservoir": {
+    "lat": 40.192201,
+    "lon": -110.4471552,
+    "query": "Starvation Reservoir, Utah, USA",
+    "result": "Starvation Reservoir, Duchesne County, Utah, 84021, United States",
+    "status": "matched-state"
+  },
+  "lava-hot-springs": {
+    "lat": 42.6193625,
+    "lon": -112.011071,
+    "query": "Lava Hot Springs, Idaho, USA",
+    "result": "Lava Hot Springs, Bannock County, Idaho, 83246, United States",
+    "status": "matched-state"
+  },
+  "yuba-state-park": {
+    "lat": 39.3553999,
+    "lon": -111.9432292,
+    "query": "Yuba State Park, Utah, USA",
+    "result": "Yuba State Park, Sanpete County, Utah, United States",
+    "status": "matched-state"
+  },
+  "meadow-lava-tubes": {
+    "lat": 38.8860548,
+    "lon": -112.408169,
+    "query": "Meadow, Utah, Utah, USA",
+    "result": "Meadow, Millard County, Utah, 84644, United States",
+    "status": "matched-state"
+  },
+  "capitol-reef": {
+    "lat": 38.0670286,
+    "lon": -111.1552562,
+    "query": "Capitol Reef, Utah, USA",
+    "result": "Capitol Reef National Park, Garfield County, Utah, United States",
+    "status": "matched-state"
+  },
+  "mesa-verde": {
+    "lat": 37.253776,
+    "lon": -108.4555964,
+    "query": "Mesa Verde National Park, Colorado, USA",
+    "result": "Mesa Verde National Park, Montezuma County, Colorado, 81330, United States",
+    "status": "matched-state"
+  },
+  "great-basin": {
+    "lat": 38.9441564,
+    "lon": -114.2349457,
+    "query": "Great Basin National Park, Nevada, USA",
+    "result": "Great Basin National Park, White Pine County, Nevada, United States",
+    "status": "matched-state"
+  },
+  "bears-ears": {
+    "lat": 37.8111417,
+    "lon": -109.938347,
+    "query": "Bears Ears National Monument, Utah, USA",
+    "result": "Bears Ears National Monument, Utah, United States",
+    "status": "matched-state"
+  },
+  "grand-staircase": {
+    "lat": 37.5088213,
+    "lon": -111.501425,
+    "query": "Grand Staircase Escalante National Monument, Utah, USA",
+    "result": "Grand Staircase–Escalante National Monument, Utah, United States",
+    "status": "matched-state"
+  },
+  "fort-kanab": {
+    "lat": 37.0481715,
+    "lon": -112.5285237,
+    "query": "Kanab, Utah, USA",
+    "result": "Kanab, Kane County, Utah, 84741, United States",
+    "status": "matched-state"
+  },
+  "rainbow-bridge": {
+    "lat": 37.0773813,
+    "lon": -110.9644663,
+    "query": "Rainbow Bridge, Utah, USA",
+    "result": "Rainbow Bridge, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "hovenweep": {
+    "lat": 37.3835455,
+    "lon": -109.0729923,
+    "query": "Hovenweep National Monument, Utah, USA",
+    "result": "Hovenweep National Monument, San Juan County, Utah, United States",
+    "status": "matched-state"
+  },
+  "san-rafael-swell": {
+    "lat": 38.7855061,
+    "lon": -110.788366,
+    "query": "San Rafael Swell, Utah, USA",
+    "result": "San Rafael Swell Recreation Area, Emery County, Utah, United States",
+    "status": "matched-state"
+  },
+  "wilberg-mine": {
+    "lat": 39.319452,
+    "lon": -111.1225374,
+    "query": "Wilberg Mine, Utah, USA",
+    "result": "Wilberg Mine, SR 57, Emery County, Utah, United States",
+    "status": "matched-state"
+  },
+  "dead-horse-point": {
+    "lat": 38.5142197,
+    "lon": -109.7387738,
+    "query": "Dead Horse Point State Park, Utah, USA",
+    "result": "Dead Horse Point State Park, Grand County, Utah, United States",
+    "status": "matched-state"
+  },
+  "utah-fairgrounds": {
+    "lat": 40.7729087,
+    "lon": -111.920034,
+    "query": "155 North 1000 West, Salt Lake City, Utah, USA",
+    "result": "Fairpark Administration, 155, 1000 West, Fairpark, Salt Lake City, Salt Lake County, Utah, 84116, United States",
+    "status": "matched-state"
+  },
+  "bonneville-salt-flats": {
+    "lat": 40.7448014,
+    "lon": -114.02374,
+    "query": "Bonneville Salt Flats, Utah, USA",
+    "result": "Bonneville Salt Flats, Dwight D. Eisenhower Highway, Wendover, Tooele County, Utah, 84083, United States",
+    "status": "matched-state"
+  },
+  "utah-olympic-park": {
+    "lat": 40.7074129,
+    "lon": -111.5645503,
+    "query": "Utah Olympic Park, Utah, USA",
+    "result": "Utah Olympic Park, Snyderville, Summit County, Utah, United States",
+    "status": "matched-state"
+  },
+  "heber-valley-railroad": {
+    "lat": 40.3848594,
+    "lon": -111.5487899,
+    "query": "Heber Valley Railroad, Utah, USA",
+    "result": "Provo River Parkway, Riverbend Trailer Park, Wasatch County, Utah, United States",
+    "status": "matched-state"
+  }
+}
