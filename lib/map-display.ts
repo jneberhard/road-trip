@@ -63,7 +63,7 @@ for (const [text,point] of [['BONNEVILLE SALT FLATS',[-113.88,40.765]],['SEVIER 
 const seeds: MapLabel[] = hubs.filter(([id]) => (cityLabels.has(id) && !destinationHubIds.has(id)) || homeBases.includes(id as typeof homeBases[number])).map(([id,text,x,y]) => ({ id, text, x, y, anchorX: x, anchorY: y, location: id, priority: homeBases.includes(id as typeof homeBases[number]) ? 0 : 2, home: homeBases.includes(id as typeof homeBases[number]) }));
 for (const destination of destinations) for (const hub of destinationHubs(destination)) {
   const point = destinationMarkerPositions.get(hub) ?? spaces[hub];
-  const name = destination.id === 30 ? 'Yuba Lake · Yuba State Park' : destination.id === 41 ? `Grand Canyon · ${hub === 'grand-canyon' ? 'North Rim' : 'South Rim'}` : cards.find(card => card.id === destination.id)?.name ?? `Destination ${destination.id}`;
+  const name = destination.id === 30 ? 'Yuba Lake · Yuba - SP' : destination.id === 41 ? `Grand Canyon · ${hub === 'grand-canyon' ? 'North Rim' : 'South Rim'}` : cards.find(card => card.id === destination.id)?.name ?? `Destination ${destination.id}`;
   seeds.push({ id: `destination-${destination.id}-${hub}`, text: name, x: point.x, y: point.y, anchorX: point.x, anchorY: point.y, location: hub, priority: 1 });
 }
 function intersectsRoad(box: LabelBox) {

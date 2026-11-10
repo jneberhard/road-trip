@@ -196,7 +196,7 @@
   },
   {
     "id": 14,
-    "name": "This is the Place State Park",
+    "name": "This is the Place - SP",
     "group": "Destination A",
     "color": "Blue",
     "description": "This is the Place Monument is a historical monument,, located at the mouth of Emigration Canyon.",
@@ -211,7 +211,7 @@
   },
   {
     "id": 15,
-    "name": "Antelope Island State Park",
+    "name": "Antelope Island - SP",
     "group": "Destination A",
     "color": "Blue",
     "description": "Antelope Island with an area of 42 square miles, is the largest of ten islands located within the Great Salt Lake. Antelope Island holds populations of many animals.",
@@ -436,7 +436,7 @@
   },
   {
     "id": 30,
-    "name": "Yuba State Park",
+    "name": "Yuba - SP",
     "group": "Destination A",
     "color": "Blue",
     "description": "Yuba State Park has many Recreational opportunities including camping, boating, swimming, fishing, and nearby off highway vehicle riding.",
@@ -511,7 +511,7 @@
   },
   {
     "id": 35,
-    "name": "Arches National Park",
+    "name": "Arches - NP",
     "group": "Destination B",
     "color": "Red",
     "description": "Arches National Park is a national park adjacent to the Colorado River. More than 2,000 natural sandstone arches are located in the park, including the well-known Delicate Arch.",
@@ -526,7 +526,7 @@
   },
   {
     "id": 36,
-    "name": "Bryce Canyon National Park",
+    "name": "Bryce Canyon - NP",
     "group": "Destination B",
     "color": "Red",
     "description": "Bryce Canyon National Park, which despite its name, is not a canyon, but a collection of giant natural amphitheaters. The red, orange, and white colors of the rocks provide spectacular views for park visitors.",
@@ -541,7 +541,7 @@
   },
   {
     "id": 37,
-    "name": "Canyonlands National Park",
+    "name": "Canyonlands - NP",
     "group": "Destination B",
     "color": "Red",
     "description": "Canyonlands National Park preserves a colorful landscape eroded into numerous canyons, mesas, and buttes by the Colorado River, the Green River, and their respective tributaries.",
@@ -571,7 +571,7 @@
   },
   {
     "id": 39,
-    "name": "Mesa Verde National Park",
+    "name": "Mesa Verde - NP",
     "group": "Destination B",
     "color": "Red",
     "description": "Mesa Verde National Park protects some of the best-preserved Ancestral Puebloan archaeological sites in the United States. With more than 5,000 sites, including 600 cliff dwellings, it is the largest archaeological preserve in the United States. It is best known for structures such as Cliff Palace, thought to be the largest cliff dwelling in North America.",
@@ -586,7 +586,7 @@
   },
   {
     "id": 40,
-    "name": "Great Basin National Park",
+    "name": "Great Basin - NP",
     "group": "Destination B",
     "color": "Red",
     "description": "Great Basin National Park is the dry and mountainous region between the Sierra Nevada and the Wasatch Mountains. The park is notable for its groves of ancient bristlecone pines,; Lehman Caves, Wheeler Peak Glacier, and some of the darkest night skies in the contiguous United States.",
@@ -601,7 +601,7 @@
   },
   {
     "id": 41,
-    "name": "Grand Canyon National Park",
+    "name": "Grand Canyon - NP",
     "group": "Destination B",
     "color": "Red",
     "description": ". The Grand Canyon is a steep-sided canyon carved by the Colorado River. The Grand Canyon is 277 miles long, up to 18 miles wide and attains a depth of over a mile.",
@@ -616,7 +616,7 @@
   },
   {
     "id": 42,
-    "name": "Natural Bridges National Monument",
+    "name": "Natural Bridges - NM",
     "group": "Destination B",
     "color": "Red",
     "description": "Natural Bridges National Monument features the thirteenth largest natural bridge in the world. The three bridges in the park are named Kachina, Owachomo, and Sipapu (the largest).",
@@ -631,7 +631,7 @@
   },
   {
     "id": 43,
-    "name": "Bears Ears National Monument",
+    "name": "Bears Ears - NM",
     "group": "Destination B",
     "color": "Red",
     "description": "The monument is named Bears Ears for a pair of buttes that rise to elevations over 8,900 feet and 9,000 feet.",
@@ -646,7 +646,7 @@
   },
   {
     "id": 44,
-    "name": "Grand Staircase National Monument",
+    "name": "Grand Staircase - NM",
     "group": "Destination B",
     "color": "Red",
     "description": "The Grand Staircase–Escalante National Monument land is among the most remote in the country; it was the last to be mapped in the contiguous United States.Grand Staircase–Escalante is the first and largest national monument managed by the BLM.",
@@ -661,7 +661,7 @@
   },
   {
     "id": 45,
-    "name": "Cedar Breaks National Monument",
+    "name": "Cedar Breaks - NM",
     "group": "Destination B",
     "color": "Red",
     "description": "Cedar Breaks National Monument is a U.S. National Monument is a natural amphitheater, stretching across 3 miles, with a depth of over 2,000 feet. The elevation of the rim of the amphitheater is over 10,000 feet above sea level.",
@@ -766,7 +766,7 @@
   },
   {
     "id": 52,
-    "name": "Zion National Park",
+    "name": "Zion - NP",
     "group": "Destination B",
     "color": "Red",
     "description": "Zion National Park includes mountains, canyons, buttes, mesas, monoliths, rivers, slot canyons, and natural arches.",
@@ -781,7 +781,7 @@
   },
   {
     "id": 53,
-    "name": "Snow Canyon State Park",
+    "name": "Snow Canyon - SP",
     "group": "Destination B",
     "color": "Red",
     "description": "Snow Canyon State Park offers 16 miles of hiking trails, technical rock climbing, biking and horseback riding. It features a very nice campground open year-round.",
@@ -901,7 +901,7 @@
   },
   {
     "id": 61,
-    "name": "Dinosaur National Monument",
+    "name": "Dinosaur - NM",
     "group": "Destination B",
     "color": "Red",
     "description": "Dinosaur National Monument originally preserved in 1915 to protect its famous Dinosaur Quarry, the monument was greatly expanded in 1938 to include its wealth of natural history. The park contains over 800 paleontological sites.",
@@ -931,7 +931,7 @@
   },
   {
     "id": 63,
-    "name": "Hovenweep National Monument",
+    "name": "Hovenweep - NM",
     "group": "Destination B",
     "color": "Red",
     "description": "Hovenweep National Monument is located on Cajon Mesa of the Great Sage Plain. Shallow tributaries run through the wide and deep canyons into the San Juan River. There is evidence of occupation by hunter-gatherers from 8,000 to 6,000 B.C. until about AD 200.",
@@ -946,7 +946,7 @@
   },
   {
     "id": 64,
-    "name": "Goosenecks State Park",
+    "name": "Goosenecks - SP",
     "group": "Destination B",
     "color": "Red",
     "description": "Goosenecks State Park overlooks a deep meander of the San Juan River. Millions of years ago, the Monument Upwarp forced the river to carve incised meanders over 1,000 feet deep as the surrounding landscape slowly rose in elevation. Eroded by water, wind, frost, and gravity.",
@@ -1021,7 +1021,7 @@
   },
   {
     "id": 69,
-    "name": "Goblin Valley State Park",
+    "name": "Goblin Valley - SP",
     "group": "Destination B",
     "color": "Red",
     "description": "Goblin Valley State Park features thousands of hoodoos, referred to locally as goblins,which are formations of mushroom-shaped rock pinnacles. The distinct shapes of these rocks result from an erosion-resistant layer of rock atop relatively softer sandstone.",
@@ -1036,7 +1036,7 @@
   },
   {
     "id": 70,
-    "name": "Dead Horse Point State Park",
+    "name": "Dead Horse Point - SP",
     "group": "Destination B",
     "color": "Red",
     "description": "Dead Horse Point State Park features a dramatic overlook of the Colorado River and Canyonlands National Park.",
@@ -1066,7 +1066,7 @@
   },
   {
     "id": 72,
-    "name": "Fremont Indian State Park",
+    "name": "Fremont Indian - SP",
     "group": "Destination B",
     "color": "Red",
     "description": "Fremont Indian State Park - Discover artifacts, petroglyphs, and pictographs left behind by the Fremont Indians. During the construction of Interstate 70, the largest known Fremont Indian village was uncovered.",
