@@ -47,8 +47,8 @@ for (const space of Object.values(spaces).filter(space => !space.hub)) registerB
 export type MapLabel = { id: string; text: string; x: number; y: number; anchorX: number; anchorY: number; location: string; priority: number; home?: boolean };
 type LabelBox = { left: number; right: number; top: number; bottom: number };
 const labelRoadSegments = routeShapes.flatMap(route => route.points.slice(1).map((point,i) => ({ a: route.points[i], b: point })));
-const fixedMapLabels: LabelBox[] = [...stateLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...riverLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...[{ x: bookCliffsShape.label.x, y: bookCliffsShape.label.y, text: bookCliffsShape.name }, ...mountainShapes.map(shape => ({ x: shape.label.x, y: shape.label.y + 28, text: shape.name }))], ...mappedLakes.map(lake => {
-  const point = projectRoadPoint(lake.name === 'Great Salt Lake' ? [-112.45,41.25] : lake.name === 'Utah Lake' ? [-111.78,40.19] : [-110.98,37.42]);
+const fixedMapLabels: LabelBox[] = [...stateLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...riverLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...[{ x: bookCliffsShape.label.x, y: bookCliffsShape.label.y, text: bookCliffsShape.name }, ...mountainShapes.filter(shape => shape.name !== 'Tushar Mountains').map(shape => ({ x: shape.label.x, y: shape.label.y + 28, text: shape.name }))], ...mappedLakes.map(lake => {
+  const point = projectRoadPoint(lake.name === 'Great Salt Lake' ? [-112.57,41.19] : lake.name === 'Utah Lake' ? [-111.78,40.19] : [-110.98,37.42]);
   return { x: point.x, y: point.y, text: lake.name };
 })].map(label => ({ left: label.x - label.text.length * 3.5 - 3, right: label.x + label.text.length * 3.5 + 3, top: label.y - 10, bottom: label.y + 4 }));
 for (const [text,point] of [['BONNEVILLE SALT FLATS',[-113.88,40.765]],['SEVIER LAKE',[-112.98,39.10]]] as const) {
@@ -82,7 +82,9 @@ export const placedMapLabels: MapLabel[] = [];
 const placedBoxes: LabelBox[] = [];
 for (const seed of [...seeds].sort((a,b) => a.priority - b.priority || a.text.localeCompare(b.text))) {
   let best: { label: MapLabel; box: LabelBox; score: number } | undefined;
-  const angles = Array.from({ length: 16 }, (_,i) => i * Math.PI / 8), distances = [7,10,14,19,25,33,42,54,68,86,108,134,164,198,235];
+  const allAngles = Array.from({ length: 16 }, (_,i) => i * Math.PI / 8), preferredAngle = seed.id === 'blanding' ? 0 : seed.id === 'salina' || seed.text.startsWith('Snow College') ? Math.PI : undefined;
+  const preferredAngles = preferredAngle === undefined ? [] : [preferredAngle, preferredAngle - Math.PI / 8, preferredAngle + Math.PI / 8];
+  const angles = [...preferredAngles, ...allAngles.filter(angle => !preferredAngles.some(preferred => Math.abs(angle - preferred) < .001 || Math.abs(Math.abs(angle - preferred) - Math.PI * 2) < .001))], distances = [7,10,14,19,25,33,42,54,68,86,108,134,164,198,235];
   for (const distance of distances) for (const angle of angles) {
     const x = seed.x + Math.cos(angle) * distance, y = seed.y + Math.sin(angle) * distance;
     if (x < 30 || x > 890 || y < 20 || y > 1080 || (seed.id === 'ogden' && y >= seed.anchorY)) continue;

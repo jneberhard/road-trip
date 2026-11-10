@@ -62,7 +62,7 @@ export function projectRoadPoint([longitude,latitude]:[number,number]){
  const mercatorY=Math.log(Math.tan(Math.PI/4+latitude*Math.PI/360));
  return {x:18+(longitude-longitudeMin)/(longitudeMax-longitudeMin)*884,y:18+(mercatorMax-mercatorY)/(mercatorMax-mercatorMin)*1010};
 }
-export const hubs=sourceHubs.map(([id,name,oldX,oldY])=>{const point=(roadMap.locations as Record<string,[number,number]>)[id];const projected=point?projectRoadPoint(point):{x:oldX,y:oldY};return [id,name,projected.x,projected.y] as const;});
+export const hubs=sourceHubs.map(([id,name,oldX,oldY])=>{const point=(roadMap.locations as Record<string,[number,number]>)[id];const projected=point?projectRoadPoint(point):{x:oldX,y:oldY};if(id==='halls-crossing')projected.x+=16;return [id,name,projected.x,projected.y] as const;});
 const boundaryData=(roadMap as unknown as {stateBoundaries:{name:string;rings:[number,number][][]}[]}).stateBoundaries;
 export const stateBoundaryShapes=boundaryData.map(state=>({name:state.name,rings:state.rings.map(ring=>ring.map(point=>projectRoadPoint(point)))}));
 export const stateLabels=[['NEVADA',[-114.35,39.55]],['IDAHO',[-112.15,42.3]],['WYOMING',[-109.55,41.65]],['COLORADO',[-108.48,38.85]],['ARIZONA',[-111.15,36.12]],['UTAH',[-111.5,39.6]]].map(([name,point])=>({name:name as string, ...projectRoadPoint(point as [number,number])}));
@@ -72,7 +72,7 @@ export const lakeShapes=[
  {name:'Great Salt Lake',rings:[[[-112.10,41.72],[-112.35,41.69],[-112.53,41.62],[-112.70,41.60],[-112.79,41.48],[-112.76,41.35],[-112.82,41.20],[-112.78,41.08],[-112.66,40.99],[-112.50,40.96],[-112.36,41.02],[-112.22,41.05],[-112.12,41.13],[-112.02,41.22],[-112.04,41.37],[-112.13,41.49],[-112.10,41.72]]]},
  {name:'Utah Lake',rings:[[[-111.91,40.28],[-111.84,40.34],[-111.75,40.34],[-111.69,40.31],[-111.66,40.23],[-111.68,40.15],[-111.73,40.08],[-111.82,40.07],[-111.89,40.12],[-111.92,40.20],[-111.91,40.28]]]},
 ];
-export const mappedLakes=lakeShapes.map(lake=>({...lake,rings:lake.rings.map(ring=>geoLine(ring as [number,number][]))}));
+export const mappedLakes=lakeShapes.map(lake=>({...lake,rings:lake.rings.map(ring=>geoLine((lake.name==='Great Salt Lake'?ring.map(([longitude,latitude])=>[-112.57+(longitude+112.42)*.7,41.19+(latitude-41.34)*.7]):ring) as [number,number][]))}));
 const landform=(name:string,ring:[number,number][],label:[number,number],angle=0)=>({name,points:geoLine(ring),label:projectRoadPoint(label),angle});
 export const mountainShapes=[
  landform('Uinta Mountains',[[-111.72,40.55],[-111.48,40.64],[-111.24,40.72],[-111.02,40.69],[-110.81,40.77],[-110.61,40.79],[-110.41,40.76],[-110.19,40.83],[-109.98,40.89],[-109.75,40.91],[-109.56,40.82],[-109.75,40.72],[-109.98,40.67],[-110.20,40.62],[-110.42,40.63],[-110.64,40.59],[-110.86,40.60],[-111.08,40.55],[-111.31,40.51],[-111.52,40.48],[-111.72,40.55]],[-110.55,40.68],-4),
@@ -87,7 +87,7 @@ export const riverShapes=[
  {name:'Colorado River',points:geoLine([[-109.04,39.45],[-109.17,39.30],[-109.33,39.13],[-109.52,38.97],[-109.60,38.78],[-109.57,38.59],[-109.56,38.48],[-109.63,38.35],[-109.76,38.27],[-109.90,38.22],[-110.00,38.18],[-110.04,38.02],[-110.10,37.82],[-110.16,37.61],[-110.30,37.40],[-110.51,37.22],[-110.70,37.10],[-110.87,37.00],[-111.04,36.94],[-111.19,36.93],[-111.31,36.98],[-111.40,36.98],[-111.483,36.936]])},
  {name:'Sevier River',points:geoLine([[-112.50,37.51],[-112.43,37.72],[-112.30,37.95],[-112.25,38.18],[-112.16,38.40],[-112.12,38.64],[-112.08,38.77],[-111.96,38.91],[-111.86,39.02],[-111.78,39.17],[-111.86,39.31],[-112.04,39.38],[-112.28,39.36],[-112.52,39.32],[-112.75,39.27],[-112.96,39.15],[-113.03,39.10]])},
 ];
-export const riverLabels=[['Green River',[-110.38,39.12]],['Colorado River',[-109.84,38.46]],['Sevier River',[-112.43,38.82]]].map(([name,point])=>({name:name as string,...projectRoadPoint(point as [number,number])}));
+export const riverLabels=[['Green River',[-110.38,39.12]]].map(([name,point])=>({name:name as string,...projectRoadPoint(point as [number,number])}));
 export const sevierLakeShape=geoLine([[-113.17,39.16],[-113.04,39.22],[-112.89,39.20],[-112.78,39.14],[-112.78,39.06],[-112.88,39.01],[-113.04,39.00],[-113.17,39.06],[-113.17,39.16]]);
 export const bookCliffsShape=landform('Book Cliffs',[[-110.30,39.28],[-110.28,39.35],[-110.21,39.34],[-110.06,39.35],[-109.82,39.32],[-109.56,39.28],[-109.38,39.22],[-109.48,39.15],[-109.75,39.18],[-110.00,39.20],[-110.25,39.18],[-110.32,39.19],[-110.31,39.22],[-110.30,39.28]],[-110.15,39.28],0);
 export type Space={id:string;name:string;x:number;y:number;hub:boolean};
