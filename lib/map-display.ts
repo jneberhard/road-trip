@@ -85,7 +85,28 @@ function labelBox(x: number, y: number, text: string): LabelBox {
 }
 export const placedMapLabels: MapLabel[] = [];
 const placedBoxes: LabelBox[] = [];
+// Reserve these requested placements before automatically arranging nearby labels.
+const pinnedLabelDirections: Record<string, 'west' | 'above' | 'below'> = {
+  'grand-canyon': 'west',
+  'grand-canyon-south-rim': 'west',
+  'hole-in-rock': 'below',
+  'navajo-mountain': 'above',
+  'rainbow-bridge': 'above',
+};
+for (const seed of seeds) {
+  const direction = pinnedLabelDirections[seed.location];
+  if (!direction) continue;
+  const box = labelBox(seed.x, seed.y, seed.text);
+  const label = {
+    ...seed,
+    x: direction === 'west' ? seed.anchorX - (box.right - box.left) / 2 - 8 : seed.anchorX,
+    y: seed.anchorY + (direction === 'above' ? -10 : direction === 'below' ? 10 : 0),
+  };
+  placedMapLabels.push(label);
+  placedBoxes.push(labelBox(label.x, label.y, label.text));
+}
 for (const seed of [...seeds].sort((a,b) => a.priority - b.priority || a.text.localeCompare(b.text))) {
+  if (pinnedLabelDirections[seed.location]) continue;
   let best: { label: MapLabel; box: LabelBox; score: number } | undefined;
   const allAngles = Array.from({ length: 16 }, (_,i) => i * Math.PI / 8), preferredAngle = seed.id === 'blanding' || seed.location === 'monument-valley' ? 0 : seed.location === 'navajo-mountain' ? -Math.PI / 2 : seed.location === 'hole-in-rock' ? Math.PI / 2 : seed.location === 'coyote-gulch' || seed.location === 'halls-crossing' || seed.id === 'salina' || seed.text.startsWith('Snow College') ? Math.PI : undefined;
   const preferredAngles = preferredAngle === undefined ? [] : [preferredAngle, preferredAngle - Math.PI / 8, preferredAngle + Math.PI / 8];
