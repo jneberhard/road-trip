@@ -23,6 +23,8 @@ const manual = {
   "vernon": [-112.4335642, 40.0921678],
   "simpson-springs": [-112.7882194, 40.0386056],
   "i84-idaho-border": [-112.22, 42.0],
+  "malad-city": [-112.250, 42.191],
+  "pocatello": [-112.445, 42.871],
   "yuba-i15-exit": [-111.910618, 39.449228],
   "thistle": [-111.4984, 39.9917],
   "grand-canyon": [-112.058, 36.211],
@@ -62,6 +64,8 @@ locations["dugway"] = manual["dugway"];
 locations["vernon"] = manual["vernon"];
 locations["simpson-springs"] = manual["simpson-springs"];
 locations["i84-idaho-border"] = manual["i84-idaho-border"];
+locations["malad-city"] = manual["malad-city"];
+locations["pocatello"] = manual["pocatello"];
 locations["yuba-i15-exit"] = manual["yuba-i15-exit"];
 locations["thistle"] = manual["thistle"];
 locations["grand-canyon"] = manual["grand-canyon"];
