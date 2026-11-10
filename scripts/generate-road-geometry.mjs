@@ -77,6 +77,8 @@ function simplify(points, tolerance = 0.00015) {
 
 let data = { locations, routes: {}, ...previousMap };
 data.locations = locations;
+const activeRouteKeys = new Set(pairs.map(([a, b]) => [a, b].sort().join("|")));
+for (const key of Object.keys(data.routes)) if (!activeRouteKeys.has(key.split("|").sort().join("|"))) delete data.routes[key];
 const endpointDistanceKm = (a, b) => Math.hypot((a[0] - b[0]) * 80, (a[1] - b[1]) * 111);
 const endpointCandidates = new Map();
 for (const [key, path] of Object.entries(data.routes)) {
