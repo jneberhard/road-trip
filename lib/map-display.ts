@@ -36,13 +36,15 @@ export const destinationMarkerPositions = new Map(destinationMarkerSeeds.map(mar
 export const hiddenHubDots = new Set(hubs.filter(([id,,x,y]) => !destinationHubIds.has(id) && destinationMarkerSeeds.some(marker => Math.hypot(x - marker.anchorX, y - marker.anchorY) < 7)).map(([id]) => id));
 const blackDotPositions: { x: number; y: number; r: number }[] = [];
 export const hiddenBlackDots = new Set<string>();
-function registerBlackDot(id: string, x: number, y: number, r: number) {
+export const numberedBlackDots = new Map<string, { number: number; name: string }>();
+function registerBlackDot(id: string, x: number, y: number, r: number, name: string) {
   if (blackDotPositions.some(dot => Math.hypot(x - dot.x, y - dot.y) < r + dot.r + .6)) { hiddenBlackDots.add(id); return; }
   blackDotPositions.push({ x, y, r });
+  numberedBlackDots.set(id, { number: numberedBlackDots.size + 1, name });
 }
 for (const marker of destinationMarkerSeeds) blackDotPositions.push({ x: marker.x, y: marker.y, r: 4 });
-for (const [id,,x,y] of [...hubs].sort((a,b) => Number(cityLabels.has(b[0])) - Number(cityLabels.has(a[0])))) if (!destinationHubIds.has(id) && !hiddenHubDots.has(id)) registerBlackDot(`hub:${id}`, x, y, 2.4);
-for (const space of Object.values(spaces).filter(space => !space.hub)) registerBlackDot(`space:${space.id}`, space.x, space.y, 2.05);
+for (const [id,name,x,y] of [...hubs].sort((a,b) => Number(cityLabels.has(b[0])) - Number(cityLabels.has(a[0])))) if (!destinationHubIds.has(id) && !homeBases.includes(id as typeof homeBases[number]) && !hiddenHubDots.has(id)) registerBlackDot(`hub:${id}`, x, y, 2.4, name);
+for (const space of Object.values(spaces).filter(space => !space.hub)) registerBlackDot(`space:${space.id}`, space.x, space.y, 2.05, space.name);
 
 export type MapLabel = { id: string; text: string; x: number; y: number; anchorX: number; anchorY: number; location: string; priority: number; home?: boolean };
 type LabelBox = { left: number; right: number; top: number; bottom: number };
