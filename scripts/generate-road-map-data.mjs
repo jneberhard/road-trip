@@ -48,7 +48,8 @@ const overrides = {
   "grand-staircase": "Grand Staircase Escalante National Monument",
   "fort-kanab": "Kanab",
   "utah-fairgrounds": "155 North 1000 West, Salt Lake City",
-  "grand-canyon": "Grand Canyon Village",
+  "grand-canyon": "Grand Canyon North Rim Visitor Center",
+  "grand-canyon-south-rim": "Grand Canyon Village",
   "mesa-verde": "Mesa Verde National Park",
   "cortez": "Cortez",
 };

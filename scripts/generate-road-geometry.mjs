@@ -25,6 +25,9 @@ const manual = {
   "i84-idaho-border": [-112.22, 42.0],
   "yuba-i15-exit": [-111.910618, 39.449228],
   "thistle": [-111.4984, 39.9917],
+  "grand-canyon": [-112.058, 36.211],
+  "grand-canyon-south-rim": [-112.128156, 36.0578075],
+  "jacob-lake": [-112.216, 36.716],
   "dugway": [-112.7346, 40.2517],
   "green-river": [-110.1604, 38.9952],
   "beaver": [-112.6416, 38.2769],
@@ -61,6 +64,9 @@ locations["simpson-springs"] = manual["simpson-springs"];
 locations["i84-idaho-border"] = manual["i84-idaho-border"];
 locations["yuba-i15-exit"] = manual["yuba-i15-exit"];
 locations["thistle"] = manual["thistle"];
+locations["grand-canyon"] = manual["grand-canyon"];
+locations["grand-canyon-south-rim"] = manual["grand-canyon-south-rim"];
+locations["jacob-lake"] = manual["jacob-lake"];
 
 const routesBlock = gameSource.match(/const routeDefinitions:\[string,string,Road\]\[\]\s*=\s*\[([\s\S]*?)\n\];/);
 if (!routesBlock) throw new Error("Could not find route list in lib/game.ts");
