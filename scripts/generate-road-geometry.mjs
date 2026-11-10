@@ -48,7 +48,8 @@ const manual = {
   "navajo-mountain": [-110.5400, 37.0000],
   "coyote-gulch": [-111.0080, 37.4080],
   "dark-canyon": [-109.9500, 37.6500],
-  "hole-in-rock": [-110.9002, 37.2564]
+  "hole-in-rock": [-110.9002, 37.2564],
+  "newspaper-rock": [-109.518266, 37.988416]
 };
 const locations = {};
 for (const id of currentHubIds) {
@@ -79,6 +80,7 @@ locations["thistle"] = manual["thistle"];
 locations["grand-canyon"] = manual["grand-canyon"];
 locations["grand-canyon-south-rim"] = manual["grand-canyon-south-rim"];
 locations["jacob-lake"] = manual["jacob-lake"];
+locations["newspaper-rock"] = manual["newspaper-rock"];
 
 const routesBlock = gameSource.match(/const routeDefinitions:\[string,string,Road\]\[\]\s*=\s*\[([\s\S]*?)\n\];/);
 if (!routesBlock) throw new Error("Could not find route list in lib/game.ts");

@@ -100,7 +100,7 @@ const routeDefinitions:[string,string,Road][]=[
  ['salt-lake-city','tooele','Freeway'],['salt-lake-city','grantsville','Freeway'],['tooele','grantsville','Highway'],['grantsville','west-wendover','Freeway'],['salt-lake-city','echo','Freeway'],['ogden','echo','Freeway'],['echo','coalville','Freeway'],['coalville','evanston','Freeway'],['evanston','rock-springs','Freeway'],
  ['cove-fort','salina','Freeway'],['salina','green-river','Freeway'],['green-river','cisco','Freeway'],
  // US highways
- ['salt-lake-city','spanish-fork','Highway'],['spanish-fork','nephi','Highway'],['nephi','salina','Highway'],['nephi','manti','State road'],['salina','richfield','Highway'],['circleville','richfield','Highway'],
+ ['salt-lake-city','spanish-fork','Highway'],['spanish-fork','nephi','Highway'],['nephi','salina','State road'],['nephi','manti','State road'],['salina','richfield','Highway'],['circleville','richfield','Highway'],
  ['spanish-fork','price','Highway'],['price','green-river','Highway'],['cisco','moab','Highway'],['moab','monticello','Highway'],['monticello','blanding','Highway'],['blanding','bluff','Highway'],['bluff','kayenta','Highway'],['page','kayenta','Highway'],
  ['park-city','heber-city','Highway'],['heber-city','duchesne','Highway'],['duchesne','roosevelt','Highway'],['roosevelt','vernal','Highway'],['vernal','dinosaur','Highway'],
  ['logan','garden-city','Highway'],['garden-city','preston','Highway'],['ogden','logan','Highway'],['ephraim','thistle','Highway'],
@@ -132,7 +132,7 @@ export const destinationLocations=[
  'evanston','simpson-springs','bonneville-salt-flats','hill-aerospace-museum','lagoon','hogle-zoo','heber-valley-railroad','timpanogos-cave','utah-olympic-park','bear-lake',
  'mirror-lake','bingham-canyon-mine','temple-square','this-is-the-place','antelope-island','camp-floyd','snowbird','living-planet-aquarium','slc-airport','scofield-reservoir',
  'goshen-movie-set','spiral-jetty','mount-timpanogos','soldier-hollow','cherry-hill','dugway','starvation-reservoir','golden-spike','lava-hot-springs','yuba-state-park',
- 'nine-mile-canyon','little-sahara','meadow-lava-tubes','natural-bridges-halls-crossing-2','arches','bryce-canyon','canyonlands','capitol-reef','mesa-verde','baker',
+ 'nine-mile-canyon','little-sahara','meadow-lava-tubes','yuba-i15-exit','arches','bryce-canyon','canyonlands','capitol-reef','mesa-verde','baker',
  'grand-canyon','natural-bridges','bears-ears','grand-staircase','cedar-breaks','hole-in-rock','flaming-gorge','monument-valley','newspaper-rock','topaz-mountain',
  'the-wave','zion','snow-canyon','mountain-meadows','coyote-gulch','dark-canyon','valley-of-the-gods','navajo-mountain','fort-kanab','coral-pink-sand-dunes',
  'dinosaur-nm','rainbow-bridge','hovenweep','goosenecks','san-rafael-swell','wilberg-mine','four-corners','glen-canyon-dam','goblin-valley','dead-horse-point',
