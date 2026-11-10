@@ -132,7 +132,7 @@ export const destinationLocations=[
  'evanston','simpson-springs','bonneville-salt-flats','hill-aerospace-museum','lagoon','hogle-zoo','heber-valley-railroad','timpanogos-cave','utah-olympic-park','bear-lake',
  'mirror-lake','bingham-canyon-mine','temple-square','this-is-the-place','antelope-island','camp-floyd','snowbird','living-planet-aquarium','slc-airport','scofield-reservoir',
  'goshen-movie-set','spiral-jetty','mount-timpanogos','soldier-hollow','cherry-hill','dugway','starvation-reservoir','golden-spike','lava-hot-springs','yuba-state-park',
- 'nine-mile-canyon','little-sahara','meadow-lava-tubes','halls-crossing','arches','bryce-canyon','canyonlands','capitol-reef','mesa-verde','great-basin',
+ 'nine-mile-canyon','little-sahara','meadow-lava-tubes','natural-bridges-halls-crossing-2','arches','bryce-canyon','canyonlands','capitol-reef','mesa-verde','great-basin',
  'grand-canyon','natural-bridges','bears-ears','grand-staircase','cedar-breaks','hole-in-rock','flaming-gorge','monument-valley','newspaper-rock','topaz-mountain',
  'the-wave','zion','snow-canyon','mountain-meadows','coyote-gulch','dark-canyon','valley-of-the-gods','navajo-mountain','fort-kanab','coral-pink-sand-dunes',
  'dinosaur-nm','rainbow-bridge','hovenweep','goosenecks','san-rafael-swell','wilberg-mine','four-corners','glen-canyon-dam','goblin-valley','dead-horse-point',
