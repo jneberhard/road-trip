@@ -8,6 +8,13 @@
       "when": 1794235682571,
       "tag": "0000_luxuriant_shaman",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794329320000,
+      "tag": "0001_global_map_settings",
+      "breakpoints": true
     }
   ]
 }
