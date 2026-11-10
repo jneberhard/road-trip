@@ -31,6 +31,7 @@ try { locations = JSON.parse(await readFile(new URL("../lib/road-map-geocodes.js
 try { locations = { ...locations, ...JSON.parse(await readFile(partialUrl, "utf8")) }; } catch {}
 const overrides = {
   "four-corners": "Four Corners Monument",
+  "boise": "Boise",
   "simpson-springs": "Simpson Springs",
   "living-planet-aquarium": "Loveland Living Planet Aquarium",
   "the-wave": "Wire Pass Trailhead",
