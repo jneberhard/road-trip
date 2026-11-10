@@ -20,9 +20,10 @@ const manual = {
   "great-basin": [-114.2570, 39.0050],
   "grand-staircase": [-111.6020, 37.7700],
   "tooele": [-112.2983, 40.5308],
+  "dugway": [-112.7346, 40.2517],
   "green-river": [-110.1604, 38.9952],
   "beaver": [-112.6416, 38.2769],
-  "mountain-meadows": [-113.4900, 38.4700],
+  "mountain-meadows": [-113.6436, 37.4755],
   "the-wave": [-112.0060, 36.9960],
   "goshen-movie-set": [-111.9160, 39.9440],
   "meadow-lava-tubes": [-112.4082, 38.8861],
@@ -33,7 +34,7 @@ const manual = {
   "navajo-mountain": [-110.5400, 37.0000],
   "coyote-gulch": [-111.0080, 37.4080],
   "dark-canyon": [-109.9500, 37.6500],
-  "hole-in-rock": [-110.1000, 37.1000]
+  "hole-in-rock": [-110.9002, 37.2564]
 };
 const locations = {};
 for (const id of currentHubIds) {
@@ -47,6 +48,9 @@ for (const id of currentHubIds) {
     locations[id] = [point.lon, point.lat];
   }
 }
+locations["mountain-meadows"] = manual["mountain-meadows"];
+locations["hole-in-rock"] = manual["hole-in-rock"];
+locations["dugway"] = manual["dugway"];
 
 const routesBlock = gameSource.match(/const routeDefinitions:\[string,string,Road\]\[\]\s*=\s*\[([\s\S]*?)\n\];/);
 if (!routesBlock) throw new Error("Could not find route list in lib/game.ts");
