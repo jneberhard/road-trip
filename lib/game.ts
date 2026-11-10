@@ -62,7 +62,7 @@ export function projectRoadPoint([longitude,latitude]:[number,number]){
  const mercatorY=Math.log(Math.tan(Math.PI/4+latitude*Math.PI/360));
  return {x:18+(longitude-longitudeMin)/(longitudeMax-longitudeMin)*884,y:18+(mercatorMax-mercatorY)/(mercatorMax-mercatorMin)*1010};
 }
-export const hubs=sourceHubs.map(([id,name,oldX,oldY])=>{const point=(roadMap.locations as Record<string,[number,number]>)[id];const projected=point?projectRoadPoint(point):{x:oldX,y:oldY};if(id==='halls-crossing')projected.x+=16;return [id,name,projected.x,projected.y] as const;});
+export const hubs=sourceHubs.map(([id,name,oldX,oldY])=>{const point=(roadMap.locations as Record<string,[number,number]>)[id];const projected=point?projectRoadPoint(point):{x:oldX,y:oldY};return [id,name,projected.x,projected.y] as const;});
 const boundaryData=(roadMap as unknown as {stateBoundaries:{name:string;rings:[number,number][][]}[]}).stateBoundaries;
 export const stateBoundaryShapes=boundaryData.map(state=>({name:state.name,rings:state.rings.map(ring=>ring.map(point=>projectRoadPoint(point)))}));
 export const stateLabels=[['NEVADA',[-114.35,39.55]],['IDAHO',[-112.15,42.3]],['WYOMING',[-109.55,41.65]],['COLORADO',[-108.48,38.85]],['ARIZONA',[-111.15,36.12]],['UTAH',[-111.5,39.6]]].map(([name,point])=>({name:name as string, ...projectRoadPoint(point as [number,number])}));
@@ -128,6 +128,13 @@ function addRoute(a:string,b:string,road:Road,path:{x:number;y:number}[]){
  let prev=a;for(let i=1;i<=segmentCount;i++){const final=i===segmentCount,id=final?b:`${a}-${b}-${i}`,point=pointAt(totalLength*i/segmentCount);if(!final)spaces[id]={id,name:`${spaces[a].name}–${spaces[b].name} · ${i}/${segmentCount}`,...point,hub:false};edges.push({a:prev,b:id,road,barrel:false});prev=id;}
 }
 for(const [a,b,road] of routeDefinitions){const projected=projectPath(routeCoords(a,b));addRoute(a,b,road,projected);}
+const coloradoRiver=riverShapes.find(river=>river.name==='Colorado River');
+const riverStart=spaces['hanksville-natural-bridges-5'],riverEnd=spaces['rainbow-bridge'];
+if(coloradoRiver&&riverStart&&riverEnd){
+ let startIndex=0,endIndex=0,startDistance=Infinity,endDistance=Infinity;
+ coloradoRiver.points.forEach((point,index)=>{const fromStart=Math.hypot(point.x-riverStart.x,point.y-riverStart.y),fromEnd=Math.hypot(point.x-riverEnd.x,point.y-riverEnd.y);if(fromStart<startDistance){startDistance=fromStart;startIndex=index;}if(fromEnd<endDistance){endDistance=fromEnd;endIndex=index;}});
+ if(startIndex<endIndex)coloradoRiver.points=[...coloradoRiver.points.slice(0,startIndex),riverStart,riverEnd,...coloradoRiver.points.slice(endIndex+1)];
+}
 export const destinationLocations=[
  'evanston','simpson-springs','bonneville-salt-flats','hill-aerospace-museum','lagoon','hogle-zoo','heber-valley-railroad','timpanogos-cave','utah-olympic-park','bear-lake',
  'mirror-lake','bingham-canyon-mine','temple-square','this-is-the-place','antelope-island','camp-floyd','snowbird','living-planet-aquarium','slc-airport','scofield-reservoir',

@@ -1,4 +1,5 @@
 import cards from './cards.json';
+import blackDotNumberIds from './black-dot-number-ids.json';
 import { bookCliffsShape, destinationHubs, destinations, homeBases, hubs, mappedLakes, mountainShapes, projectRoadPoint, riverLabels, routeShapes, spaces, stateLabels } from './game';
 
 export const roadColors = { Freeway: '#1769aa', Highway: '#d44444', 'State road': '#27834d', 'County road': '#92968b' } as const;
@@ -37,10 +38,12 @@ export const hiddenHubDots = new Set(hubs.filter(([id,,x,y]) => !destinationHubI
 const blackDotPositions: { x: number; y: number; r: number }[] = [];
 export const hiddenBlackDots = new Set<string>();
 export const numberedBlackDots = new Map<string, { number: number; name: string }>();
+const blackDotNumberById = new Map(blackDotNumberIds as Array<[string, number]>);
+let nextBlackDotNumber = Math.max(0, ...blackDotNumberIds.map(([, number]) => number)) + 1;
 function registerBlackDot(id: string, x: number, y: number, r: number, name: string) {
   if (blackDotPositions.some(dot => Math.hypot(x - dot.x, y - dot.y) < r + dot.r + .6)) { hiddenBlackDots.add(id); return; }
   blackDotPositions.push({ x, y, r });
-  numberedBlackDots.set(id, { number: numberedBlackDots.size + 1, name });
+  numberedBlackDots.set(id, { number: blackDotNumberById.get(id) ?? nextBlackDotNumber++, name });
 }
 for (const marker of destinationMarkerSeeds) blackDotPositions.push({ x: marker.x, y: marker.y, r: 4 });
 for (const [id,name,x,y] of [...hubs].sort((a,b) => Number(cityLabels.has(b[0])) - Number(cityLabels.has(a[0])))) if (!destinationHubIds.has(id) && !homeBases.includes(id as typeof homeBases[number]) && !hiddenHubDots.has(id)) registerBlackDot(`hub:${id}`, x, y, 2.4, name);
