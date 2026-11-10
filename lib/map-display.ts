@@ -3,6 +3,7 @@ import blackDotNumberIds from './black-dot-number-ids.json';
 import { bookCliffsShape, destinationHubs, destinations, homeBases, hubs, mappedLakes, mountainShapes, projectRoadPoint, riverLabels, routeShapes, spaces, stateLabels } from './game';
 
 export const roadColors = { Freeway: '#1769aa', Highway: '#d44444', 'State road': '#27834d', 'County road': '#92968b' } as const;
+export const destinationColor = (type: string) => type === 'easy' ? '#2478cc' : type === 'hard' ? '#d54b3f' : '#318b57';
 export const cityLabels = new Set(['salt-lake-city','ogden','logan','brigham-city','tremonton','i84-idaho-border','i84-sr30-junction','boise','malad-city','pocatello','preston','park-valley','oasis','provo','orem','spanish-fork','nephi','fillmore','delta','salina','richfield','price','green-river','moab','blanding','bluff','monticello','vernal','roosevelt','duchesne','heber-city','park-city','tooele','cedar-city','parowan','panguitch','circleville','bryce-canyon','kanab','st-george','mesquite','evanston','rock-springs','cortez','page','grand-canyon','grand-canyon-south-rim','jacob-lake','ely','coalville','milford','hanksville','torrey','escalante','cisco','vernon','simpson-springs','thistle','yuba-i15-exit']);
 export const destinationHubIds = new Set(destinations.flatMap(destination => destinationHubs(destination)));
 type DestinationMarker = { hub: string; x: number; y: number; anchorX: number; anchorY: number };
@@ -49,7 +50,7 @@ for (const marker of destinationMarkerSeeds) blackDotPositions.push({ x: marker.
 for (const [id,name,x,y] of [...hubs].sort((a,b) => Number(cityLabels.has(b[0])) - Number(cityLabels.has(a[0])))) if (!destinationHubIds.has(id) && !homeBases.includes(id as typeof homeBases[number]) && !hiddenHubDots.has(id)) registerBlackDot(`hub:${id}`, x, y, 2.4, name);
 for (const space of Object.values(spaces).filter(space => !space.hub)) registerBlackDot(`space:${space.id}`, space.x, space.y, 2.05, space.name);
 
-export type MapLabel = { id: string; text: string; x: number; y: number; anchorX: number; anchorY: number; location: string; priority: number; home?: boolean };
+export type MapLabel = { id: string; text: string; x: number; y: number; anchorX: number; anchorY: number; location: string; priority: number; home?: boolean; color?: string };
 type LabelBox = { left: number; right: number; top: number; bottom: number };
 const labelRoadSegments = routeShapes.flatMap(route => route.points.slice(1).map((point,i) => ({ a: route.points[i], b: point })));
 const fixedMapLabels: LabelBox[] = [...stateLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...riverLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...[{ x: bookCliffsShape.label.x, y: bookCliffsShape.label.y, text: bookCliffsShape.name }, ...mountainShapes.filter(shape => shape.name !== 'Tushar Mountains').map(shape => ({ x: shape.label.x, y: shape.label.y + 28, text: shape.name }))], ...mappedLakes.map(lake => {
@@ -64,7 +65,7 @@ const seeds: MapLabel[] = hubs.filter(([id]) => (cityLabels.has(id) && !destinat
 for (const destination of destinations) for (const hub of destinationHubs(destination)) {
   const point = destinationMarkerPositions.get(hub) ?? spaces[hub];
   const name = destination.id === 30 ? 'Yuba Lake · Yuba - SP' : destination.id === 41 ? `Grand Canyon · ${hub === 'grand-canyon' ? 'North Rim' : 'South Rim'}` : cards.find(card => card.id === destination.id)?.name ?? `Destination ${destination.id}`;
-  seeds.push({ id: `destination-${destination.id}-${hub}`, text: name, x: point.x, y: point.y, anchorX: point.x, anchorY: point.y, location: hub, priority: 1 });
+  seeds.push({ id: `destination-${destination.id}-${hub}`, text: name, x: point.x, y: point.y, anchorX: point.x, anchorY: point.y, location: hub, priority: 1, color: destinationColor(destination.type) });
 }
 function intersectsRoad(box: LabelBox) {
   return labelRoadSegments.some(({a,b}) => {
@@ -83,6 +84,11 @@ function labelBox(x: number, y: number, text: string): LabelBox {
   const width = Math.max(12, text.length * 3.15 + 4);
   return { left: x - width / 2, right: x + width / 2, top: y - 4.5, bottom: y + 2 };
 }
+function destinationLabelBox(x: number, y: number, text: string): LabelBox {
+  // Destination text is 4.3px, smaller than city text, with a 2px halo.
+  const width = Math.max(12, text.length * 2.5 + 4);
+  return { left: x - width / 2, right: x + width / 2, top: y - 3.5, bottom: y + 3.5 };
+}
 export const placedMapLabels: MapLabel[] = [];
 const placedBoxes: LabelBox[] = [];
 // Reserve these requested placements before automatically arranging nearby labels.
@@ -96,17 +102,60 @@ const pinnedLabelDirections: Record<string, 'west' | 'above' | 'below'> = {
 for (const seed of seeds) {
   const direction = pinnedLabelDirections[seed.location];
   if (!direction) continue;
-  const box = labelBox(seed.x, seed.y, seed.text);
+  const box = destinationLabelBox(seed.x, seed.y, seed.text);
   const label = {
     ...seed,
     x: direction === 'west' ? seed.anchorX - (box.right - box.left) / 2 - 8 : seed.anchorX,
     y: seed.anchorY + (direction === 'above' ? -10 : direction === 'below' ? 10 : 0),
   };
   placedMapLabels.push(label);
-  placedBoxes.push(labelBox(label.x, label.y, label.text));
+  placedBoxes.push(destinationLabelBox(label.x, label.y, label.text));
 }
-for (const seed of [...seeds].sort((a,b) => a.priority - b.priority || a.text.localeCompare(b.text))) {
+function overlaps(a: LabelBox, b: LabelBox, padding = 2) {
+  return a.left < b.right + padding && a.right > b.left - padding && a.top < b.bottom + padding && a.bottom > b.top - padding;
+}
+// Keep a destination's text edge within 22 map units of its marker. Roads
+// are a soft constraint so a busy junction cannot send its name far away.
+const destinationCandidates = new Map<number, { label: MapLabel; box: LabelBox; score: number }[]>();
+for (const seed of seeds.filter(seed => seed.color).sort((a,b) => a.text.localeCompare(b.text))) {
   if (pinnedLabelDirections[seed.location]) continue;
+  const halfWidth = (destinationLabelBox(0, 0, seed.text).right - destinationLabelBox(0, 0, seed.text).left) / 2;
+  const candidates: { label: MapLabel; box: LabelBox; score: number }[] = [];
+  for (const gap of [8, 11, 15, 19]) {
+    const offsets = [
+      ...[-1, 1].flatMap(side => [0, -halfWidth / 2, halfWidth / 2].map(dx => [dx, side * (gap + 3)])),
+      ...[-1, 1].flatMap(side => [0, -8, 8].map(dy => [side * (halfWidth + gap), dy])),
+    ];
+    for (const [dx, dy] of offsets) {
+      const label = { ...seed, x: seed.anchorX + dx, y: seed.anchorY + dy }, box = destinationLabelBox(label.x, label.y, label.text);
+      if (box.left < 2 || box.right > 918 || box.top < 2 || box.bottom > 1085) continue;
+      const dotConflicts = blackDotPositions.filter(dot => overlaps(box, { left: dot.x - dot.r, right: dot.x + dot.r, top: dot.y - dot.r, bottom: dot.y + dot.r })).length;
+      const geographyConflicts = fixedMapLabels.filter(other => overlaps(box, other)).length;
+      const preferredSide = seed.location === 'monument-valley' ? dx > 0 : seed.location === 'halls-crossing' || seed.location === 'coyote-gulch' || seed.text.startsWith('Snow College') ? dx < 0 : true;
+      const score = dotConflicts * 10000 + geographyConflicts * 100 + Number(intersectsRoad(box)) * 20 + gap + Math.abs(dx) * .05 + Number(!preferredSide) * 5;
+      candidates.push({ label, box, score });
+    }
+  }
+  const score = (candidate: typeof candidates[number]) => candidate.score + placedBoxes.filter(other => overlaps(candidate.box, other)).length * 1000000;
+  const best = candidates.sort((a,b) => score(a) - score(b))[0];
+  if (best) {
+    destinationCandidates.set(placedMapLabels.length, candidates);
+    placedMapLabels.push(best.label); placedBoxes.push(best.box);
+  }
+}
+// Revisit crowded clusters so an earlier name can make room for a later one.
+for (let pass = 0; pass < 12; pass++) {
+  let changed = false;
+  for (const [index, candidates] of destinationCandidates) {
+    const score = (candidate: typeof candidates[number]) => candidate.score + placedBoxes.filter((other, otherIndex) => otherIndex !== index && overlaps(candidate.box, other)).length * 1000000;
+    const best = candidates.reduce((a,b) => score(a) <= score(b) ? a : b);
+    if (best.label.x !== placedMapLabels[index].x || best.label.y !== placedMapLabels[index].y) changed = true;
+    placedMapLabels[index] = best.label;
+    placedBoxes[index] = best.box;
+  }
+  if (!changed) break;
+}
+for (const seed of [...seeds].filter(seed => !seed.color).sort((a,b) => a.priority - b.priority || a.text.localeCompare(b.text))) {
   let best: { label: MapLabel; box: LabelBox; score: number } | undefined;
   const allAngles = Array.from({ length: 16 }, (_,i) => i * Math.PI / 8), preferredAngle = seed.id === 'blanding' || seed.location === 'monument-valley' ? 0 : seed.location === 'navajo-mountain' ? -Math.PI / 2 : seed.location === 'hole-in-rock' ? Math.PI / 2 : seed.location === 'coyote-gulch' || seed.location === 'halls-crossing' || seed.id === 'salina' || seed.text.startsWith('Snow College') ? Math.PI : undefined;
   const preferredAngles = preferredAngle === undefined ? [] : [preferredAngle, preferredAngle - Math.PI / 8, preferredAngle + Math.PI / 8];
