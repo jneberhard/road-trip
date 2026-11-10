@@ -89,7 +89,7 @@ export const riverShapes=[
 ];
 export const riverLabels=[['Green River',[-110.38,39.12]],['Colorado River',[-109.84,38.46]],['Sevier River',[-112.43,38.82]]].map(([name,point])=>({name:name as string,...projectRoadPoint(point as [number,number])}));
 export const sevierLakeShape=geoLine([[-113.17,39.16],[-113.04,39.22],[-112.89,39.20],[-112.78,39.14],[-112.78,39.06],[-112.88,39.01],[-113.04,39.00],[-113.17,39.06],[-113.17,39.16]]);
-export const bookCliffsShape=landform('Book Cliffs',[[-110.72,39.28],[-110.51,39.35],[-110.28,39.34],[-110.06,39.35],[-109.82,39.32],[-109.56,39.28],[-109.38,39.22],[-109.48,39.15],[-109.75,39.18],[-110.00,39.20],[-110.25,39.18],[-110.49,39.19],[-110.69,39.22],[-110.72,39.28]],[-110.15,39.28],0);
+export const bookCliffsShape=landform('Book Cliffs',[[-110.30,39.28],[-110.28,39.35],[-110.21,39.34],[-110.06,39.35],[-109.82,39.32],[-109.56,39.28],[-109.38,39.22],[-109.48,39.15],[-109.75,39.18],[-110.00,39.20],[-110.25,39.18],[-110.32,39.19],[-110.31,39.22],[-110.30,39.28]],[-110.15,39.28],0);
 export type Space={id:string;name:string;x:number;y:number;hub:boolean};
 export type Edge={a:string;b:string;road:Road;barrel:boolean};
 export const spaces: Record<string,Space> = Object.fromEntries(hubs.map(([id,name,x,y])=>[id,{id,name,x,y,hub:true}]));

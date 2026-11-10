@@ -5,14 +5,27 @@ export const roadColors = { Freeway: '#1769aa', Highway: '#d44444', 'State road'
 export const cityLabels = new Set(['salt-lake-city','ogden','logan','brigham-city','tremonton','i84-idaho-border','i84-sr30-junction','boise','malad-city','pocatello','preston','park-valley','oasis','provo','orem','spanish-fork','nephi','fillmore','delta','salina','richfield','price','green-river','moab','blanding','bluff','monticello','vernal','roosevelt','duchesne','heber-city','park-city','tooele','cedar-city','parowan','panguitch','circleville','bryce-canyon','kanab','st-george','mesquite','evanston','rock-springs','cortez','page','grand-canyon','grand-canyon-south-rim','jacob-lake','ely','coalville','milford','hanksville','torrey','escalante','cisco','vernon','simpson-springs','thistle','yuba-i15-exit']);
 export const destinationHubIds = new Set(destinations.flatMap(destination => destinationHubs(destination)));
 type DestinationMarker = { hub: string; x: number; y: number; anchorX: number; anchorY: number };
+function closestRoadPoint(points: { x: number; y: number }[], target: { x: number; y: number }) {
+  let closest = points[0], bestDistance = Infinity;
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1], b = points[i], dx = b.x - a.x, dy = b.y - a.y;
+    const t = Math.max(0, Math.min(1, ((target.x - a.x) * dx + (target.y - a.y) * dy) / (dx * dx + dy * dy)));
+    const point = { x: a.x + t * dx, y: a.y + t * dy }, distance = Math.hypot(target.x - point.x, target.y - point.y);
+    if (distance < bestDistance) { closest = point; bestDistance = distance; }
+  }
+  return closest;
+}
+const i15FromNephi = routeShapes.find(route => route.road === 'Freeway' && new Set([route.a, route.b]).has('nephi') && new Set([route.a, route.b]).has('fillmore'));
 const destinationMarkerSeeds: DestinationMarker[] = destinations.flatMap(destination => destinationHubs(destination).map(hub => {
-  const anchor = spaces[hub];
-  return { hub, x: anchor.x, y: anchor.y, anchorX: anchor.x, anchorY: anchor.y };
+  const anchor = spaces[hub], point = destination.id === 30 && i15FromNephi ? closestRoadPoint(i15FromNephi.points, anchor) : anchor;
+  return { hub, x: point.x, y: point.y, anchorX: point.x, anchorY: point.y };
 }));
 for (let pass = 0; pass < 100; pass++) {
   let moved = false;
   for (let i = 0; i < destinationMarkerSeeds.length; i++) for (let j = i + 1; j < destinationMarkerSeeds.length; j++) {
-    const a = destinationMarkerSeeds[i], b = destinationMarkerSeeds[j], dx = b.x - a.x, dy = b.y - a.y, distance = Math.hypot(dx, dy), minimum = 9;
+    const a = destinationMarkerSeeds[i], b = destinationMarkerSeeds[j];
+    if (a.hub === 'yuba-i15-exit' || b.hub === 'yuba-i15-exit') continue;
+    const dx = b.x - a.x, dy = b.y - a.y, distance = Math.hypot(dx, dy), minimum = 9;
     if (distance >= minimum) continue;
     const angle = i * 2.399963229728653 + j * .7548776662466927, ux = distance > 1e-3 ? dx / distance : Math.cos(angle), uy = distance > 1e-3 ? dy / distance : Math.sin(angle), push = (minimum - distance) * .51;
     a.x -= ux * push; a.y -= uy * push; b.x += ux * push; b.y += uy * push; moved = true;
