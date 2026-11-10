@@ -20,6 +20,9 @@ const manual = {
   "great-basin": [-114.2570, 39.0050],
   "grand-staircase": [-111.6020, 37.7700],
   "tooele": [-112.2983, 40.5308],
+  "vernon": [-112.4335642, 40.0921678],
+  "simpson-springs": [-112.7882194, 40.0386056],
+  "i84-idaho-border": [-112.22, 42.0],
   "dugway": [-112.7346, 40.2517],
   "green-river": [-110.1604, 38.9952],
   "beaver": [-112.6416, 38.2769],
@@ -51,6 +54,9 @@ for (const id of currentHubIds) {
 locations["mountain-meadows"] = manual["mountain-meadows"];
 locations["hole-in-rock"] = manual["hole-in-rock"];
 locations["dugway"] = manual["dugway"];
+locations["vernon"] = manual["vernon"];
+locations["simpson-springs"] = manual["simpson-springs"];
+locations["i84-idaho-border"] = manual["i84-idaho-border"];
 
 const routesBlock = gameSource.match(/const routeDefinitions:\[string,string,Road\]\[\]\s*=\s*\[([\s\S]*?)\n\];/);
 if (!routesBlock) throw new Error("Could not find route list in lib/game.ts");
