@@ -34,7 +34,7 @@ export default function Home(){
  useEffect(()=>{if(ready){localStorage.setItem('utah-game',JSON.stringify(game));if(session)localStorage.setItem('utah-session',JSON.stringify(session));else localStorage.removeItem('utah-session')}},[game,session,ready]);
  async function request(action:string,extra:Record<string,unknown>={}){
   if(busyRef.current)return;busyRef.current=true;setBusy(true);if(action!=='get')setError('');
-  try{const r=await fetch('/api/game',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...session,rev:gRef.current?.rev,...extra})});const d=await r.json() as {game?:Game;error?:string;token?:string;code?:string;seat:number};if(d.game)setGame(d.game);if(!r.ok)throw Error(d.error||'The request failed.');if(d.token&&d.code)setSession({token:d.token,code:d.code,seat:d.seat});if(action==='create'||action==='join')setSetup(false);}
+  try{const r=await fetch('/api/game',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,...session,rev:gRef.current?.rev,...extra})});const d=await r.json() as {game?:Game;error?:string;token?:string;code?:string;seat:number};if(d.game)setGame(hydrateGame(d.game));if(!r.ok)throw Error(d.error||'The request failed.');if(d.token&&d.code)setSession({token:d.token,code:d.code,seat:d.seat});if(action==='create'||action==='join')setSetup(false);}
   catch(e){setError(e instanceof Error?e.message:'Connection failed. Please try again.');}finally{busyRef.current=false;setBusy(false)}
  }
  useEffect(()=>{if(!session)return;request('get');const timer=setInterval(()=>request('get'),2500);return()=>clearInterval(timer)},[session?.code,session?.token]);

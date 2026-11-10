@@ -164,7 +164,11 @@ export function createGame(humans:number,bots:number,name='You',online=false,sto
  return {players,turn:0,round:1,roll:0,left:0,phase:online?'lobby':'cones',pending:null,pendingQuestion:null,questionDeadline:null,pendingScenario:null,pendingRoad:null,coneToMove:null,coneMovedThisTurn:false,scenarioDeck,scenarioDiscard:[],stock,stopMix:{...stopMix},log:[`Place two construction cones each, then collect ${total} stops and return to your assigned home base.`],winner:null,humans,online,rev:0};
 }
 export function hydrateGame(game:Game){
- game.players.forEach(player=>{player.homeBase??=homeBases[Math.floor(Math.random()*homeBases.length)];player.hand??=[];player.cones??=[];player.skipTurns??=0;player.extraTurns??=0;player.passCount??=0;player.electricRoad??=null;player.doubleTurn??=false;player.slowRoad??=null;});
+ if(!Array.isArray(game.players)||game.players.length===0)throw new Error('This saved game is incomplete. Start a new game to continue.');
+ let recoveredPosition=false;
+ game.players.forEach(player=>{if(!spaces[player.homeBase]){player.homeBase=homeBases[Math.floor(Math.random()*homeBases.length)];recoveredPosition=true;}if(!spaces[player.pos]){player.pos=player.homeBase;recoveredPosition=true;}player.hand??=[];player.cones??=[];player.skipTurns??=0;player.extraTurns??=0;player.passCount??=0;player.electricRoad??=null;player.doubleTurn??=false;player.slowRoad??=null;});
+ if(!Number.isInteger(game.turn)||game.turn<0||game.turn>=game.players.length)game.turn=0;
+ game.log??=[];if(recoveredPosition)game.log=['Recovered an older save with an outdated map position; the affected driver returned to their home base.',...game.log].slice(0,40);
  game.pendingQuestion??=game.pending===null?null:cards.find(c=>c.id===game.pending)?.questions[0]??null;
  game.questionDeadline??=game.phase==='question'?Date.now()+60000:null;game.pendingScenario??=null;game.pendingRoad??=null;game.coneToMove??=null;game.coneMovedThisTurn??=false;
  game.scenarioDeck??=shuffle(scenarioCards.map(c=>c.id));game.scenarioDiscard??=[];game.stopMix??={...defaultStopMix};
