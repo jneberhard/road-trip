@@ -89,7 +89,7 @@ export const riverShapes=[
 ];
 export const riverLabels=[['Green River',[-110.38,39.12]]].map(([name,point])=>({name:name as string,...projectRoadPoint(point as [number,number])}));
 export const sevierLakeShape=geoLine([[-113.17,39.16],[-113.04,39.22],[-112.89,39.20],[-112.78,39.14],[-112.78,39.06],[-112.88,39.01],[-113.04,39.00],[-113.17,39.06],[-113.17,39.16]]);
-export const bookCliffsShape=landform('Book Cliffs',[[-110.30,39.28],[-110.28,39.35],[-110.21,39.34],[-110.06,39.35],[-109.82,39.32],[-109.56,39.28],[-109.38,39.22],[-109.48,39.15],[-109.75,39.18],[-110.00,39.20],[-110.25,39.18],[-110.32,39.19],[-110.31,39.22],[-110.30,39.28]],[-110.15,39.28],0);
+export const bookCliffsShape=landform('Book Cliffs',[[-110.30,39.28],[-110.28,39.35],[-110.21,39.34],[-110.06,39.35],[-109.82,39.32],[-109.56,39.28],[-109.38,39.22],[-109.48,39.15],[-109.75,39.18],[-110.00,39.20],[-110.25,39.18],[-110.32,39.19],[-110.31,39.22],[-110.30,39.28]],[-109.88,39.265],0);
 export type Space={id:string;name:string;x:number;y:number;hub:boolean};
 export type Edge={a:string;b:string;road:Road;barrel:boolean};
 export const spaces: Record<string,Space> = Object.fromEntries(hubs.map(([id,name,x,y])=>[id,{id,name,x,y,hub:true}]));
@@ -120,12 +120,16 @@ const projectPath=(path:[number,number][])=>path.map(point=>projectRoadPoint(poi
 const averageRoadSpeedKmh:Record<Road,number>={'Freeway':95,'Highway':80,'State road':65,'County road':50};
 function estimatedDriveMinutes(path:[number,number][],road:Road){let distanceKm=0;for(let i=1;i<path.length;i++){const [lon1,lat1]=path[i-1],[lon2,lat2]=path[i];const toRadians=(degrees:number)=>degrees*Math.PI/180;const dLat=toRadians(lat2-lat1),dLon=toRadians(lon2-lon1),a=Math.sin(dLat/2)**2+Math.cos(toRadians(lat1))*Math.cos(toRadians(lat2))*Math.sin(dLon/2)**2;distanceKm+=6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));}return distanceKm/averageRoadSpeedKmh[road]*60;}
 export const routeShapes=routeDefinitions.map(([a,b,road])=>({a,b,road,points:projectPath(routeCoords(a,b))}));
+export type RoadMapSegment={a:string;b:string;road:Road;points:{x:number;y:number}[]};
+export const roadMapSegments:RoadMapSegment[]=[];
 function addRoute(a:string,b:string,road:Road,path:{x:number;y:number}[]){
  const points=path;
  const lengths:number[]=[];let totalLength=0;for(let i=1;i<points.length;i++){const length=Math.hypot(points[i].x-points[i-1].x,points[i].y-points[i-1].y);lengths.push(length);totalLength+=length;}
  const pointAt=(distance:number)=>{let remaining=distance;for(let i=0;i<lengths.length;i++){const length=lengths[i];if(remaining<=length||i===lengths.length-1){const t=length?Math.max(0,Math.min(1,remaining/length)):0;return{x:points[i].x+(points[i+1].x-points[i].x)*t,y:points[i].y+(points[i+1].y-points[i].y)*t};}remaining-=length;}return points.at(-1)!;};
  const segmentCount=Math.max(1,Math.round(estimatedDriveMinutes(routeCoords(a,b),road)/20),a==='price'&&b==='nine-mile-canyon'?2:1);
- let prev=a;for(let i=1;i<=segmentCount;i++){const final=i===segmentCount,id=final?b:`${a}-${b}-${i}`,point=pointAt(totalLength*i/segmentCount);if(!final)spaces[id]={id,name:`${spaces[a].name}–${spaces[b].name} · ${i}/${segmentCount}`,...point,hub:false};edges.push({a:prev,b:id,road,barrel:false});prev=id;}
+ let prev=a,previousDistance=0;for(let i=1;i<=segmentCount;i++){const final=i===segmentCount,id=final?b:`${a}-${b}-${i}`,distance=totalLength*i/segmentCount,point=pointAt(distance);if(!final)spaces[id]={id,name:`${spaces[a].name}–${spaces[b].name} · ${i}/${segmentCount}`,...point,hub:false};edges.push({a:prev,b:id,road,barrel:false});
+  const segmentPoints=[spaces[prev],...points.slice(1,-1).filter(candidate=>{let along=0;for(let j=1;j<points.length;j++){const length=Math.hypot(points[j].x-points[j-1].x,points[j].y-points[j-1].y);if(candidate===points[j]){along+=length;break;}along+=length;}return along>previousDistance&&along<distance;}),point];
+  roadMapSegments.push({a:prev,b:id,road,points:segmentPoints.map((p,index)=>index===0?{x:spaces[prev].x,y:spaces[prev].y}:index===segmentPoints.length-1?{x:point.x,y:point.y}:p)});prev=id;previousDistance=distance;}
 }
 for(const [a,b,road] of routeDefinitions){const projected=projectPath(routeCoords(a,b));addRoute(a,b,road,projected);}
 const coloradoRiver=riverShapes.find(river=>river.name==='Colorado River');

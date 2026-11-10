@@ -2,6 +2,7 @@ import cards from './cards.json';
 import blackDotNumberIds from './black-dot-number-ids.json';
 import { bookCliffsShape, destinationHubs, destinations, homeBases, hubs, mappedLakes, mountainShapes, projectRoadPoint, riverLabels, routeShapes, spaces, stateLabels } from './game';
 
+export const hiddenTerrainLabels = new Set(['Tushar Mountains', 'Pavant Range', 'Wasatch Plateau', 'Wasatch Range']);
 export const roadColors = { Freeway: '#1769aa', Highway: '#d44444', 'State road': '#27834d', 'County road': '#92968b' } as const;
 export const destinationColor = (type: string) => type === 'easy' ? '#2478cc' : type === 'hard' ? '#d54b3f' : '#318b57';
 export const cityLabels = new Set(['salt-lake-city','ogden','logan','brigham-city','tremonton','i84-idaho-border','i84-sr30-junction','boise','malad-city','pocatello','preston','park-valley','oasis','provo','orem','spanish-fork','nephi','fillmore','delta','salina','richfield','price','green-river','moab','blanding','bluff','monticello','vernal','roosevelt','duchesne','heber-city','park-city','tooele','cedar-city','parowan','panguitch','circleville','bryce-canyon','kanab','st-george','mesquite','evanston','rock-springs','cortez','page','grand-canyon','grand-canyon-south-rim','jacob-lake','ely','coalville','milford','hanksville','torrey','escalante','cisco','vernon','simpson-springs','thistle','yuba-i15-exit']);
@@ -49,11 +50,15 @@ function registerBlackDot(id: string, x: number, y: number, r: number, name: str
 for (const marker of destinationMarkerSeeds) blackDotPositions.push({ x: marker.x, y: marker.y, r: 4 });
 for (const [id,name,x,y] of [...hubs].sort((a,b) => Number(cityLabels.has(b[0])) - Number(cityLabels.has(a[0])))) if (!destinationHubIds.has(id) && !homeBases.includes(id as typeof homeBases[number]) && !hiddenHubDots.has(id)) registerBlackDot(`hub:${id}`, x, y, 2.4, name);
 for (const space of Object.values(spaces).filter(space => !space.hub)) registerBlackDot(`space:${space.id}`, space.x, space.y, 2.05, space.name);
+// Dot #241 crowds #360 at this junction. Keep #360 as the visible marker;
+// retain the occupied position above so neighboring hidden dots stay hidden.
+hiddenBlackDots.add('space:monument-valley-kayenta-1');
+numberedBlackDots.delete('space:monument-valley-kayenta-1');
 
 export type MapLabel = { id: string; text: string; x: number; y: number; anchorX: number; anchorY: number; location: string; priority: number; home?: boolean; color?: string };
 type LabelBox = { left: number; right: number; top: number; bottom: number };
 const labelRoadSegments = routeShapes.flatMap(route => route.points.slice(1).map((point,i) => ({ a: route.points[i], b: point })));
-const fixedMapLabels: LabelBox[] = [...stateLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...riverLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...[{ x: bookCliffsShape.label.x, y: bookCliffsShape.label.y, text: bookCliffsShape.name }, ...mountainShapes.filter(shape => shape.name !== 'Tushar Mountains').map(shape => ({ x: shape.label.x, y: shape.label.y + 28, text: shape.name }))], ...mappedLakes.map(lake => {
+const fixedMapLabels: LabelBox[] = [...stateLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...riverLabels.map(label => ({ x: label.x, y: label.y, text: label.name })), ...[{ x: bookCliffsShape.label.x, y: bookCliffsShape.label.y, text: bookCliffsShape.name }, ...mountainShapes.filter(shape => !hiddenTerrainLabels.has(shape.name)).map(shape => ({ x: shape.label.x, y: shape.label.y + 28, text: shape.name }))], ...mappedLakes.map(lake => {
   const point = projectRoadPoint(lake.name === 'Great Salt Lake' ? [-112.57,41.19] : lake.name === 'Utah Lake' ? [-111.78,40.19] : [-110.98,37.42]);
   return { x: point.x, y: point.y, text: lake.name };
 })].map(label => ({ left: label.x - label.text.length * 3.5 - 3, right: label.x + label.text.length * 3.5 + 3, top: label.y - 10, bottom: label.y + 4 }));

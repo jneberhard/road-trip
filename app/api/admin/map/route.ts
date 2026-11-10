@@ -1,24 +1,27 @@
 import { eq } from 'drizzle-orm';
 import { getDb } from '../../../../db';
 import { mapSettings as mapSettingsTable } from '../../../../db/schema';
-import { routeShapes, spaces, type Road } from '../../../../lib/game';
+import { roadMapSegments, spaces, type Road } from '../../../../lib/game';
+import { placedMapLabels } from '../../../../lib/map-display';
 import type { MapSettings } from '../../../../lib/map-settings';
 
 export const dynamic = 'force-dynamic';
 const roadTypes: Road[] = ['Freeway', 'Highway', 'State road', 'County road'];
-const allowedRoads = new Set(routeShapes.map(route => `${route.a}|${route.b}`));
+const allowedRoads = new Set(roadMapSegments.map(segment => `${segment.a}|${segment.b}`));
+const allowedLabels = new Set(placedMapLabels.map(label => label.id));
 const json = (data: unknown, status = 200) => Response.json(data, { status, headers: { 'Cache-Control': 'no-store' } });
 
 function validSettings(value: unknown): value is MapSettings {
   if (!value || typeof value !== 'object') return false;
   const settings = value as Partial<MapSettings>;
-  if (!settings.positions || typeof settings.positions !== 'object' || !settings.roads || typeof settings.roads !== 'object') return false;
+  if (!settings.positions || typeof settings.positions !== 'object' || !settings.roads || typeof settings.roads !== 'object' || (settings.labelPositions !== undefined && (!settings.labelPositions || typeof settings.labelPositions !== 'object'))) return false;
   const positionEntries = Object.entries(settings.positions);
   if (positionEntries.length > Object.keys(spaces).length) return false;
   for (const [id, point] of positionEntries) {
     if (!spaces[id] || !point || !Number.isFinite(point.x) || !Number.isFinite(point.y) || point.x < 0 || point.x > 920 || point.y < 0 || point.y > 1110) return false;
   }
   for (const [key, road] of Object.entries(settings.roads)) if (!allowedRoads.has(key) || !roadTypes.includes(road)) return false;
+  for (const [id, point] of Object.entries(settings.labelPositions ?? {})) if (!allowedLabels.has(id) || !point || !Number.isFinite(point.x) || !Number.isFinite(point.y) || point.x < 0 || point.x > 920 || point.y < 0 || point.y > 1110) return false;
   return true;
 }
 
