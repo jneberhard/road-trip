@@ -5,3 +5,5 @@
 .stop-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.stop-heading{margin-top:20px}
 @media(max-width:720px){.stop-grid{grid-template-columns:1fr 1fr}}
 .hand-card{background:#f1f3e9;border-radius:6px;padding:11px;margin-bottom:8px}.hand-card strong,.hand-card small{display:block}.hand-card strong{font-size:11px;margin-bottom:4px}.hand-card small{font-size:9px;color:#7e8878;line-height:1.5}.hand-card button{background:#fffef8;border:1px solid #d8dfd1;border-radius:4px;padding:7px 9px;margin:8px 5px 0 0;font-size:10px;color:#435a46}.hand-summary{border-top:1px dashed #d9ddcc;margin-top:13px;padding-top:12px;font-size:10px;color:#52674c}.hand-summary strong,.hand-summary span{display:block;margin:5px 0}
+
+.map-place-names text{font-size:7px;fill:#33443a;font-weight:600;paint-order:stroke;stroke:#f3f2e9;stroke-width:2px;stroke-linejoin:round}.map-place-names .start-place-name{font-size:7.2px;font-weight:800;fill:#283e32}
