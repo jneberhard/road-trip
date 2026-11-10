@@ -87,7 +87,7 @@ for (const seed of [...seeds].sort((a,b) => a.priority - b.priority || a.text.lo
   const angles = [...preferredAngles, ...allAngles.filter(angle => !preferredAngles.some(preferred => Math.abs(angle - preferred) < .001 || Math.abs(Math.abs(angle - preferred) - Math.PI * 2) < .001))], distances = [7,10,14,19,25,33,42,54,68,86,108,134,164,198,235];
   for (const distance of distances) for (const angle of angles) {
     const x = seed.x + Math.cos(angle) * distance, y = seed.y + Math.sin(angle) * distance;
-    if (x < 30 || x > 890 || y < 20 || y > 1080 || (seed.id === 'ogden' && y >= seed.anchorY)) continue;
+    if (x < 30 || x > 890 || y < 20 || y > 1080 || (seed.id === 'ogden' && y >= seed.anchorY) || (seed.id === 'blanding' && x <= seed.anchorX + 17)) continue;
     const candidate = { ...seed, x, y }, box = labelBox(x,y,seed.text), dotConflict = blackDotPositions.some(dot => box.left < dot.x + dot.r + 2 && box.right > dot.x - dot.r - 2 && box.top < dot.y + dot.r + 2 && box.bottom > dot.y - dot.r - 2);
     if (dotConflict || intersectsRoad(box) || fixedMapLabels.some(other => box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top) || placedBoxes.some(other => box.left < other.right + 2 && box.right > other.left - 2 && box.top < other.bottom + 2 && box.bottom > other.top - 2)) continue;
     if (!best || distance < best.score) best = { label: candidate, box, score: distance };
