@@ -9,14 +9,14 @@ export const colors = ['#d85535','#277a96','#d49a23','#7b5da5','#329568','#d25c8
 // Hubs are plotted from real-world coordinates and the road network is bundled locally.
 const sourceHubs = [
  ['salt-lake-city','Salt Lake City',347,263],['ogden','Ogden',376,171],['logan','Logan',416,89],['bear-lake','Bear Lake',475,40],
- ['west-wendover','West Wendover, NV',37,285],['park-city','Park City',458,322],['heber-city','Heber City',519,346],['vernal','Vernal',796,254],
+ ['west-wendover','West Wendover, NV',37,285],['park-valley','Park Valley',145,238],['oasis','Oasis, NV',78,409],['park-city','Park City',458,322],['heber-city','Heber City',519,346],['vernal','Vernal',796,254],
  ['provo','Provo',443,414],['nephi','Nephi',405,550],['delta','Delta',274,614],['price','Price',573,549],
  ['green-river','Green River',703,665],['moab','Moab',795,769],['arches','Arches National Park',819,747],['canyonlands','Canyonlands',712,790],
  ['richfield','Richfield',401,714],['torrey','Torrey',472,800],['bryce-canyon','Bryce Canyon',361,947],['cedar-city','Cedar City',231,973],
  ['zion','Springdale / Zion',143,1039],['st-george','St. George',168,1077],['kanab','Kanab',342,1046],['monument-valley','Monument Valley',781,1030],
  ['blanding','Blanding',751,970],['goblin-valley','Goblin Valley',599,698],['flaming-gorge','Flaming Gorge',683,168],['evanston','Evanston, WY',558,166],
  ['fillmore','Fillmore',340,819],['bluff','Bluff',748,1022],
- ['brigham-city','Brigham City',374,142],['tremonton','Tremonton',358,91],['i84-idaho-border','I-84 · Idaho line',334,24],['boise','Boise, ID',124,185],['malad-city','Malad City, ID',385,66],['pocatello','Pocatello, ID',400,116],['preston','Preston, ID',355,55],['garden-city','Garden City',425,96],
+ ['brigham-city','Brigham City',374,142],['tremonton','Tremonton',358,91],['i84-idaho-border','I-84 · Idaho line',334,24],['i84-sr30-junction','I-84 / SR-30',290,53],['boise','Boise, ID',124,185],['malad-city','Malad City, ID',385,66],['pocatello','Pocatello, ID',400,116],['preston','Preston, ID',355,55],['garden-city','Garden City',425,96],
  ['coalville','Coalville',517,257],['echo','Echo',503,232],['rock-springs','Rock Springs, WY',827,167],['tooele','Tooele',261,329],
  ['grantsville','Grantsville',236,349],['farmington','Farmington',364,220],['kaysville','Kaysville',373,205],['layton','Layton',377,190],
  ['antelope-island','Antelope Island',305,205],['slc-airport','Salt Lake City Airport',340,239],['sandy','Sandy',352,295],['draper','Draper',359,315],
@@ -72,7 +72,7 @@ export const spaces: Record<string,Space> = Object.fromEntries(hubs.map(([id,nam
 export const edges:Edge[]=[];
 const routeDefinitions:[string,string,Road][]=[
  // Interstates and interstate connectors
- ['st-george','mesquite','Freeway'],['st-george','cedar-city','Freeway'],['cedar-city','beaver','Freeway'],['beaver','fillmore','Freeway'],['fillmore','nephi','Freeway'],['nephi','payson','Freeway'],['payson','spanish-fork','Freeway'],['spanish-fork','provo','Freeway'],['provo','orem','Freeway'],['orem','lehi','Freeway'],['lehi','draper','Freeway'],['draper','sandy','Freeway'],['sandy','salt-lake-city','Freeway'],['salt-lake-city','farmington','Freeway'],['farmington','kaysville','Freeway'],['kaysville','layton','Freeway'],['layton','ogden','Freeway'],['ogden','brigham-city','Freeway'],['brigham-city','tremonton','Freeway'],['tremonton','i84-idaho-border','Freeway'],['i84-idaho-border','boise','Freeway'],['tremonton','malad-city','Freeway'],['malad-city','pocatello','Freeway'],['tremonton','preston','Highway'],
+ ['st-george','mesquite','Freeway'],['st-george','cedar-city','Freeway'],['cedar-city','beaver','Freeway'],['beaver','fillmore','Freeway'],['fillmore','nephi','Freeway'],['nephi','payson','Freeway'],['payson','spanish-fork','Freeway'],['spanish-fork','provo','Freeway'],['provo','orem','Freeway'],['orem','lehi','Freeway'],['lehi','draper','Freeway'],['draper','sandy','Freeway'],['sandy','salt-lake-city','Freeway'],['salt-lake-city','farmington','Freeway'],['farmington','kaysville','Freeway'],['kaysville','layton','Freeway'],['layton','ogden','Freeway'],['ogden','brigham-city','Freeway'],['brigham-city','tremonton','Freeway'],['tremonton','i84-idaho-border','Freeway'],['i84-idaho-border','i84-sr30-junction','Freeway'],['i84-sr30-junction','park-valley','State road'],['park-valley','oasis','State road'],['oasis','west-wendover','Freeway'],['i84-idaho-border','boise','Freeway'],['tremonton','malad-city','Freeway'],['malad-city','pocatello','Freeway'],['tremonton','preston','Highway'],
  ['salt-lake-city','tooele','Freeway'],['salt-lake-city','grantsville','Freeway'],['tooele','grantsville','Highway'],['grantsville','west-wendover','Freeway'],['salt-lake-city','echo','Freeway'],['ogden','echo','Freeway'],['echo','coalville','Freeway'],['coalville','evanston','Freeway'],['evanston','rock-springs','Freeway'],
  ['cove-fort','salina','Freeway'],['salina','green-river','Freeway'],['green-river','cisco','Freeway'],
  // US highways

@@ -32,6 +32,9 @@ try { locations = { ...locations, ...JSON.parse(await readFile(partialUrl, "utf8
 const overrides = {
   "four-corners": "Four Corners Monument",
   "boise": "Boise",
+  "i84-sr30-junction": "I-84 Exit 5, Snowville",
+  "park-valley": "Park Valley",
+  "oasis": "Oasis",
   "simpson-springs": "Simpson Springs",
   "living-planet-aquarium": "Loveland Living Planet Aquarium",
   "the-wave": "Wire Pass Trailhead",
