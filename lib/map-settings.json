@@ -1,0 +1,464 @@
+{
+  "roads": {
+    "parowan|cedar-city": "Freeway",
+    "nephi|yuba-i15-exit": "Freeway",
+    "nephi|nephi-salina-1": "Freeway",
+    "kanab|kanab-the-wave-1": "Highway",
+    "spanish-fork-nephi-1|nephi": "Freeway",
+    "panguitch-parowan-3|parowan": "Freeway",
+    "nephi-salina-1|nephi-salina-2": "Freeway",
+    "nephi-salina-2|nephi-salina-3": "Freeway",
+    "panguitch|panguitch-parowan-1": "Highway",
+    "kanab-the-wave-1|kanab-the-wave-2": "Highway",
+    "kanab-the-wave-2|kanab-the-wave-3": "Highway",
+    "kanab-the-wave-3|kanab-the-wave-4": "Highway",
+    "spanish-fork|spanish-fork-nephi-1": "Freeway",
+    "bryce-canyon-panguitch-1|panguitch": "Highway",
+    "kanab|kanab-coral-pink-sand-dunes-1": "Highway",
+    "richfield|richfield-fremont-indian-1": "Highway",
+    "tooele-spiral-jetty-6|tooele-spiral-jetty-7": "Freeway",
+    "tooele-spiral-jetty-7|tooele-spiral-jetty-8": "Freeway",
+    "salt-lake-city|salt-lake-city-spanish-fork-1": "Freeway",
+    "spanish-fork|spanish-fork-mount-timpanogos-1": "Freeway"
+  },
+  "positions": {
+    "utah-tech": {
+      "x": 326.1143695014663,
+      "y": 888.9737905235723
+    },
+    "flaming-gorge": {
+      "x": 794.7702834799609,
+      "y": 390.9782164931814
+    },
+    "yuba-i15-exit": {
+      "x": 510.2492668621701,
+      "y": 585.4546662932177
+    },
+    "delta-milford-3": {
+      "x": 405.7038123167155,
+      "y": 655.9385518089333
+    },
+    "delta-milford-4": {
+      "x": 394.2375366568915,
+      "y": 675.1614296768558
+    },
+    "nine-mile-canyon": {
+      "x": 659.3108504398826,
+      "y": 556.1144842842833
+    },
+    "scofield-reservoir": {
+      "x": 593.5483870967741,
+      "y": 551.7303191565115
+    },
+    "starvation-reservoir": {
+      "x": 671.564027370479,
+      "y": 491.027271317486
+    },
+    "living-planet-aquarium": {
+      "x": 509.01270772238513,
+      "y": 438.41720653346965
+    },
+    "malad-city-pocatello-1": {
+      "x": 472.81524926686217,
+      "y": 193.57805888477813
+    },
+    "bryce-canyon-panguitch-1": {
+      "x": 464.0469208211144,
+      "y": 812.5332227753637
+    },
+    "escalante-coyote-gulch-1": {
+      "x": 556.2267839687195,
+      "y": 819.2781028758786
+    },
+    "hanksville-green-river-2": {
+      "x": 677.4095796676442,
+      "y": 674.263180714808
+    },
+    "salina-meadow-lava-tubes-1": {
+      "x": 501.3685239491691,
+      "y": 651.555417709741
+    },
+    "tremonton-i84-idaho-border-2": {
+      "x": 429.1984359726295,
+      "y": 256.7551024929345
+    }
+  },
+  "labelPositions": {
+    "orem": {
+      "x": 547.2336265884653,
+      "y": 474.3899004028825
+    },
+    "delta": {
+      "x": 420.4301075268817,
+      "y": 597.3715475689379
+    },
+    "kanab": {
+      "x": 427.62463343108504,
+      "y": 910.8946161624314
+    },
+    "logan": {
+      "x": 532.6197458455523,
+      "y": 286.20774559851634
+    },
+    "provo": {
+      "x": 559.149560117302,
+      "y": 488.32931927728004
+    },
+    "salina": {
+      "x": 526.9990224828935,
+      "y": 651.555417709741
+    },
+    "torrey": {
+      "x": 559.8240469208212,
+      "y": 731.8194909058685
+    },
+    "parowan": {
+      "x": 387.1554252199413,
+      "y": 794.2083750694283
+    },
+    "thistle": {
+      "x": 550.0439882697947,
+      "y": 523.7391110330454
+    },
+    "blanding": {
+      "x": 808.7096774193549,
+      "y": 836.3638089903109
+    },
+    "fillmore": {
+      "x": 437.5171065493646,
+      "y": 649.5319536795865
+    },
+    "escalante": {
+      "x": 543.4115347018572,
+      "y": 800.8420972678045
+    },
+    "panguitch": {
+      "x": 431.33431085043986,
+      "y": 801.6277314395036
+    },
+    "park-city": {
+      "x": 540.6011730205279,
+      "y": 428.63645210753435
+    },
+    "richfield": {
+      "x": 514.633431085044,
+      "y": 677.4107914283816
+    },
+    "st-george": {
+      "x": 289.0175953079179,
+      "y": 895.7186599509137
+    },
+    "cedar-city": {
+      "x": 376.7008797653959,
+      "y": 829.2816960916026
+    },
+    "hanksville": {
+      "x": 662.5708699902249,
+      "y": 730.4705148857655
+    },
+    "heber-city": {
+      "x": 581.1827956989247,
+      "y": 446.2862333174037
+    },
+    "circleville": {
+      "x": 484.73118279569894,
+      "y": 760.1479873280311
+    },
+    "spanish-fork": {
+      "x": 561.1730205278592,
+      "y": 498.1086072091489
+    },
+    "salt-lake-city": {
+      "x": 460.8993157380254,
+      "y": 396.59894991027716
+    },
+    "i84-idaho-border": {
+      "x": 375.2394916911046,
+      "y": 240.3425609150149
+    },
+    "destination-73-usu": {
+      "x": 519.0175953079179,
+      "y": 270.13202056501575
+    },
+    "destination-76-uvu": {
+      "x": 519.692082111437,
+      "y": 479.22297281259347
+    },
+    "destination-77-byu": {
+      "x": 546.7839687194526,
+      "y": 482.03409785013275
+    },
+    "destination-79-suu": {
+      "x": 364.5601173020528,
+      "y": 815.1174702941861
+    },
+    "destination-52-zion": {
+      "x": 382.4340175953079,
+      "y": 875.1468081975229
+    },
+    "destination-74-uofu": {
+      "x": 527.8983382209188,
+      "y": 413.46115016156443
+    },
+    "destination-26-dugway": {
+      "x": 416.158357771261,
+      "y": 489.34027695360527
+    },
+    "destination-1-evanston": {
+      "x": 612.7712609970674,
+      "y": 337.5807148384279
+    },
+    "destination-17-snowbird": {
+      "x": 546.7839687194526,
+      "y": 442.46413459377857
+    },
+    "destination-51-the-wave": {
+      "x": 493.38709677419354,
+      "y": 916.6277551756714
+    },
+    "destination-6-hogle-zoo": {
+      "x": 536.217008797654,
+      "y": 422.6791529656015
+    },
+    "destination-10-bear-lake": {
+      "x": 584.1055718475073,
+      "y": 249.22292534025797
+    },
+    "destination-63-hovenweep": {
+      "x": 855.9237536656891,
+      "y": 858.959121571904
+    },
+    "destination-80-utah-tech": {
+      "x": 341.6275659824047,
+      "y": 894.7069295368124
+    },
+    "destination-16-camp-floyd": {
+      "x": 487.6539589442815,
+      "y": 489.0030334822382
+    },
+    "destination-43-bears-ears": {
+      "x": 730.4692082111437,
+      "y": 799.2670271399342
+    },
+    "destination-59-fort-kanab": {
+      "x": 453.5923753665689,
+      "y": 896.7303903650148
+    },
+    "destination-64-goosenecks": {
+      "x": 711.9208211143695,
+      "y": 887.9620601094712
+    },
+    "destination-11-mirror-lake": {
+      "x": 646.4956011730205,
+      "y": 419.5308783806237
+    },
+    "destination-19-slc-airport": {
+      "x": 461.12414467253177,
+      "y": 403.5686593474759
+    },
+    "destination-25-cherry-hill": {
+      "x": 513.958944281525,
+      "y": 367.25814031872926
+    },
+    "destination-37-canyonlands": {
+      "x": 735.5278592375366,
+      "y": 726.085193853282
+    },
+    "destination-53-snow-canyon": {
+      "x": 284.97067448680355,
+      "y": 883.9151384530664
+    },
+    "destination-56-dark-canyon": {
+      "x": 703.4897360703812,
+      "y": 816.8049801723565
+    },
+    "destination-75-weber-state": {
+      "x": 523.4017595307918,
+      "y": 355.11737534951504
+    },
+    "destination-22-spiral-jetty": {
+      "x": 405.02932551319645,
+      "y": 320.04405432734075
+    },
+    "destination-28-golden-spike": {
+      "x": 407.0527859237537,
+      "y": 294.07630703207707
+    },
+    "destination-36-bryce-canyon": {
+      "x": 468.4310850439883,
+      "y": 834.6775916334756
+    },
+    "destination-38-capitol-reef": {
+      "x": 591.0752688172043,
+      "y": 748.9065204938397
+    },
+    "destination-41-grand-canyon": {
+      "x": 458.31378299120234,
+      "y": 1009.032466330246
+    },
+    "destination-45-cedar-breaks": {
+      "x": 404.35483870967744,
+      "y": 834.0031046907415
+    },
+    "destination-46-hole-in-rock": {
+      "x": 626.2609970674487,
+      "y": 881.8916776248641
+    },
+    "destination-55-coyote-gulch": {
+      "x": 585.1173020527859,
+      "y": 866.3784779419793
+    },
+    "destination-66-wilberg-mine": {
+      "x": 596.9208211143695,
+      "y": 598.9444051479
+    },
+    "destination-67-four-corners": {
+      "x": 864.0175953079179,
+      "y": 914.9415378188361
+    },
+    "destination-78-snow-college": {
+      "x": 565.8944281524927,
+      "y": 599.6188920906342
+    },
+    "destination-13-temple-square": {
+      "x": 506.0899315738025,
+      "y": 398.3975846037478
+    },
+    "destination-30-nephi-salina-1": {
+      "x": 474.38905180840663,
+      "y": 580.7341766543344
+    },
+    "destination-32-little-sahara": {
+      "x": 437.741935483871,
+      "y": 559.4869189979539
+    },
+    "destination-47-flaming-gorge": {
+      "x": 791.5102639296188,
+      "y": 385.1320443011835
+    },
+    "destination-69-goblin-valley": {
+      "x": 623.5630498533725,
+      "y": 701.1291769721195
+    },
+    "destination-2-simpson-springs": {
+      "x": 407.0527859237537,
+      "y": 517.3314850770713
+    },
+    "destination-24-soldier-hollow": {
+      "x": 575.5620723362658,
+      "y": 453.2559427546025
+    },
+    "destination-34-halls-crossing": {
+      "x": 696.0703812316716,
+      "y": 863.0060432283087
+    },
+    "destination-50-topaz-mountain": {
+      "x": 374.7898338220919,
+      "y": 546.784946815076
+    },
+    "destination-71-edge-of-cedars": {
+      "x": 821.8621700879766,
+      "y": 827.2582352634003
+    },
+    "destination-72-fremont-indian": {
+      "x": 462.69794721407624,
+      "y": 713.8331439711621
+    },
+    "destination-8-timpanogos-cave": {
+      "x": 531.0459433040078,
+      "y": 450.1083320410288
+    },
+    "destination-15-antelope-island": {
+      "x": 479.8973607038123,
+      "y": 390.1906963716894
+    },
+    "destination-42-natural-bridges": {
+      "x": 704.1642228739003,
+      "y": 828.2699656775014
+    },
+    "destination-44-grand-staircase": {
+      "x": 536.217008797654,
+      "y": 833.6658612193744
+    },
+    "destination-48-monument-valley": {
+      "x": 728.782991202346,
+      "y": 916.6277551756714
+    },
+    "destination-58-navajo-mountain": {
+      "x": 667.4046920821114,
+      "y": 898.7538511932172
+    },
+    "destination-68-glen-canyon-dam": {
+      "x": 533.8563049853373,
+      "y": 916.9649986470384
+    },
+    "destination-21-goshen-movie-set": {
+      "x": 502.1554252199413,
+      "y": 514.9707807775019
+    },
+    "destination-23-mount-timpanogos": {
+      "x": 569.266862170088,
+      "y": 458.8766761716982
+    },
+    "destination-31-nine-mile-canyon": {
+      "x": 683.9296187683284,
+      "y": 556.4517277556504
+    },
+    "destination-54-mountain-meadows": {
+      "x": 275.8651026392962,
+      "y": 847.4928435454239
+    },
+    "destination-65-san-rafael-swell": {
+      "x": 634.0175953079179,
+      "y": 682.5818661721097
+    },
+    "destination-70-dead-horse-point": {
+      "x": 727.0967741935484,
+      "y": 710.2347506990301
+    },
+    "destination-14-this-is-the-place": {
+      "x": 545.2101661779081,
+      "y": 402.21968332737293
+    },
+    "destination-33-meadow-lava-tubes": {
+      "x": 425.2639296187683,
+      "y": 662.3461777649075
+    },
+    "destination-20-scofield-reservoir": {
+      "x": 599.2815249266862,
+      "y": 559.1496755265869
+    },
+    "destination-57-valley-of-the-gods": {
+      "x": 757.7859237536657,
+      "y": 866.7157214133464
+    },
+    "destination-12-bingham-canyon-mine": {
+      "x": 482.7077223851417,
+      "y": 450.7828200510803
+    },
+    "destination-27-starvation-reservoir": {
+      "x": 675.1612903225806,
+      "y": 484.9561118258335
+    },
+    "destination-4-hill-aerospace-museum": {
+      "x": 461.34897360703815,
+      "y": 357.4780796490845
+    },
+    "destination-7-heber-valley-railroad": {
+      "x": 577.1358748778104,
+      "y": 464.7222389254778
+    },
+    "destination-60-coral-pink-sand-dunes": {
+      "x": 389.17888563049854,
+      "y": 901.7890424355207
+    },
+    "destination-18-living-planet-aquarium": {
+      "x": 491.2512218963832,
+      "y": 433.6957904631092
+    },
+    "destination-41-grand-canyon-south-rim": {
+      "x": 450.21994134897363,
+      "y": 1028.5925876695355
+    }
+  }
+}

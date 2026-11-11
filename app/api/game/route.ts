@@ -1,7 +1,8 @@
 import { and, eq } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { rooms } from "../../../db/schema";
-import { answer, beginConeMove, botTurn, cancelScenario, changeRoad, createGame, discardHeldCard, endTurn, hydrateGame, move, placeCone, playChangeRoadCard, playConstructionPass, relocateCone, resolveScenario, roll, startGame, type Game, type Road, type StopMix } from "../../../lib/game";
+import { answer, beginConeMove, botTurn, cancelScenario, changeRoad, createGame, discardHeldCard, dismissConstructionChoice, endTurn, hydrateGame, move, passConstruction, placeCone, playChangeRoadCard, playConstructionPass, relocateCone, resolveScenario, roll, startGame, stayOnRoad, type Game, type Road, type StopMix } from "../../../lib/game";
+import { blackDotLocationIds } from "../../../lib/map-display";
 
 export const dynamic = "force-dynamic";
 
@@ -58,7 +59,7 @@ export async function POST(req: Request) {
     if (!/^[A-Z2-9]{6}$/.test(code)) throw new Error("Enter a six-character game code.");
     const [row] = await db.select().from(rooms).where(eq(rooms.code, code)).limit(1);
     if (!row) return response({ error: "Game code not found." }, 404);
-    const game = hydrateGame(row.state as Game);
+    const game = hydrateGame(row.state as Game, blackDotLocationIds);
     let seat = game.players.findIndex((player) => player.token && player.token === body.token);
     let token = body.token;
 
@@ -89,18 +90,25 @@ export async function POST(req: Request) {
         startGame(game);
       } else if (body.action === "bot") {
         if (!game.players[game.turn].bot) throw new Error("It is a human turn.");
-        botTurn(game);
+        botTurn(game, blackDotLocationIds);
       } else {
         if (seat !== game.turn) throw new Error("It is another driver’s turn.");
         if (body.action === "cone") {
-          if (!body.edge) throw new Error("Choose a road segment for your cone.");
-          placeCone(game, body.edge);
+          if (!body.edge) throw new Error("Choose a black dot for your cone.");
+          placeCone(game, body.edge, blackDotLocationIds);
         } else if (body.action === "begin-cone-move") {
           if (!body.edge) throw new Error("Choose a nearby cone to move.");
           beginConeMove(game, body.edge);
+        } else if (body.action === "pass-construction") {
+          if (!body.edge) throw new Error("Choose a construction zone to pass through.");
+          passConstruction(game, body.edge, body.scenarioId);
+        } else if (body.action === "dismiss-construction") {
+          dismissConstructionChoice(game);
+        } else if (body.action === "stay-road") {
+          stayOnRoad(game);
         } else if (body.action === "relocate-cone") {
-          if (!body.targetEdge) throw new Error("Choose a new road segment for the cone.");
-          relocateCone(game, body.targetEdge);
+          if (!body.targetEdge) throw new Error("Choose a new black dot for the cone.");
+          relocateCone(game, body.targetEdge, blackDotLocationIds);
         } else if (body.action === "switch-road") {
           if (!body.road) throw new Error("Choose a road type.");
           changeRoad(game, body.road);
@@ -114,7 +122,7 @@ export async function POST(req: Request) {
           if (!body.scenarioId) throw new Error("Choose a card to discard.");
           discardHeldCard(game, body.scenarioId);
         } else if (body.action === "resolve-scenario") {
-          resolveScenario(game, body.choice);
+          resolveScenario(game, body.choice, blackDotLocationIds);
         } else if (body.action === "cancel-scenario") {
           if (!body.scenarioId) throw new Error("Choose a birthday or Christmas card.");
           cancelScenario(game, body.scenarioId);

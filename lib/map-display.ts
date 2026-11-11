@@ -5,23 +5,12 @@ import { bookCliffsShape, destinationHubs, destinations, homeBases, hubs, mapped
 export const hiddenTerrainLabels = new Set(['Tushar Mountains', 'Pavant Range', 'Wasatch Plateau', 'Wasatch Range']);
 export const roadColors = { Freeway: '#1769aa', Highway: '#d44444', 'State road': '#27834d', 'County road': '#92968b' } as const;
 export const destinationColor = (type: string) => type === 'easy' ? '#2478cc' : type === 'hard' ? '#d54b3f' : '#318b57';
-export const cityLabels = new Set(['salt-lake-city','ogden','logan','brigham-city','tremonton','i84-idaho-border','i84-sr30-junction','boise','malad-city','pocatello','preston','park-valley','oasis','provo','orem','spanish-fork','nephi','fillmore','delta','salina','richfield','price','green-river','moab','blanding','bluff','monticello','vernal','roosevelt','duchesne','heber-city','park-city','tooele','cedar-city','parowan','panguitch','circleville','bryce-canyon','kanab','st-george','mesquite','evanston','rock-springs','cortez','page','grand-canyon','grand-canyon-south-rim','jacob-lake','ely','coalville','milford','hanksville','torrey','escalante','cisco','vernon','simpson-springs','thistle','yuba-i15-exit']);
+export const cityLabels = new Set(['salt-lake-city','ogden','logan','brigham-city','tremonton','i84-idaho-border','i84-sr30-junction','boise','malad-city','pocatello','preston','park-valley','oasis','provo','orem','spanish-fork','nephi','fillmore','delta','salina','richfield','price','green-river','moab','blanding','bluff','monticello','vernal','roosevelt','duchesne','heber-city','park-city','tooele','cedar-city','parowan','panguitch','circleville','bryce-canyon','kanab','st-george','mesquite','evanston','rock-springs','cortez','page','grand-canyon','grand-canyon-south-rim','jacob-lake','ely','coalville','milford','hanksville','torrey','escalante','cisco','vernon','simpson-springs','thistle']);
 export const destinationHubIds = new Set(destinations.flatMap(destination => destinationHubs(destination)));
 type DestinationMarker = { hub: string; x: number; y: number; anchorX: number; anchorY: number };
-function closestRoadPoint(points: { x: number; y: number }[], target: { x: number; y: number }) {
-  let closest = points[0], bestDistance = Infinity;
-  for (let i = 1; i < points.length; i++) {
-    const a = points[i - 1], b = points[i], dx = b.x - a.x, dy = b.y - a.y;
-    const t = Math.max(0, Math.min(1, ((target.x - a.x) * dx + (target.y - a.y) * dy) / (dx * dx + dy * dy)));
-    const point = { x: a.x + t * dx, y: a.y + t * dy }, distance = Math.hypot(target.x - point.x, target.y - point.y);
-    if (distance < bestDistance) { closest = point; bestDistance = distance; }
-  }
-  return closest;
-}
-const i15FromNephi = routeShapes.find(route => route.road === 'Freeway' && new Set([route.a, route.b]).has('nephi') && new Set([route.a, route.b]).has('fillmore'));
 const destinationMarkerSeeds: DestinationMarker[] = destinations.flatMap(destination => destinationHubs(destination).map(hub => {
-  const anchor = spaces[hub], point = destination.id === 30 && i15FromNephi ? closestRoadPoint(i15FromNephi.points, anchor) : anchor;
-  return { hub, x: point.x, y: point.y, anchorX: point.x, anchorY: point.y };
+  const anchor = spaces[hub];
+  return { hub, x: anchor.x, y: anchor.y, anchorX: anchor.x, anchorY: anchor.y };
 }));
 for (let pass = 0; pass < 100; pass++) {
   let moved = false;
@@ -54,6 +43,7 @@ for (const space of Object.values(spaces).filter(space => !space.hub)) registerB
 // retain the occupied position above so neighboring hidden dots stay hidden.
 hiddenBlackDots.add('space:monument-valley-kayenta-1');
 numberedBlackDots.delete('space:monument-valley-kayenta-1');
+export const blackDotLocationIds = new Set([...numberedBlackDots.keys()].map(id => id.slice(id.indexOf(':') + 1)));
 
 export type MapLabel = { id: string; text: string; x: number; y: number; anchorX: number; anchorY: number; location: string; priority: number; home?: boolean; color?: string };
 type LabelBox = { left: number; right: number; top: number; bottom: number };

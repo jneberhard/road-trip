@@ -1,4 +1,5 @@
 import type { Road } from './game';
+import savedMapSettings from './map-settings.json';
 
 export type MapSettings = {
   positions: Record<string, { x: number; y: number }>;
@@ -6,4 +7,8 @@ export type MapSettings = {
   labelPositions: Record<string, { x: number; y: number }>;
 };
 
-export const defaultMapSettings: MapSettings = { positions: {}, roads: {}, labelPositions: {} };
+export const defaultMapSettings: MapSettings = {
+  positions: savedMapSettings.positions,
+  roads: savedMapSettings.roads,
+  labelPositions: savedMapSettings.labelPositions ?? {},
+};

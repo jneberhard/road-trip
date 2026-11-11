@@ -9,7 +9,12 @@ export async function GET() {
   try {
     const [row] = await getDb().select().from(mapSettingsTable).where(eq(mapSettingsTable.id, 'global')).limit(1);
     const stored = row?.settings as MapSettings | undefined;
-    return Response.json({ settings: stored ? { ...defaultMapSettings, ...stored, labelPositions: stored.labelPositions ?? {} } : defaultMapSettings, updated: row?.updated ?? null }, { headers: { 'Cache-Control': 'no-store' } });
+    const labelPositions = { ...(stored?.labelPositions ?? {}) };
+    if (!labelPositions['destination-30-nephi-salina-1'] && labelPositions['destination-30-yuba-i15-exit']) {
+      labelPositions['destination-30-nephi-salina-1'] = labelPositions['destination-30-yuba-i15-exit'];
+      delete labelPositions['destination-30-yuba-i15-exit'];
+    }
+    return Response.json({ settings: stored ? { ...defaultMapSettings, ...stored, labelPositions } : defaultMapSettings, updated: row?.updated ?? null }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
     return Response.json({ error: error instanceof Error ? error.message : 'Unable to read the shared map.' }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
   }
