@@ -152,6 +152,30 @@ const removedRoadDotIds = new Set(['tooele-spiral-jetty-9','tooele-spiral-jetty-
 for (const id of removedRoadDotIds) delete spaces[id];
 for (let i=edges.length-1;i>=0;i--) if(removedRoadDotIds.has(edges[i].a)||removedRoadDotIds.has(edges[i].b)) edges.splice(i,1);
 for (let i=roadMapSegments.length-1;i>=0;i--) if(removedRoadDotIds.has(roadMapSegments[i].a)||removedRoadDotIds.has(roadMapSegments[i].b)) roadMapSegments.splice(i,1);
+const interstateCorridors:{route:'15'|'70'|'84';legs:[string,string][]}[]=[
+ {route:'15',legs:[['st-george','cedar-city'],['cedar-city','beaver'],['beaver','fillmore'],['fillmore','nephi'],['nephi','payson'],['payson','spanish-fork'],['spanish-fork','provo'],['provo','orem'],['orem','lehi'],['lehi','draper'],['draper','sandy'],['sandy','salt-lake-city'],['salt-lake-city','farmington'],['farmington','kaysville'],['kaysville','layton'],['layton','ogden'],['ogden','brigham-city'],['brigham-city','tremonton'],['tremonton','malad-city'],['malad-city','pocatello']]},
+ {route:'70',legs:[['cove-fort','salina'],['salina','green-river'],['green-river','cisco']]},
+ {route:'84',legs:[['boise','i84-idaho-border'],['i84-idaho-border','tremonton']]},
+ {route:'84',legs:[['i84-idaho-border','i84-sr30-junction']]},
+];
+const routeNodePath=(from:string,to:string)=>{
+ const definition=routeDefinitions.find(([a,b])=>(a===from&&b===to)||(a===to&&b===from));if(!definition)return [];
+ const [start,end]=definition, prefix=`${start}-${end}-`, middle=Object.keys(spaces).filter(id=>id.startsWith(prefix)).sort((a,b)=>Number(a.slice(prefix.length))-Number(b.slice(prefix.length)));
+ const path=[start,...middle,end];return from===start?path:path.reverse();
+};
+export const interstateSegmentKeys=new Set<string>();
+export const interstateRouteMarkers:{route:'15'|'70'|'84';a:string;b:string}[]=[];
+for(const corridor of interstateCorridors){
+ const nodes:string[]=[];
+ for(const [from,to] of corridor.legs){const path=routeNodePath(from,to);if(!path.length)continue;nodes.push(...(nodes.length?path.slice(1):path));for(let i=1;i<path.length;i++)interstateSegmentKeys.add(edgeKey(path[i-1],path[i]));}
+ const usedPositions:{x:number;y:number}[]=[];
+ for(let index=10;index<nodes.length;index+=10){
+  const a=nodes[index-1],b=nodes[index],start=spaces[a],end=spaces[b],position={x:(start.x+end.x)/2,y:(start.y+end.y)/2};
+  if(usedPositions.some(previous=>Math.hypot(position.x-previous.x,position.y-previous.y)<58))continue;
+  usedPositions.push(position);interstateRouteMarkers.push({route:corridor.route,a,b});
+ }
+}
+export function isInterstateSegment(a:string,b:string){return interstateSegmentKeys.has(edgeKey(a,b));}
 const coloradoRiver=riverShapes.find(river=>river.name==='Colorado River');
 const riverStart=spaces['hanksville-natural-bridges-5'],riverEnd=spaces['rainbow-bridge'];
 if(coloradoRiver&&riverStart&&riverEnd){

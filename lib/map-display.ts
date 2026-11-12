@@ -1,5 +1,6 @@
 import cards from './cards.json';
 import blackDotNumberIds from './black-dot-number-ids.json';
+import savedMapSettings from './map-settings.json';
 import { bookCliffsShape, destinationHubs, destinations, homeBases, hubs, mappedLakes, mountainShapes, projectRoadPoint, riverLabels, routeShapes, spaces, stateLabels } from './game';
 
 export const hiddenTerrainLabels = new Set(['Tushar Mountains', 'Pavant Range', 'Wasatch Plateau', 'Wasatch Range']);
@@ -25,24 +26,25 @@ for (let pass = 0; pass < 100; pass++) {
   if (!moved) break;
 }
 export const destinationMarkerPositions = new Map(destinationMarkerSeeds.map(marker => [marker.hub, marker]));
-export const hiddenHubDots = new Set(hubs.filter(([id,,x,y]) => !destinationHubIds.has(id) && destinationMarkerSeeds.some(marker => Math.hypot(x - marker.anchorX, y - marker.anchorY) < 7)).map(([id]) => id));
+const savedMapPositions = savedMapSettings.positions as Record<string, { x: number; y: number }>;
+const destinationMarkerPosition = (marker: DestinationMarker) => savedMapPositions[marker.hub] ?? marker;
+const savedPosition = (id: string, fallback: { x: number; y: number }) => savedMapPositions[id] ?? fallback;
+const overlapsDestination = (x: number, y: number, dotRadius: number) => destinationMarkerSeeds.some(marker => { const position = destinationMarkerPosition(marker); return Math.hypot(x - position.x, y - position.y) < dotRadius + 2 + .4; });
+export const hiddenHubDots = new Set(hubs.filter(([id,,x,y]) => { const dot = savedPosition(id, { x, y }); return !destinationHubIds.has(id) && overlapsDestination(dot.x, dot.y, 1.2); }).map(([id]) => id));
 const blackDotPositions: { x: number; y: number; r: number }[] = [];
 export const hiddenBlackDots = new Set<string>();
 export const numberedBlackDots = new Map<string, { number: number; name: string }>();
-const blackDotNumberById = new Map(blackDotNumberIds as Array<[string, number]>);
-let nextBlackDotNumber = Math.max(0, ...blackDotNumberIds.map(([, number]) => number)) + 1;
+const blackDotNumberEntries = blackDotNumberIds as Array<[string, number]>;
+const blackDotNumberById = new Map(blackDotNumberEntries);
+let nextBlackDotNumber = Math.max(0, ...blackDotNumberEntries.map(([, number]) => number)) + 1;
 function registerBlackDot(id: string, x: number, y: number, r: number, name: string) {
-  if (blackDotPositions.some(dot => Math.hypot(x - dot.x, y - dot.y) < r + dot.r + .6)) { hiddenBlackDots.add(id); return; }
+  if (overlapsDestination(x, y, Math.min(r, 1.2))) { hiddenBlackDots.add(id); return; }
   blackDotPositions.push({ x, y, r });
   numberedBlackDots.set(id, { number: blackDotNumberById.get(id) ?? nextBlackDotNumber++, name });
 }
-for (const marker of destinationMarkerSeeds) blackDotPositions.push({ x: marker.x, y: marker.y, r: 4 });
-for (const [id,name,x,y] of [...hubs].sort((a,b) => Number(cityLabels.has(b[0])) - Number(cityLabels.has(a[0])))) if (!destinationHubIds.has(id) && !homeBases.includes(id as typeof homeBases[number]) && !hiddenHubDots.has(id)) registerBlackDot(`hub:${id}`, x, y, 2.4, name);
-for (const space of Object.values(spaces).filter(space => !space.hub)) registerBlackDot(`space:${space.id}`, space.x, space.y, 2.05, space.name);
-// Dot #241 crowds #360 at this junction. Keep #360 as the visible marker;
-// retain the occupied position above so neighboring hidden dots stay hidden.
-hiddenBlackDots.add('space:monument-valley-kayenta-1');
-numberedBlackDots.delete('space:monument-valley-kayenta-1');
+for (const marker of destinationMarkerSeeds) { const position = destinationMarkerPosition(marker); blackDotPositions.push({ x: position.x, y: position.y, r: 4 }); }
+for (const [id,name,x,y] of [...hubs].sort((a,b) => Number(cityLabels.has(b[0])) - Number(cityLabels.has(a[0])))) if (!destinationHubIds.has(id) && !homeBases.includes(id as typeof homeBases[number]) && !hiddenHubDots.has(id)) { const position = savedPosition(id, { x, y }); registerBlackDot(`hub:${id}`, position.x, position.y, 2.4, name); }
+for (const space of Object.values(spaces).filter(space => !space.hub)) { const position = savedPosition(space.id, space); registerBlackDot(`space:${space.id}`, position.x, position.y, 2.05, space.name); }
 export const blackDotLocationIds = new Set([...numberedBlackDots.keys()].map(id => id.slice(id.indexOf(':') + 1)));
 
 export type MapLabel = { id: string; text: string; x: number; y: number; anchorX: number; anchorY: number; location: string; priority: number; home?: boolean; color?: string };
