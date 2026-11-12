@@ -78,8 +78,16 @@ export const lakeShapes=[
  {name:'Utah Lake',rings:[[[-111.91,40.28],[-111.84,40.34],[-111.75,40.34],[-111.69,40.31],[-111.66,40.23],[-111.68,40.15],[-111.73,40.08],[-111.82,40.07],[-111.89,40.12],[-111.92,40.20],[-111.91,40.28]]]}
 ];
 export const islandShapes=[{name:'Antelope Island',points:geoLine([[-112.27,41.15],[-112.22,41.17],[-112.17,41.16],[-112.12,41.13],[-112.10,41.09],[-112.12,41.05],[-112.10,41.01],[-112.11,40.97],[-112.14,40.93],[-112.16,40.89],[-112.21,40.87],[-112.26,40.90],[-112.29,40.95],[-112.30,41.00],[-112.32,41.05],[-112.31,41.10],[-112.27,41.15]])}];
-// Generalized Lake Powell coves and arms are traced as overlapping water polygons.
-export const mappedLakes=lakeShapes.map(lake=>({...lake,rings:lake.rings.map(ring=>geoLine(ring))}));
+const greatSaltLakeCenter:[number,number]=[-112.445,41.23];
+const scaledGreatSaltLake=(point:[number,number]):[number,number]=>[greatSaltLakeCenter[0]+(point[0]-greatSaltLakeCenter[0])*.82,greatSaltLakeCenter[1]+(point[1]-greatSaltLakeCenter[1])*.9];
+export const mappedLakes=lakeShapes.filter(lake=>lake.name!=='Lake Powell').map(lake=>({...lake,rings:lake.rings.map(ring=>geoLine(lake.name==='Great Salt Lake'?ring.map(scaledGreatSaltLake):ring))}));
+// Show Lake Powell as narrow branching water courses instead of a filled blob.
+export const lakePowellShapes=[
+ {name:'Lake Powell',points:geoLine([[-110.43,37.90],[-110.39,37.85],[-110.36,37.80],[-110.34,37.74],[-110.30,37.69],[-110.31,37.63],[-110.27,37.58],[-110.29,37.52],[-110.24,37.47],[-110.25,37.42],[-110.20,37.37],[-110.22,37.31],[-110.16,37.26],[-110.18,37.20],[-110.12,37.14],[-110.13,37.08],[-110.09,37.02],[-110.12,36.96],[-110.20,36.92],[-110.31,36.91],[-110.43,36.92],[-110.57,36.93],[-110.70,36.94],[-110.83,36.96],[-110.94,36.96],[-111.05,36.92],[-111.18,36.92],[-111.31,36.94],[-111.43,36.96]])},
+ {name:'Lake Powell arm · Escalante',points:geoLine([[-111.61,37.75],[-111.55,37.71],[-111.50,37.66],[-111.45,37.62],[-111.39,37.58],[-111.35,37.53],[-111.31,37.49],[-111.26,37.46],[-111.21,37.43],[-111.15,37.42],[-111.08,37.44],[-111.00,37.45],[-110.92,37.44],[-110.85,37.42],[-110.80,37.40]])},
+ {name:'Lake Powell arm · San Juan',points:geoLine([[-110.20,37.42],[-110.13,37.40],[-110.06,37.36],[-109.99,37.33],[-109.92,37.31],[-109.85,37.28],[-109.79,37.26],[-109.76,37.22]])},
+ {name:'Lake Powell arm · side channel',points:geoLine([[-110.44,37.39],[-110.51,37.43],[-110.58,37.48],[-110.64,37.53],[-110.70,37.57]])},
+];
 const landform=(name:string,ring:[number,number][],label:[number,number],angle=0)=>({name,points:geoLine(ring),label:projectRoadPoint(label),angle});
 export const mountainShapes=[
  landform('Uinta Mountains',[[-111.72,40.55],[-111.48,40.64],[-111.24,40.72],[-111.02,40.69],[-110.81,40.77],[-110.61,40.79],[-110.41,40.76],[-110.19,40.83],[-109.98,40.89],[-109.75,40.91],[-109.56,40.82],[-109.75,40.72],[-109.98,40.67],[-110.20,40.62],[-110.42,40.63],[-110.64,40.59],[-110.86,40.60],[-111.08,40.55],[-111.31,40.51],[-111.52,40.48],[-111.72,40.55]],[-110.55,40.68],-4),
