@@ -155,7 +155,8 @@ export const destinations=cards.map(card=>({id:card.id,hub:destinationLocations[
 export function destinationHubs(destination:number|typeof destinations[number]){const selected=typeof destination==='number'?destinations.find(item=>item.id===destination):destination;return selected?[selected.hub,...selected.alternateHubs]:[]}
 export const homeBases=['st-george','richfield','blanding','provo','fillmore','salt-lake-city','ogden','logan'] as const;
 export type Player={name:string;bot:boolean;pos:string;homeBase:string;road:Road|null;cards:number[];visited:number[];cones:string[];hand:string[];skipTurns:number;extraTurns:number;passCount:number;roadCardDue:boolean;electricRoad:Road|null;doubleTurn:boolean;slowRoad:Road|null;token?:string};
-export type Game={players:Player[];turn:number;round:number;roll:number;left:number;phase:'lobby'|'cones'|'roll'|'move'|'relocate'|'question'|'event'|'hand'|'won';pending:number|null;pendingQuestion:string|null;questionDeadline:number|null;pendingScenario:string|null;pendingRoad:Road|null;coneToMove:string|null;coneMovedThisTurn:boolean;constructionChoiceMade:boolean;constructionPromptDismissed:boolean;roadChoicePending:boolean;cardDrawReturnPhase:'move'|'roll'|null;nextRollBonus:number;halveNextRoll:boolean;scenarioDeck:string[];scenarioDiscard:string[];stock:number[];stopMix:StopMix;log:string[];winner:number|null;humans:number;online:boolean;host?:string;rev:number};
+export type CardReveal={id:string;ownerSeat:number;recipientSeat:number;cardId:string};
+export type Game={players:Player[];turn:number;round:number;roll:number;left:number;phase:'lobby'|'cones'|'roll'|'move'|'relocate'|'question'|'destination-choice'|'event'|'hand'|'card-reveal'|'won';pending:number|null;pendingDestination:number|null;destinationChoiceReturnPhase:'move'|'roll'|'end'|null;pendingQuestion:string|null;questionDeadline:number|null;pendingScenario:string|null;pendingRoad:Road|null;roadChangeDot:string|null;roadChangeType:Road|null;coneToMove:string|null;coneMovedThisTurn:boolean;constructionChoiceMade:boolean;constructionPromptDismissed:boolean;roadChoicePending:boolean;cardDrawReturnPhase:'move'|'roll'|null;nextRollBonus:number;halveNextRoll:boolean;cardReveals:CardReveal[];scenarioDeck:string[];scenarioDiscard:string[];stock:number[];stopMix:StopMix;log:string[];winner:number|null;humans:number;online:boolean;host?:string;rev:number};
 export function edgeKey(a:string,b:string){return [a,b].sort().join('|')}
 export function isConstruction(g:Game,e:Edge){const key=edgeKey(e.a,e.b),to=(e as Edge & {to?:string}).to;return e.barrel||g.players.some(p=>p.cones.includes(key)||(!!to&&p.cones.includes(to)))}
 export function die(){return 1+Math.floor(Math.random()*6)}
@@ -174,7 +175,7 @@ export function createGame(humans:number,bots:number,name='You',online=false,sto
  }
  const stock=[...pools.easy,...pools.hard,...pools.education];
  const scenarioDeck=scenarioCards.map(c=>c.id);for(let j=scenarioDeck.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[scenarioDeck[j],scenarioDeck[k]]=[scenarioDeck[k],scenarioDeck[j]];}
- return {players,turn:0,round:1,roll:0,left:0,phase:online?'lobby':'cones',pending:null,pendingQuestion:null,questionDeadline:null,pendingScenario:null,pendingRoad:null,coneToMove:null,coneMovedThisTurn:false,constructionChoiceMade:false,constructionPromptDismissed:false,roadChoicePending:false,cardDrawReturnPhase:null,nextRollBonus:0,halveNextRoll:false,scenarioDeck,scenarioDiscard:[],stock,stopMix:{...stopMix},log:[`Place two construction cones each, then collect ${total} stops and return to your assigned home base.`],winner:null,humans,online,rev:0};
+ return {players,turn:0,round:1,roll:0,left:0,phase:online?'lobby':'cones',pending:null,pendingDestination:null,destinationChoiceReturnPhase:null,pendingQuestion:null,questionDeadline:null,pendingScenario:null,pendingRoad:null,roadChangeDot:null,roadChangeType:null,coneToMove:null,coneMovedThisTurn:false,constructionChoiceMade:false,constructionPromptDismissed:false,roadChoicePending:false,cardDrawReturnPhase:null,nextRollBonus:0,halveNextRoll:false,cardReveals:[],scenarioDeck,scenarioDiscard:[],stock,stopMix:{...stopMix},log:[`Place two construction cones each, then collect ${total} stops and return to your assigned home base.`],winner:null,humans,online,rev:0};
 }
 export function hydrateGame(game:Game,validBlackDots?:ReadonlySet<string>){
  if(!Array.isArray(game.players)||game.players.length===0)throw new Error('This saved game is incomplete. Start a new game to continue.');
@@ -184,7 +185,7 @@ export function hydrateGame(game:Game,validBlackDots?:ReadonlySet<string>){
  if(!Number.isInteger(game.turn)||game.turn<0||game.turn>=game.players.length)game.turn=0;
  game.log??=[];if(recoveredPosition)game.log=['Recovered an older save with an outdated map position; the affected driver returned to their home base.',...game.log].slice(0,40);
  game.pendingQuestion??=game.pending===null?null:cards.find(c=>c.id===game.pending)?.questions[0]??null;
- game.questionDeadline??=game.phase==='question'?Date.now()+60000:null;game.pendingScenario??=null;game.pendingRoad??=null;game.coneToMove??=null;game.coneMovedThisTurn??=false;game.constructionChoiceMade??=false;game.constructionPromptDismissed??=false;game.roadChoicePending??=false;game.cardDrawReturnPhase??=null;game.nextRollBonus??=0;game.halveNextRoll??=false;
+ game.pendingDestination??=null;game.destinationChoiceReturnPhase??=null;game.cardReveals??=[];game.questionDeadline??=game.phase==='question'?Date.now()+60000:null;game.pendingScenario??=null;game.pendingRoad??=null;game.roadChangeDot??=null;game.roadChangeType??=null;game.coneToMove??=null;game.coneMovedThisTurn??=false;game.constructionChoiceMade??=false;game.constructionPromptDismissed??=false;game.roadChoicePending??=false;game.cardDrawReturnPhase??=null;game.nextRollBonus??=0;game.halveNextRoll??=false;
  game.scenarioDeck??=shuffle(scenarioCards.map(c=>c.id));game.scenarioDiscard??=[];game.stopMix??={...defaultStopMix};
  return game;
 }
@@ -194,17 +195,18 @@ function log(g:Game,s:string){g.log=[s,...g.log].slice(0,40)}
 function moveCost(g:Game,e:Edge){const p=g.players[g.turn];return (p.doubleTurn||p.electricRoad===e.road)?0.5:1}
 function canPassCone(g:Game,e:Edge){return !isConstruction(g,e)||g.roll===5||(g.roll===6&&g.constructionChoiceMade)||g.players[g.turn].passCount>0}
 export function allowed(g:Game){const p=g.players[g.turn];return g.phase==='move'&&g.left>0?neighbors(p.pos).filter(e=>(!p.road||p.road===e.road)&&g.left>=moveCost(g,e)&&canPassCone(g,e)&&!(p.slowRoad===e.road&&!isConstruction(g,e)&&g.players.some((other,i)=>i!==g.turn&&other.pos!==p.pos&&distanceOnRoad(p.pos,other.pos,e.road)<distanceOnRoad(p.pos,e.to,e.road)))):[];}
+export function roadChangeOptions(g:Game){const p=g.players[g.turn];return g.phase==='move'&&p.road&&g.left>0?neighbors(p.pos).filter(e=>e.road!==p.road&&g.left>=moveCost(g,e)&&canPassCone(g,e)):[];}
 export function switchableRoads(g:Game){const p=g.players[g.turn];return g.phase==='move'&&g.left>0&&p.road?Array.from(new Set(neighbors(p.pos).map(e=>e.road).filter(r=>r!==p.road))):[];}
 function shuffle<T>(items:T[]){for(let j=items.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[items[j],items[k]]=[items[k],items[j]];}return items}
 function drawScenarioId(g:Game){if(!g.scenarioDeck.length){g.scenarioDeck=shuffle(g.scenarioDiscard.splice(0));}return g.scenarioDeck.shift()}
-function discardScenario(g:Game,id:string){g.scenarioDiscard.push(id)}
+function discardScenario(g:Game,id:string){g.scenarioDiscard.push(id);g.cardReveals=g.cardReveals.filter(reveal=>reveal.cardId!==id)}
 function resumeAfterCard(g:Game){const phase=g.cardDrawReturnPhase??'move';g.cardDrawReturnPhase=null;return phase}
 function drawDueRoadCard(g:Game,p:Player){
  if(!p.roadCardDue){g.phase='roll';return;}
  p.roadCardDue=false;const id=drawScenarioId(g);if(!id){log(g,`${p.name} has no scenario card to draw.`);g.phase='roll';return;}
- const card=scenarioCards.find(item=>item.id===id)!;log(g,`${p.name} drew “${card.title}” for changing road type.`);
+ const card=scenarioCards.find(item=>item.id===id)!;if(card.type!=='hold')log(g,`${p.name} drew “${card.title}” for changing road type.`);
  if(card.type==='hold'){
-  if(p.hand.length<3){p.hand.push(id);g.phase='roll';return;}
+  if(p.hand.length<3){p.hand.push(id);g.pendingScenario=id;g.pendingRoad=p.road;g.cardDrawReturnPhase='roll';g.phase='card-reveal';return;}
   g.pendingScenario=id;g.pendingRoad=p.road;g.cardDrawReturnPhase='roll';g.phase='hand';return;
  }
  g.pendingScenario=id;g.pendingRoad=p.road;g.cardDrawReturnPhase='roll';g.phase='event';
@@ -214,8 +216,18 @@ export function changeRoad(g:Game,road:Road){
  const p=g.players[g.turn];if(road===p.road)throw Error('You are already on that type of road.');
  if(!neighbors(p.pos).some(e=>e.road===road))throw Error('There is no road of that type at this junction.');
  if(!p.road){p.road=road;log(g,`${p.name} chose ${road} for the first road.`);return;}
- p.road=road;p.roadCardDue=true;g.roadChoicePending=false;if(p.electricRoad&&p.electricRoad!==road)p.electricRoad=null;
+ p.road=road;p.roadCardDue=true;g.roadChoicePending=false;g.roadChangeDot=null;g.roadChangeType=null;if(p.electricRoad&&p.electricRoad!==road)p.electricRoad=null;
  log(g,`${p.name} changed to ${road}. The turn ends; draw a scenario card at the beginning of the next turn.`);endTurn(g);
+}
+export function beginRoadChange(g:Game,to:string,road:Road){
+ const p=g.players[g.turn],edge=neighbors(p.pos).find(item=>item.to===to&&item.road===road);
+ if(g.phase!=='move'||!p.road||!edge||road===p.road||g.left<moveCost(g,edge)||!canPassCone(g,edge))throw Error('That dot is not available on a different road type.');
+ g.roadChangeDot=to;g.roadChangeType=road;g.roadChoicePending=true;
+}
+export function confirmRoadChange(g:Game,confirm:boolean){
+ if(g.phase!=='move'||!g.roadChoicePending||!g.roadChangeDot||!g.roadChangeType)throw Error('There is no road change waiting for confirmation.');
+ const road=g.roadChangeType;g.roadChoicePending=false;g.roadChangeDot=null;g.roadChangeType=null;
+ if(confirm)changeRoad(g,road);
 }
 export function playChangeRoadCard(g:Game,id:string,road:Road){
  const p=g.players[g.turn],card=scenarioCards.find(c=>c.id===id);
@@ -227,19 +239,36 @@ export function playConstructionPass(g:Game,id:string){const p=g.players[g.turn]
 export function discardHeldCard(g:Game,id:string){
  if(g.phase!=='hand'||!g.pendingScenario)throw Error('No hand limit choice is waiting.');
  const p=g.players[g.turn],incoming=g.pendingScenario;
- if(id===incoming){discardScenario(g,incoming);log(g,`${p.name} discarded the newly drawn hold card.`);}
- else{const index=p.hand.indexOf(id);if(index<0)throw Error('Choose a card from your hand.');p.hand.splice(index,1);discardScenario(g,id);p.hand.push(incoming);log(g,`${p.name} discarded a held card and kept the new one.`);}
- g.pendingScenario=null;g.pendingRoad=null;g.phase=resumeAfterCard(g);
+ if(id===incoming){discardScenario(g,incoming);log(g,`${p.name} discarded the newly drawn hold card.`);g.pendingScenario=null;g.pendingRoad=null;g.phase=resumeAfterCard(g);}
+ else{const index=p.hand.indexOf(id);if(index<0)throw Error('Choose a card from your hand.');p.hand.splice(index,1);discardScenario(g,id);p.hand.push(incoming);log(g,`${p.name} discarded a held card and kept the new one.`);g.pendingScenario=incoming;g.phase='card-reveal';}
 }
+export function keepCardPrivate(g:Game,id:string){const p=g.players[g.turn],card=scenarioCards.find(item=>item.id===id);if(g.phase!=='card-reveal'||g.pendingScenario!==id||!p.hand.includes(id)||card?.type!=='hold')throw Error('Choose the newly drawn hold card.');g.pendingScenario=null;g.pendingRoad=null;g.phase=resumeAfterCard(g);}
+export function showCardToPlayer(g:Game,id:string,recipientSeat:number){
+ const p=g.players[g.turn],card=scenarioCards.find(item=>item.id===id);if(g.phase!=='card-reveal'||g.pendingScenario!==id||!p.hand.includes(id)||card?.type!=='hold')throw Error('Choose the newly drawn hold card.');
+ if(!Number.isInteger(recipientSeat)||recipientSeat<0||recipientSeat>=g.players.length||recipientSeat===g.turn)throw Error('Choose another driver to show the card to.');
+ if(g.online&&g.players[recipientSeat].bot)throw Error('Choose another human driver to show the card to.');
+ g.cardReveals.push({id:`${g.round}-${g.turn}-${Date.now()}-${g.cardReveals.length}`,ownerSeat:g.turn,recipientSeat,cardId:id});g.pendingScenario=null;g.pendingRoad=null;g.phase=resumeAfterCard(g);
+}
+export function dismissCardReveal(g:Game,revealId:string,recipientSeat:number){const index=g.cardReveals.findIndex(reveal=>reveal.id===revealId&&reveal.recipientSeat===recipientSeat);if(index<0)throw Error('That shared card is no longer available.');g.cardReveals.splice(index,1);}
 export function cancelScenario(g:Game,cardId:string){
  if(g.phase!=='event'||!g.pendingScenario)throw Error('There is no event to cancel.');
  const p=g.players[g.turn],card=scenarioCards.find(c=>c.id===cardId);
  if(!card||card.effect!=='cancel-event'||!p.hand.includes(cardId))throw Error('Choose a held birthday or Christmas card.');
  p.hand.splice(p.hand.indexOf(cardId),1);discardScenario(g,cardId);discardScenario(g,g.pendingScenario);log(g,`${p.name} cancelled the event with ${card.title}.`);g.pendingScenario=null;g.pendingRoad=null;g.phase=resumeAfterCard(g);
 }
-function startQuestion(g:Game,id:number){const card=cards.find(c=>c.id===id)!;g.pending=id;g.pendingQuestion=card.questions[Math.floor(Math.random()*card.questions.length)]||'Share one thing you know about this place.';g.questionDeadline=Date.now()+60000;g.phase='question';g.left=0;log(g,`${g.players[g.turn].name} reached ${spaces[g.players[g.turn].pos].name}. Trivia starts now: 60 seconds.`)}
+function startQuestion(g:Game,id:number){const card=cards.find(c=>c.id===id)!;g.pending=id;g.pendingDestination=null;g.destinationChoiceReturnPhase=null;g.pendingQuestion=card.questions[Math.floor(Math.random()*card.questions.length)]||'Share one thing you know about this place.';g.questionDeadline=Date.now()+60000;g.phase='question';g.left=0;log(g,`${g.players[g.turn].name} chose to play ${card.name}. Trivia starts now: 60 seconds.`)}
+function askToPlayDestination(g:Game,id:number,returnPhase:'move'|'roll'|'end'){g.pendingDestination=id;g.destinationChoiceReturnPhase=returnPhase;g.phase='destination-choice';}
 function distanceOnRoad(from:string,to:string,road:Road){if(from===to)return 0;const queue:[string,number][]=[[from,0]],seen=new Set([from]);for(let i=0;i<queue.length;i++){const [id,n]=queue[i];for(const e of neighbors(id).filter(edge=>edge.road===road)){if(e.to===to)return n+1;if(!seen.has(e.to)){seen.add(e.to);queue.push([e.to,n+1]);}}}return Infinity}
-function maybeQuestionAtCurrentSpace(g:Game){const p=g.players[g.turn],id=p.cards.find(cardId=>!p.visited.includes(cardId)&&destinationHubs(cardId).includes(p.pos));if(id!==undefined){startQuestion(g,id);return true}return false}
+function maybeQuestionAtCurrentSpace(g:Game,returnPhase:'move'|'roll'|'end'='move'){const p=g.players[g.turn],id=p.cards.find(cardId=>!p.visited.includes(cardId)&&destinationHubs(cardId).includes(p.pos));if(id!==undefined){askToPlayDestination(g,id,returnPhase);return true}return false}
+export function chooseDestination(g:Game,play:boolean){
+ if(g.phase!=='destination-choice'||g.pendingDestination===null)throw Error('There is no destination card to choose.');
+ const id=g.pendingDestination,returnPhase=g.destinationChoiceReturnPhase??'move';
+ const p=g.players[g.turn];if(p.visited.includes(id)||!p.cards.includes(id)||!destinationHubs(id).includes(p.pos))throw Error('That destination card is not available here.');
+ if(play){startQuestion(g,id);return;}
+ g.pendingDestination=null;g.destinationChoiceReturnPhase=null;g.phase=returnPhase;
+ if(returnPhase==='end'){endTurn(g);return;}
+ if(returnPhase==='move'){if(g.left<=0||(!allowed(g).length&&!roadChangeOptions(g).length))endTurn(g);}
+}
 export function resolveScenario(g:Game,choice:string|undefined,validBlackDots:ReadonlySet<string>=knownBlackDotLocations){
  if(g.phase!=='event'||!g.pendingScenario)throw Error('There is no immediate scenario to resolve.');
  const id=g.pendingScenario,card=scenarioCards.find(c=>c.id===id)!;const p=g.players[g.turn],returnPhase=g.cardDrawReturnPhase??'move';let ends=false,checkArrival=false;
@@ -266,7 +295,7 @@ export function resolveScenario(g:Game,choice:string|undefined,validBlackDots:Re
   default:break;
  }
  discardScenario(g,id);g.pendingScenario=null;g.pendingRoad=null;g.cardDrawReturnPhase=null;
- if(checkArrival&&maybeQuestionAtCurrentSpace(g))return;
+ if(checkArrival&&maybeQuestionAtCurrentSpace(g,ends?'end':returnPhase))return;
  if(ends){log(g,`${p.name} ends the turn because of ${card.title}.`);endTurn(g);return;}
  g.phase=returnPhase;
 }
@@ -281,7 +310,7 @@ export function passConstruction(g:Game,dotId:string,cardId?:string){
  else if(g.roll!==5&&p.passCount<1)throw Error('You need a 5, a 6, or a Construction Pass to get through this cone.');
  return move(g,edge.a===p.pos?edge.b:edge.a,g.roll!==6||!!cardId);
 }
-export function stayOnRoad(g:Game){if(g.phase!=='move'||!g.roadChoicePending)throw Error('There is no road type choice waiting.');g.roadChoicePending=false;}
+export function stayOnRoad(g:Game){if(g.phase!=='move'||!g.roadChoicePending)throw Error('There is no road type choice waiting.');g.roadChoicePending=false;g.roadChangeDot=null;g.roadChangeType=null;}
 export function beginConeMove(g:Game,dotId:string){
  if(g.phase!=='move'||g.roll!==6)throw Error('Roll a six during your turn to move a cone.');
  if(g.coneMovedThisTurn)throw Error('You can move only one cone per turn.');
@@ -311,7 +340,7 @@ export function placeCone(g:Game,dotId:string,validBlackDots:ReadonlySet<string>
  g.turn=0;g.round=1;g.phase='roll';log(g,'All cones are placed. The road trip begins!');
 }
 export function endTurn(g:Game){
- const current=g.players[g.turn];g.left=0;current.doubleTurn=false;g.constructionChoiceMade=false;g.constructionPromptDismissed=false;g.roadChoicePending=false;
+ const current=g.players[g.turn];g.left=0;current.doubleTurn=false;g.constructionChoiceMade=false;g.constructionPromptDismissed=false;g.roadChoicePending=false;g.roadChangeDot=null;g.roadChangeType=null;
  if(current.extraTurns>0){current.extraTurns--;g.phase='roll';drawDueRoadCard(g,current);return;}
  for(let tries=0;tries<g.players.length;tries++){
   g.turn=(g.turn+1)%g.players.length;if(g.turn===0)g.round++;
@@ -322,17 +351,16 @@ export function endTurn(g:Game){
 }
 export function roll(g:Game,value=die()){
  if(g.phase!=='roll')throw Error('Finish the current turn first.');if(!Number.isInteger(value)||value<1||value>6)throw Error('Invalid die.');
- g.roll=value;const allowance=value+g.nextRollBonus;g.nextRollBonus=0;g.left=g.halveNextRoll?Math.ceil(allowance/2):allowance;g.halveNextRoll=false;g.coneMovedThisTurn=false;g.constructionChoiceMade=false;g.constructionPromptDismissed=false;g.roadChoicePending=false;g.phase='move';g.roadChoicePending=switchableRoads(g).length>0;log(g,`${g.players[g.turn].name} rolled ${value}.`);
- if(!allowed(g).length&&!switchableRoads(g).length&&!nearbyCones(g).length){log(g,'No open road: wait for another roll or take a different route next turn.');endTurn(g);}
+ g.roll=value;const allowance=value+g.nextRollBonus;g.nextRollBonus=0;g.left=g.halveNextRoll?Math.ceil(allowance/2):allowance;g.halveNextRoll=false;g.coneMovedThisTurn=false;g.constructionChoiceMade=false;g.constructionPromptDismissed=false;g.roadChoicePending=false;g.roadChangeDot=null;g.roadChangeType=null;g.phase='move';log(g,`${g.players[g.turn].name} rolled ${value}.`);
+ if(!allowed(g).length&&!roadChangeOptions(g).length&&!nearbyCones(g).length){log(g,'No open road: wait for another roll or take a different route next turn.');endTurn(g);}
 }
 export function move(g:Game,to:string,consumeSavedPass=true){
  const e=allowed(g).find(e=>e.to===to);if(!e)throw Error('That space is not available on this roll.');
  const p=g.players[g.turn],cost=moveCost(g,e);if(consumeSavedPass&&isConstruction(g,e)&&g.roll!==5&&p.passCount>0)p.passCount--;p.pos=to;p.road=e.road;g.left=Math.max(0,g.left-cost);g.constructionChoiceMade=false;g.constructionPromptDismissed=false;g.roadChoicePending=false;
  const destination=p.cards.find(id=>!p.visited.includes(id)&&destinationHubs(id).includes(to));
- if(destination){startQuestion(g,destination);return;}
- g.roadChoicePending=switchableRoads(g).length>0;
+ if(destination){askToPlayDestination(g,destination,'move');return;}
  if(to===p.homeBase&&p.visited.length===p.cards.length){g.phase='won';g.winner=g.turn;log(g,`${p.name} reached home and wins the Tour of Utah!`);return;}
- if(g.left<=0||(!allowed(g).length&&!switchableRoads(g).length))endTurn(g);
+ if(g.left<=0||(!allowed(g).length&&!roadChangeOptions(g).length))endTurn(g);
 }
 export function answer(g:Game,correct:boolean){
  if(g.phase!=='question'||g.pending===null)throw Error('No destination question is waiting.');
@@ -346,6 +374,8 @@ export function answer(g:Game,correct:boolean){
 function distance(from:string,target:string){const queue:[string,number][]=[[from,0]];const seen=new Set([from]);for(let i=0;i<queue.length;i++){let [id,n]=queue[i];if(id===target)return n;for(const e of neighbors(id))if(!seen.has(e.to)){seen.add(e.to);queue.push([e.to,n+1]);}}return Infinity;}
 export function botTurn(g:Game,validBlackDots:ReadonlySet<string>=knownBlackDotLocations){
  if(!g.players[g.turn].bot||g.phase==='lobby'||g.phase==='won')return;
+ if(g.phase==='destination-choice'){chooseDestination(g,true);return;}
+ if(g.phase==='card-reveal'){if(g.pendingScenario)keepCardPrivate(g,g.pendingScenario);return;}
  if(g.phase==='cones'){
   while(g.players[g.turn].bot&&g.phase==='cones'){
    const used=new Set(g.players.flatMap(player=>player.cones));const open=[...validBlackDots].filter(id=>!used.has(id));
@@ -364,7 +394,7 @@ export function botTurn(g:Game,validBlackDots:ReadonlySet<string>=knownBlackDotL
   let options=allowed(g).sort((a,b)=>distance(a.to,target)-distance(b.to,target));
   if(!options.length&&g.roll===6&&!g.coneMovedThisTurn&&nearbyCones(g).length){const dot=nearbyCones(g)[0],used=new Set(g.players.flatMap(player=>player.cones));const open=[...validBlackDots].find(id=>!used.has(id));if(open){beginConeMove(g,dot);relocateCone(g,open,validBlackDots);continue;}}
   if(!options.length&&nearbyCones(g).length&&(g.roll===5||g.roll===6||p.passCount>0)){if(g.roll===6)g.constructionChoiceMade=true;options=allowed(g).sort((a,b)=>distance(a.to,target)-distance(b.to,target));}
-  if(!options.length&&switchableRoads(g).length){const road=switchableRoads(g).sort((a,b)=>Math.min(...neighbors(p.pos).filter(e=>e.road===a).map(e=>distance(e.to,target)))-Math.min(...neighbors(p.pos).filter(e=>e.road===b).map(e=>distance(e.to,target))))[0];changeRoad(g,road);if(g.phase!=='move')break;continue;}
+  if(!options.length&&roadChangeOptions(g).length){const road=roadChangeOptions(g).sort((a,b)=>distance(a.to,target)-distance(b.to,target))[0].road;changeRoad(g,road);if(g.phase!=='move')break;continue;}
   if(!options.length||distance(options[0].to,target)>=distance(p.pos,target)){endTurn(g);break;}move(g,options[0].to);
  }
 }

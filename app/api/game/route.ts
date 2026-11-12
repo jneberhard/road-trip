@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { rooms } from "../../../db/schema";
-import { answer, beginConeMove, botTurn, cancelScenario, changeRoad, createGame, discardHeldCard, dismissConstructionChoice, endTurn, hydrateGame, move, passConstruction, placeCone, playChangeRoadCard, playConstructionPass, relocateCone, resolveScenario, roll, startGame, stayOnRoad, type Game, type Road, type StopMix } from "../../../lib/game";
+import { answer, beginConeMove, beginRoadChange, botTurn, cancelScenario, changeRoad, chooseDestination, confirmRoadChange, createGame, dismissCardReveal, discardHeldCard, dismissConstructionChoice, endTurn, hydrateGame, keepCardPrivate, move, passConstruction, placeCone, playChangeRoadCard, playConstructionPass, relocateCone, resolveScenario, roll, showCardToPlayer, startGame, stayOnRoad, type Game, type Road, type StopMix } from "../../../lib/game";
 import { blackDotLocationIds } from "../../../lib/map-display";
 
 export const dynamic = "force-dynamic";
@@ -22,10 +22,17 @@ type Action = {
   scenarioId?: string;
   choice?: string;
   correct?: boolean;
+  confirm?: boolean;
+  play?: boolean;
+  recipientSeat?: number;
+  revealId?: string;
 };
 
-function publicGame(game: Game) {
-  return { ...game, host: undefined, players: game.players.map(({ token: _, ...player }) => player) };
+function publicGame(game: Game, viewerSeat: number) {
+  const visibleReveals=game.cardReveals.filter(reveal=>reveal.recipientSeat===viewerSeat&&game.players[reveal.ownerSeat]?.hand.includes(reveal.cardId));
+  const privateChoice=viewerSeat!==game.turn&&['destination-choice','card-reveal','hand'].includes(game.phase);
+  const visiblePhase=privateChoice?(game.phase==='destination-choice'?'move':'roll'):game.phase;
+  return { ...game, host: undefined, phase:visiblePhase, pendingScenario:game.phase==='event'||viewerSeat===game.turn?game.pendingScenario:null, pendingDestination:viewerSeat===game.turn?game.pendingDestination:null, roadChoicePending:viewerSeat===game.turn?game.roadChoicePending:false, roadChangeDot:viewerSeat===game.turn?game.roadChangeDot:null, roadChangeType:viewerSeat===game.turn?game.roadChangeType:null, scenarioDeck:[], scenarioDiscard:[], cardReveals:visibleReveals, players: game.players.map(({ token: _, ...player },ownerSeat) => ({...player,hand:ownerSeat===viewerSeat?player.hand:player.hand.filter(cardId=>visibleReveals.some(reveal=>reveal.ownerSeat===ownerSeat&&reveal.cardId===cardId))})) };
 }
 
 function response(data: unknown, status = 200) {
@@ -50,7 +57,7 @@ export async function POST(req: Request) {
       for (let attempt = 0; attempt < 8; attempt++) {
         const code = makeCode();
         const inserted = await db.insert(rooms).values({ code, state: game }).onConflictDoNothing().returning({ code: rooms.code });
-        if (inserted.length) return response({ code, token, seat: 0, game: publicGame(game) });
+        if (inserted.length) return response({ code, token, seat: 0, game: publicGame(game,0) });
       }
       throw new Error("Please try creating a room again.");
     }
@@ -78,11 +85,15 @@ export async function POST(req: Request) {
       const timedOut = game.phase === "question" && game.questionDeadline !== null && Date.now() >= game.questionDeadline;
       if (body.action === "get") {
         if (timedOut) answer(game, false);
-        else return response({ game: publicGame(game), seat });
+        else return response({ game: publicGame(game,seat), seat });
       } else if (body.action === "expire-question") {
         if (!timedOut) throw new Error("The trivia timer has not expired.");
         answer(game, false);
-      } else if (body.rev !== row.rev) return response({ error: "The game changed. Please try again.", game: publicGame(game) }, 409);
+      } else if (body.rev !== row.rev) return response({ error: "The game changed. Please try again.", game: publicGame(game,seat) }, 409);
+      else if (body.action === "dismiss-card-reveal") {
+        if (!body.revealId) throw new Error("Choose a shared card to dismiss.");
+        dismissCardReveal(game, body.revealId, seat);
+      }
       else if (body.action === "start") {
         if (body.token !== game.host) throw new Error("Only the host can start.");
         if (game.phase !== "lobby") throw new Error("Game already started.");
@@ -104,6 +115,19 @@ export async function POST(req: Request) {
           passConstruction(game, body.edge, body.scenarioId);
         } else if (body.action === "dismiss-construction") {
           dismissConstructionChoice(game);
+        } else if (body.action === "choose-destination") {
+          chooseDestination(game, !!body.play);
+        } else if (body.action === "begin-road-change") {
+          if (!body.to || !body.road) throw new Error("Choose the dot and road type you want to use.");
+          beginRoadChange(game, body.to, body.road);
+        } else if (body.action === "confirm-road-change") {
+          confirmRoadChange(game, !!body.confirm);
+        } else if (body.action === "keep-card-private") {
+          if (!body.scenarioId) throw new Error("Choose the newly drawn card.");
+          keepCardPrivate(game, body.scenarioId);
+        } else if (body.action === "show-card") {
+          if (!body.scenarioId || body.recipientSeat===undefined) throw new Error("Choose a card and another driver.");
+          showCardToPlayer(game, body.scenarioId, body.recipientSeat);
         } else if (body.action === "stay-road") {
           stayOnRoad(game);
         } else if (body.action === "relocate-cone") {
@@ -141,7 +165,7 @@ export async function POST(req: Request) {
     const [updated] = await db.update(rooms).set({ state: game, rev: row.rev + 1, updated: new Date() })
       .where(and(eq(rooms.code, code), eq(rooms.rev, row.rev))).returning({ rev: rooms.rev });
     if (!updated) return response({ error: "Another player just updated the room. Try again." }, 409);
-    return response({ game: publicGame(game), seat, token, code });
+    return response({ game: publicGame(game,seat), seat, token, code });
   } catch (error) {
     return response({ error: error instanceof Error ? error.message : "Unable to update the game." }, 400);
   }
