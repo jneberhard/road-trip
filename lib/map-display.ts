@@ -32,13 +32,19 @@ const savedPosition = (id: string, fallback: { x: number; y: number }) => savedM
 const overlapsDestination = (x: number, y: number, dotRadius: number) => destinationMarkerSeeds.some(marker => { const position = destinationMarkerPosition(marker); return Math.hypot(x - position.x, y - position.y) < dotRadius + 2 + .4; });
 export const hiddenHubDots = new Set(hubs.filter(([id,,x,y]) => { const dot = savedPosition(id, { x, y }); return !destinationHubIds.has(id) && overlapsDestination(dot.x, dot.y, 1.2); }).map(([id]) => id));
 const blackDotPositions: { x: number; y: number; r: number }[] = [];
-export const hiddenBlackDots = new Set<string>();
+const visibleBlackDotPositions: { x: number; y: number; r: number }[] = [];
+const manuallyRemovedBlackDotIds = new Set(['hub:layton','space:salina-meadow-lava-tubes-5','space:page-monument-valley-1']);
+export const hiddenBlackDots = new Set<string>(manuallyRemovedBlackDotIds);
 export const numberedBlackDots = new Map<string, { number: number; name: string }>();
 const blackDotNumberEntries = blackDotNumberIds as Array<[string, number]>;
 const blackDotNumberById = new Map(blackDotNumberEntries);
 let nextBlackDotNumber = Math.max(0, ...blackDotNumberEntries.map(([, number]) => number)) + 1;
+const minimumVisibleDotGap = 1.8;
 function registerBlackDot(id: string, x: number, y: number, r: number, name: string) {
-  if (overlapsDestination(x, y, Math.min(r, 1.2))) { hiddenBlackDots.add(id); return; }
+  if (manuallyRemovedBlackDotIds.has(id)) return;
+  const visibleRadius = Math.min(r, 1.2);
+  if (overlapsDestination(x, y, visibleRadius) || visibleBlackDotPositions.some(dot => Math.hypot(x - dot.x, y - dot.y) < visibleRadius + dot.r + minimumVisibleDotGap)) { hiddenBlackDots.add(id); return; }
+  visibleBlackDotPositions.push({ x, y, r: visibleRadius });
   blackDotPositions.push({ x, y, r });
   numberedBlackDots.set(id, { number: blackDotNumberById.get(id) ?? nextBlackDotNumber++, name });
 }

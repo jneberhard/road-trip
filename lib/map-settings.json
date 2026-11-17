@@ -1,8 +1,26 @@
 {
   "roads": {
     "parowan|cedar-city": "Freeway",
-    "nephi|yuba-i15-exit": "Freeway",
+    "nephi|yuba-i15-exit": "Highway",
+    "yuba-i15-exit|yuba-state-park": "Highway",
+    "yuba-state-park|yuba-state-park-salina-1": "Highway",
     "nephi|nephi-salina-1": "Freeway",
+    "cisco-moab-2|cisco-moab-3": "Highway",
+    "cisco-moab-3|moab": "Highway",
+    "moab|moab-monticello-1": "Highway",
+    "moab-monticello-1|moab-monticello-2": "Highway",
+    "moab-monticello-2|monticello": "Highway",
+    "blanding|monticello": "Highway",
+    "blanding|natural-bridges-blanding-2": "Highway",
+    "natural-bridges-blanding-1|natural-bridges-blanding-2": "Highway",
+    "natural-bridges|natural-bridges-blanding-1": "Highway",
+    "natural-bridges|natural-bridges-rainbow-bridge-1": "Highway",
+    "natural-bridges-rainbow-bridge-1|natural-bridges-rainbow-bridge-2": "Highway",
+    "natural-bridges-rainbow-bridge-2|natural-bridges-rainbow-bridge-3": "Highway",
+    "natural-bridges-rainbow-bridge-3|natural-bridges-rainbow-bridge-4": "Highway",
+    "natural-bridges-rainbow-bridge-4|natural-bridges-rainbow-bridge-5": "Highway",
+    "natural-bridges-rainbow-bridge-5|natural-bridges-rainbow-bridge-6": "Highway",
+    "natural-bridges-rainbow-bridge-6|natural-bridges-rainbow-bridge-7": "Highway",
     "kanab|kanab-the-wave-1": "Highway",
     "spanish-fork-nephi-1|nephi": "Freeway",
     "panguitch-parowan-3|parowan": "Freeway",
@@ -81,6 +99,10 @@
     "tremonton-i84-idaho-border-2": {
       "x": 429.1984359726295,
       "y": 256.7551024929345
+    },
+    "kanab-page-2": {
+      "x": 516.7979421675521,
+      "y": 894.1294249739926
     }
   },
   "labelPositions": {

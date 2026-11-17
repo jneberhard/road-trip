@@ -14,7 +14,7 @@ export async function GET() {
       labelPositions['destination-30-nephi-salina-1'] = labelPositions['destination-30-yuba-i15-exit'];
       delete labelPositions['destination-30-yuba-i15-exit'];
     }
-    return Response.json({ settings: stored ? { ...defaultMapSettings, ...stored, labelPositions } : defaultMapSettings, updated: row?.updated ?? null }, { headers: { 'Cache-Control': 'no-store' } });
+    return Response.json({ settings: stored ? { ...defaultMapSettings, ...stored, positions: { ...defaultMapSettings.positions, ...stored.positions }, labelPositions } : defaultMapSettings, updated: row?.updated ?? null }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
     return Response.json({ error: error instanceof Error ? error.message : 'Unable to read the shared map.' }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
   }
