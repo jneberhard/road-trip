@@ -100,7 +100,7 @@ export const bookCliffsShape=landform('Book Cliffs',[[-110.30,39.28],[-110.28,39
 export type Space={id:string;name:string;x:number;y:number;hub:boolean};
 export type Edge={a:string;b:string;road:Road;barrel:boolean};
 export const spaces: Record<string,Space> = Object.fromEntries(hubs.map(([id,name,x,y])=>[id,{id,name,x,y,hub:true}]));
-const knownBlackDotLocations:ReadonlySet<string>=new Set((blackDotNumberIds as Array<[string,number]>).map(([id])=>id.slice(id.indexOf(':')+1)).filter(id=>id!=='monument-valley-kayenta-1'));
+const knownBlackDotLocations=new Set<string>((blackDotNumberIds as Array<[string,number]>).map(([id])=>id.slice(id.indexOf(':')+1)).filter(id=>id!=='monument-valley-kayenta-1'));
 export const edges:Edge[]=[];
 const routeDefinitions:[string,string,Road][]=[
  // Interstates and interstate connectors
@@ -145,6 +145,40 @@ const removedRoadDotIds = new Set(['tooele-spiral-jetty-9','tooele-spiral-jetty-
 for (const id of removedRoadDotIds) delete spaces[id];
 for (let i=edges.length-1;i>=0;i--) if(removedRoadDotIds.has(edges[i].a)||removedRoadDotIds.has(edges[i].b)) edges.splice(i,1);
 for (let i=roadMapSegments.length-1;i>=0;i--) if(removedRoadDotIds.has(roadMapSegments[i].a)||removedRoadDotIds.has(roadMapSegments[i].b)) roadMapSegments.splice(i,1);
+// Place Dot #245 on the Price–Spanish Fork highway and join its route at that junction.
+const highwayJoinDot='price-scofield-2',highwaySplitA='spanish-fork-price-2',highwaySplitB='spanish-fork-price-3';
+const highwaySegmentIndex=roadMapSegments.findIndex(segment=>edgeKey(segment.a,segment.b)===edgeKey(highwaySplitA,highwaySplitB));
+const highwayEdgeIndex=edges.findIndex(edge=>edgeKey(edge.a,edge.b)===edgeKey(highwaySplitA,highwaySplitB));
+if(spaces[highwayJoinDot]&&highwaySegmentIndex>=0&&highwayEdgeIndex>=0){
+ const segment=roadMapSegments[highwaySegmentIndex],target=spaces[highwayJoinDot];let closest:{index:number;point:{x:number;y:number};distance:number}|null=null;
+ for(let index=0;index<segment.points.length-1;index++){
+  const a=segment.points[index],b=segment.points[index+1],dx=b.x-a.x,dy=b.y-a.y,lengthSquared=dx*dx+dy*dy,t=lengthSquared?Math.max(0,Math.min(1,((target.x-a.x)*dx+(target.y-a.y)*dy)/lengthSquared)):0,point={x:a.x+t*dx,y:a.y+t*dy},distance=Math.hypot(target.x-point.x,target.y-point.y);
+  if(!closest||distance<closest.distance)closest={index,point,distance};
+ }
+ if(closest){
+  spaces[highwayJoinDot]={...target,...closest.point};
+  const leftPoints=[...segment.points.slice(0,closest.index+1),closest.point],rightPoints=[closest.point,...segment.points.slice(closest.index+1)];
+  roadMapSegments.splice(highwaySegmentIndex,1,{a:segment.a,b:highwayJoinDot,road:'Highway',points:leftPoints},{a:highwayJoinDot,b:segment.b,road:'Highway',points:rightPoints});
+  const highwayEdge=edges[highwayEdgeIndex];edges.splice(highwayEdgeIndex,1,{...highwayEdge,a:segment.a,b:highwayJoinDot,road:'Highway'},{...highwayEdge,a:highwayJoinDot,b:segment.b,road:'Highway'});
+ }
+}
+// Move Dot #340 to the route between #339 and #134 and join Newspaper Rock there.
+const newspaperIntersectionId='blanding-newspaper-rock-4',newspaperSouthDot='blanding-newspaper-rock-3',mainRoadDot='moab-monticello-2';
+if(spaces[newspaperIntersectionId]&&spaces[newspaperSouthDot]&&spaces[mainRoadDot]){
+ const a=spaces[newspaperSouthDot],b=spaces[mainRoadDot],point={x:(a.x+b.x)/2,y:(a.y+b.y)/2};
+ spaces[newspaperIntersectionId]={...spaces[newspaperIntersectionId],...point};
+ if(!edges.some(edge=>edgeKey(edge.a,edge.b)===edgeKey(newspaperIntersectionId,mainRoadDot)))edges.push({a:newspaperIntersectionId,b:mainRoadDot,road:'County road',barrel:false});
+ if(!roadMapSegments.some(segment=>edgeKey(segment.a,segment.b)===edgeKey(newspaperIntersectionId,mainRoadDot)))roadMapSegments.push({a:newspaperIntersectionId,b:mainRoadDot,road:'County road',points:[point,{x:b.x,y:b.y}]});
+}
+// Merge Dot #191 into Dot #137 so the Four Corners and Bluff roads meet at one shared point.
+const mergedDotId='four-corners-kayenta-2',sharedRoadDotId='bluff-kayenta-2';
+if(spaces[mergedDotId]&&spaces[sharedRoadDotId]){
+ spaces[sharedRoadDotId]={...spaces[sharedRoadDotId],x:spaces[mergedDotId].x,y:spaces[mergedDotId].y};
+ for(const edge of edges){if(edge.a===mergedDotId)edge.a=sharedRoadDotId;if(edge.b===mergedDotId)edge.b=sharedRoadDotId;}
+ for(const segment of roadMapSegments){if(segment.a===mergedDotId)segment.a=sharedRoadDotId;if(segment.b===mergedDotId)segment.b=sharedRoadDotId;}
+ delete spaces[mergedDotId];
+ knownBlackDotLocations.delete(mergedDotId);
+}
 const interstateCorridors:{route:'15'|'70'|'84';legs:[string,string][]}[]=[
  {route:'15',legs:[['st-george','cedar-city'],['cedar-city','beaver'],['beaver','fillmore'],['fillmore','nephi'],['nephi','payson'],['payson','spanish-fork'],['spanish-fork','provo'],['provo','orem'],['orem','lehi'],['lehi','draper'],['draper','sandy'],['sandy','salt-lake-city'],['salt-lake-city','farmington'],['farmington','kaysville'],['kaysville','layton'],['layton','ogden'],['ogden','brigham-city'],['brigham-city','tremonton'],['tremonton','malad-city'],['malad-city','pocatello']]},
  {route:'70',legs:[['cove-fort','salina'],['salina','green-river'],['green-river','cisco']]},
@@ -176,6 +210,11 @@ for(const [a,b] of [['nephi','yuba-i15-exit'],['yuba-i15-exit','yuba-state-park'
 // Keep the requested route between black dots #12 (Bluff) and #9 (Green River) blue.
 const bluffToBlanding=routeNodePath('bluff','blanding'),blandingToMonticello=routeNodePath('blanding','monticello'),monticelloToMoab=routeNodePath('monticello','moab'),moabToCisco=routeNodePath('moab','cisco'),ciscoToGreenRiver=routeNodePath('cisco','green-river');
 addAlwaysBlueRoute([...bluffToBlanding,...blandingToMonticello.slice(1),...monticelloToMoab.slice(1),...moabToCisco.slice(1),...ciscoToGreenRiver.slice(1)]);
+// Keep the requested Green River to black dot #330 route interstate blue.
+addAlwaysBlueRoute(['green-river','green-river-san-rafael-swell-1','green-river-san-rafael-swell-2','green-river-san-rafael-swell-3']);
+// Make every segment from Dot #12 (Bluff) to Dot #131 red Highway, overriding the older blue route there.
+const bluffToDot131=[...bluffToBlanding,...blandingToMonticello.slice(1),...monticelloToMoab.slice(1),...moabToCisco.slice(1,3)];
+for(let i=1;i<bluffToDot131.length;i++)interstateSegmentKeys.delete(edgeKey(bluffToDot131[i-1],bluffToDot131[i]));
 export function isInterstateSegment(a:string,b:string){return interstateSegmentKeys.has(edgeKey(a,b));}
 const coloradoRiver=riverShapes.find(river=>river.name==='Colorado River');
 const riverStart=spaces['hanksville-natural-bridges-5'],riverEnd=spaces['rainbow-bridge'];
@@ -223,7 +262,7 @@ export function createGame(humans:number,bots:number,name='You',online=false,sto
 export function hydrateGame(game:Game,validBlackDots?:ReadonlySet<string>){
  if(!Array.isArray(game.players)||game.players.length===0)throw new Error('This saved game is incomplete. Start a new game to continue.');
  let recoveredPosition=false;
- game.players.forEach(player=>{if(!spaces[player.homeBase]){player.homeBase=homeBases[Math.floor(Math.random()*homeBases.length)];recoveredPosition=true;}if(!spaces[player.pos]){player.pos=player.homeBase;recoveredPosition=true;}player.hand??=[];player.cones??=[];player.skipTurns??=0;player.extraTurns??=0;player.passCount??=0;player.roadCardDue??=false;player.electricRoad??=null;player.doubleTurn??=false;player.slowRoad??=null;});
+ game.players.forEach(player=>{if(player.pos==='four-corners-kayenta-2')player.pos='bluff-kayenta-2';if(!spaces[player.homeBase]){player.homeBase=homeBases[Math.floor(Math.random()*homeBases.length)];recoveredPosition=true;}if(!spaces[player.pos]){player.pos=player.homeBase;recoveredPosition=true;}player.hand??=[];player.cones??=[];player.cones=player.cones.map(id=>id==='four-corners-kayenta-2'?'bluff-kayenta-2':id);player.skipTurns??=0;player.extraTurns??=0;player.passCount??=0;player.roadCardDue??=false;player.electricRoad??=null;player.doubleTurn??=false;player.slowRoad??=null;});
  if(validBlackDots){const occupied=new Set<string>(),replacements=new Map<string,string>();for(const player of game.players)player.cones=player.cones.map(cone=>{if(!cone.includes('|')){occupied.add(cone);return cone;}const [a,b]=cone.split('|'),replacement=[a,b].find(id=>validBlackDots.has(id)&&!occupied.has(id));if(!replacement)return cone;occupied.add(replacement);replacements.set(cone,replacement);return replacement;});if(game.coneToMove&&replacements.has(game.coneToMove))game.coneToMove=replacements.get(game.coneToMove)!;}
  if(!Number.isInteger(game.turn)||game.turn<0||game.turn>=game.players.length)game.turn=0;
  game.log??=[];if(recoveredPosition)game.log=['Recovered an older save with an outdated map position; the affected driver returned to their home base.',...game.log].slice(0,40);

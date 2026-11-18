@@ -33,7 +33,7 @@ const overlapsDestination = (x: number, y: number, dotRadius: number) => destina
 export const hiddenHubDots = new Set(hubs.filter(([id,,x,y]) => { const dot = savedPosition(id, { x, y }); return !destinationHubIds.has(id) && overlapsDestination(dot.x, dot.y, 1.2); }).map(([id]) => id));
 const blackDotPositions: { x: number; y: number; r: number }[] = [];
 const visibleBlackDotPositions: { x: number; y: number; r: number }[] = [];
-const manuallyRemovedBlackDotIds = new Set(['hub:layton','space:salina-meadow-lava-tubes-5','space:page-monument-valley-1']);
+const manuallyRemovedBlackDotIds = new Set(['hub:layton','space:salina-meadow-lava-tubes-5','space:page-monument-valley-1','space:page-monument-valley-4','space:kanab-the-wave-1','space:bluff-goosenecks-1','space:bluff-monument-valley-3','space:torrey-hanksville-1','space:price-scofield-1','space:duchesne-roosevelt-1','space:myton-duchesne-2','space:four-corners-kayenta-2']);
 export const hiddenBlackDots = new Set<string>(manuallyRemovedBlackDotIds);
 export const numberedBlackDots = new Map<string, { number: number; name: string }>();
 const blackDotNumberEntries = blackDotNumberIds as Array<[string, number]>;

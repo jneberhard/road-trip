@@ -1,16 +1,19 @@
 {
   "roads": {
     "parowan|cedar-city": "Freeway",
-    "nephi|yuba-i15-exit": "Highway",
+    "nephi|yuba-i15-exit": "County road",
     "yuba-i15-exit|yuba-state-park": "Highway",
     "yuba-state-park|yuba-state-park-salina-1": "Highway",
     "nephi|nephi-salina-1": "Freeway",
     "cisco-moab-2|cisco-moab-3": "Highway",
     "cisco-moab-3|moab": "Highway",
+    "blanding-bluff-1|bluff": "Highway",
+    "blanding|blanding-bluff-1": "Highway",
     "moab|moab-monticello-1": "Highway",
     "moab-monticello-1|moab-monticello-2": "Highway",
     "moab-monticello-2|monticello": "Highway",
     "blanding|monticello": "Highway",
+    "blanding-newspaper-rock-4|moab-monticello-2": "County road",
     "blanding|natural-bridges-blanding-2": "Highway",
     "natural-bridges-blanding-1|natural-bridges-blanding-2": "Highway",
     "natural-bridges|natural-bridges-blanding-1": "Highway",
@@ -26,6 +29,17 @@
     "panguitch-parowan-3|parowan": "Freeway",
     "nephi-salina-1|nephi-salina-2": "Freeway",
     "nephi-salina-2|nephi-salina-3": "Freeway",
+    "price|spanish-fork-price-3": "Highway",
+    "price-scofield-2|spanish-fork-price-2": "Highway",
+    "price-scofield-2|spanish-fork-price-3": "Highway",
+    "torrey-hanksville-1|torrey-hanksville-2": "State road",
+    "torrey|torrey-hanksville-1": "State road",
+    "loa|torrey": "State road",
+    "loa|richfield-loa-2": "State road",
+    "richfield-loa-1|richfield-loa-2": "State road",
+    "richfield|richfield-loa-1": "State road",
+    "richfield|richfield-cove-fort-1": "State road",
+    "richfield-cove-fort-1|richfield-cove-fort-2": "State road",
     "panguitch|panguitch-parowan-1": "Highway",
     "kanab-the-wave-1|kanab-the-wave-2": "Highway",
     "kanab-the-wave-2|kanab-the-wave-3": "Highway",
@@ -103,6 +117,18 @@
     "kanab-page-2": {
       "x": 516.7979421675521,
       "y": 894.1294249739926
+    },
+    "bluff-kayenta-2": {
+      "x": 780.2409603635674,
+      "y": 914.6228902556937
+    },
+    "price-scofield-2": {
+      "x": 606.6772506155013,
+      "y": 530.678932081251
+    },
+    "blanding-newspaper-rock-4": {
+      "x": 799.0698882402712,
+      "y": 771.216599018215
     }
   },
   "labelPositions": {
